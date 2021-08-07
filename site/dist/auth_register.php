@@ -195,7 +195,7 @@
 
 
                                             
-                                                <div class="col-md-4 mb-3">
+                                                <!-- <div class="col-md-4 mb-3">
                                                   <label>Password</label>
                                                     <input type="password" name="txt_password" id="pass2" class="form-control" required
                                                             placeholder="Password"/>
@@ -206,7 +206,7 @@
                                                     <input type="password" name="txt_repassword" class="form-control" required
                                                             data-parsley-equalto="#pass2"
                                                             placeholder="Re-Type Password"/>
-                                                </div>
+                                                </div> -->
                                             
                                                 
                                           
@@ -293,7 +293,7 @@
     $gender = $_REQUEST['txt_gender'];
     $birth_date = $_REQUEST['txt_bdate'];
     $birth_date = date("Y-m-d", strtotime($birth_date) );
-
+    $headers = "From: sender email";
     $mobile = $_REQUEST['txt_mobile'];
     $email = $_REQUEST['txt_email'];
     $address = $_REQUEST['txt_address'];
@@ -301,10 +301,11 @@
     $state = $_REQUEST['txt_state'];
     $zip = $_REQUEST['txt_zip'];
     $username = $_REQUEST['txt_username'];
-    $password = $_REQUEST['txt_password'];
-
+    // $password = $_REQUEST['txt_password'];
+    $body = "hai your username is $username .'<br>'.'password '.$password";
     $account_type = $_REQUEST['txt_account_type'];
-
+    $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    $password = substr( str_shuffle( $chars ), 0, 8 );
     
     // Query for inesrt record in tbl_account
     $query = "INSERT INTO tbl_account (username, password) VALUES ('$username', '$password')";
@@ -347,6 +348,10 @@
         
 
       }
+      if (mail($email, $subject, $body, $headers)) {
+        
+      // rest of the code
+      } 
       else
       {
         print($result);
