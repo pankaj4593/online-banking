@@ -86,7 +86,8 @@
                                             <div class="row">
                                                 <div class="col-md-6 mb-3">
                                                 <label for="validationTooltip01">First name</label>
-                                                <input type="text" name="txt_fname" class="form-control" id="validationTooltip01" placeholder="First name" value="" required>
+                                                <input type="text" name="txt_fname" class="form-control" id="validationTooltip01" 
+                                                placeholder="First name" value="<?=$first_name?>" required>
                                                 <div class="valid-feedback">
                                                     Looks good!
                                                 </div>
@@ -151,7 +152,7 @@
                                             <div class="row">
                                                 <div class="col-md-4 mb-3">
                                                 <label for="validationTooltip03">Address</label>
-                                                <input type="text" name="txt_address"  value="<?php echo $$first_name; ?>" class="form-control" id="validationTooltip03" placeholder="Address" required>
+                                                <input type="text" name="txt_address"  value="" class="form-control" id="validationTooltip03" placeholder="Address" required>
                                                 <div class="invalid-feedback">
                                                     Please provide a valid Address.
                                                 </div>
