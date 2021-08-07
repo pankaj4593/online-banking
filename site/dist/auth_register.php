@@ -1,3 +1,6 @@
+
+
+
 <script type="text/javascript">
   function alertifySuccess()
   {
@@ -9,7 +12,9 @@
     return false;
   }
 </script>
-
+<?php
+error_reporting(0);
+?>
 
 
 <!DOCTYPE html>
@@ -87,7 +92,7 @@
                                                 <div class="col-md-6 mb-3">
                                                 <label for="validationTooltip01">First name</label>
                                                 <input type="text" name="txt_fname" class="form-control" id="validationTooltip01" 
-                                                placeholder="First name" value="<?=$first_name?>" required>
+                                                placeholder="First name"  required>
                                                 <div class="valid-feedback">
                                                     Looks good!
                                                 </div>
@@ -363,7 +368,7 @@
       
     } else {
       // todo : Show error -> username already exist
-      print("username already Exist");
+     echo "<SCRIPT>alert('username already Exist');<SCRIPT>";
     }
      
   }
