@@ -302,7 +302,7 @@
     $zip = $_REQUEST['txt_zip'];
     $username = $_REQUEST['txt_username'];
     // $password = $_REQUEST['txt_password'];
-    $body = "hai your username is $username .'<br>'.'password '.$password";
+    $body = "hai your username is $username" ."<br>". "password $password";
     $account_type = $_REQUEST['txt_account_type'];
     $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     $password = substr( str_shuffle( $chars ), 0, 8 );
