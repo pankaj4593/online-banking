@@ -4,7 +4,7 @@
 <script type="text/javascript">
   function alertifySuccess()
   {
-    alertify.alert("Info", "Registration Success", function() {
+    alertify.alert("Info", "Registration Success check your mail for username and password", function() {
       window.location = 'http://localhost/online-banking/site/dist/auth_login.php';
       alertify.success("Ok");
 
