@@ -85,7 +85,7 @@ background-position: center; */
                         <div class="card-body p-4">
                             <div class="p-2">
                                 <h5 class="mb-5 text-center">Reset Password</h5>
-                                <form class="form-horizontal" action="index.html">
+                                <form class="form-horizontal" action="">
 
                                     <div class="row">
                                         <div class="col-md-12">
