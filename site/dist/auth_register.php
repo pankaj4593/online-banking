@@ -151,7 +151,7 @@
                                             <div class="row">
                                                 <div class="col-md-4 mb-3">
                                                 <label for="validationTooltip03">Address</label>
-                                                <input type="text" name="txt_address" class="form-control" id="validationTooltip03" placeholder="Address" required>
+                                                <input type="text" name="txt_address"  value="<?php echo $$first_name; ?>" class="form-control" id="validationTooltip03" placeholder="Address" required>
                                                 <div class="invalid-feedback">
                                                     Please provide a valid Address.
                                                 </div>
@@ -301,11 +301,12 @@
     $state = $_REQUEST['txt_state'];
     $zip = $_REQUEST['txt_zip'];
     $username = $_REQUEST['txt_username'];
-    // $password = $_REQUEST['txt_password'];
-    $body = "hai your username is $username" ."<br>". "password $password";
-    $account_type = $_REQUEST['txt_account_type'];
     $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     $password = substr( str_shuffle( $chars ), 0, 8 );
+    // $password = $_REQUEST['txt_password'];
+    $body = "hai your username is $username  password    $password";
+    $account_type = $_REQUEST['txt_account_type'];
+
     
     // Query for inesrt record in tbl_account
     $query = "INSERT INTO tbl_account (username, password) VALUES ('$username', '$password')";
