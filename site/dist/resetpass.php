@@ -16,7 +16,36 @@
     <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
     <!-- App Css-->
     <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" />
-
+    <script >
+function valid()
+{
+if(document.chngpwd.opwd.value=="")
+{
+alert("Old Password Filed is Empty !!");
+document.chngpwd.opwd.focus();
+return false;
+}
+else if(document.chngpwd.npwd.value=="")
+{
+alert("New Password Filed is Empty !!");
+document.chngpwd.npwd.focus();
+return false;
+}
+else if(document.chngpwd.cpwd.value=="")
+{
+alert("Confirm Password Filed is Empty !!");
+document.chngpwd.cpwd.focus();
+return false;
+}
+else if(document.chngpwd.npwd.value!= document.chngpwd.cpwd.value)
+{
+alert("Password and Confirm Password Field do not match  !!");
+document.chngpwd.cpwd.focus();
+return false;
+}
+return true;
+}
+</script>
 </head>
 <style>
     .bg-pattern {
@@ -60,13 +89,15 @@ background-position: center; */
 
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <div class="alert alert-warning alert-dismissible">
-                                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button> Enter your <b>Email</b> and instructions will be sent to you!
-                                            </div>
+                                            
 
                                             <div class="form-group mt-4">
-                                                <label for="useremail">Email</label>
-                                                <input type="email" class="form-control" id="useremail" placeholder="Enter email">
+                                                <label for="useremail">Current Password</label>
+                                                <input type="text" class="form-control" id="useremail" name="opwd" placeholder="Enter email">
+                                            </div>
+                                            <div class="form-group mt-4">
+                                                <label for="useremail">New Password</label>
+                                                <input type="text" class="form-control"  name="npwd" id="useremail" placeholder="Enter email">
                                             </div>
                                             <div class="mt-4">
                                                 <button class="btn btn-success btn-block waves-effect waves-light" type="submit">Send Email</button>
@@ -98,3 +129,24 @@ background-position: center; */
 </body>
 
 </html>
+<?php
+
+include("connect.php");
+if(isset($_POST['Submit']))
+{
+ $oldpass=md5($_POST['opwd']);
+
+ $newpassword=md5($_POST['npwd']);
+$sql=mysqli_query($con,"SELECT password tbl_account where password='$oldpass' ");
+$num=mysqli_fetch_array($sql);
+if($num>0)
+{
+ $con=mysqli_query($con,"update tbl_account set password=' $newpassword' ");
+$_SESSION['msg1']="Password Changed Successfully !!";
+}
+else
+{
+$_SESSION['msg1']="Old Password not match !!";
+}
+}
+?>
