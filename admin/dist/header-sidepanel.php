@@ -294,6 +294,12 @@
                                     <span>Cheque Book Requests</span>
                                 </a>
                             </li> -->
+                <li>
+                    <a href="fee-charges.php" class="waves-effect">
+                        <i class="mdi mdi-wrench-outline"></i>
+                        <span>Fee Charges</span>
+                    </a>
+                </li>
 
                 <li>
                     <a href="manage_feedback.php" class="waves-effect">
