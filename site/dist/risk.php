@@ -8,7 +8,7 @@ if (isset($_SESSION["s_account_no"]) && isset($_SESSION['s_login']))
     $query= mysqli_query($con, "SELECT   email FROM  tbl_customer WHERE account_no='$Account_no' ")or die('not connect from databse');
     $email=mysqli_fetch_array($query) or die('sql server error');
     $email_Send=$email['email'];
-    $otp_auth_verification=rand(0,3005);
+    $otp_auth_verification=rand(9990,3005);
         $to_email = "$email_Send";
 $opt_insert_into_Database= "UPDATE tbl_customer SET  otp='$otp_auth_verification'  where account_no='$Account_no' " or die('sql error');
 // echo $opt_insert_into_Database;
@@ -25,7 +25,7 @@ $headers = "From: sender email";
 if (mail($to_email, $subject, $body, $headers)) 
 {
     // echo "Email successfully sent to $to_email...";
-    // header('location:otp.php');
+    header('location:otp.php');
 
 } 
 

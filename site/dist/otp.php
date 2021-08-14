@@ -28,359 +28,474 @@ else {
    header("location:http://localhost/online-banking/site/dist/auth_login.php");
    }
 ?>
-<!doctype html>
-<html lang="en">
+    <!doctype html>
+    <html lang="en">
 
-<head>
-    <meta charset="utf-8" />
-    <title>Recover Password | Apaxy - Responsive Bootstrap 4 Admin Dashboard</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
-    <meta content="Themesdesign" name="author" />
-    <!-- App favicon -->
-    <link rel="shortcut icon" href="assets/images/favicon.ico">
+    <head>
+        <meta charset="utf-8" />
+        <title>Recover Password | Apaxy - Responsive Bootstrap 4 Admin Dashboard</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+        <meta content="Themesdesign" name="author" />
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="assets/images/favicon.ico">
 
-    <!-- Bootstrap Css -->
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <!-- Icons Css -->
-    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
-    <!-- App Css-->
-    <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" />
+        <!-- Bootstrap Css -->
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <!-- Icons Css -->
+        <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+        <!-- App Css-->
+        <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" />
 
-</head>
-<!-- validation for blank -->
+    </head>
+    <!-- validation for blank -->
 
-<script>
-function blank_validate()
-{
-  debugger;
-  var error=document.getElementById('1').value;
-  var error1=document.getElementById('2').value;
-  var error2=document.getElementById('3').value;
-  var error3=document.getElementById('4').value;
 
-if(error=="" && error1=="" && error2=="" && error3=="")
-{
-  alert('Please Enter Your Otp');
-}
 
-}
-</script>
-<style>
-    .bg-pattern {
-        /* background-image: url('https://i.pinimg.com/originals/f9/11/d3/f911d38579709636499618b6b3d9b6f6.jpg'); */
-        /* background-size: cover;
-background-position: center; */
-        background-color: white !important;
-    }
-    
-    .card {
-        border-radius: 22px;
-        background: #ffffff;
-        box-shadow: 7px 7px 21px #cfcfcf, -7px -7px 21px #ffffff;
-    }
-</style>
 
-<body class="bg-primary bg-pattern">
-    <!-- <div class="home-btn d-none d-sm-block">
-        <a href="index.html"><i class="mdi mdi-home-variant h2 text-white"></i></a>
-    </div> -->
 
-    <div class="account-pages ">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="text-center mb-5">
-                        <a href="index.html" class="logo"><img src="http://bigit.io/images/logo.png" height="24" alt="logo"></a>
-                        <h5 class="font-size-16 text-white-50 mb-4">Responsive Bootstrap 4 Admin Dashboard</h5>
-                    </div>
-                </div>
-            </div>
-            <!-- end row -->
-            <style>
-                #wrapper {
-                    font-family: Lato;
-                    font-size: 1.5rem;
-                    text-align: center;
-                    box-sizing: border-box;
-                    color: #333;
+    <body>
+
+        <style>
+            body {
+                background: #031323;
+                overflow: hidden;
+                height: 100% !important;
+            }
+            
+            img {
+                width: 32px;
+            }
+            
+            section {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+                background-size: 400% 400%;
+                animation: gradient 10s ease infinite;
+            }
+            
+            @keyframes gradient {
+                0% {
+                    background-position: 0% 50%;
                 }
-                
-                #wrapper #dialog {
-                    border: solid 1px #ccc;
-                    margin: 10px auto;
-                    padding: 20px 30px;
-                    display: inline-block;
-                    /* box-shadow: 0 0 4px #ccc; */
-                    /* background-color: white; */
-                    overflow: hidden;
-                    position: relative;
-                    max-width: 450px;
-                    /* border-radius:9px; */
-                    border-radius: 26px;
-background: #ffffff;
-box-shadow:  5px 5px 10px #d9d9d9,
-             -5px -5px 10px #ffffff;
+                50% {
+                    background-position: 100% 50%;
                 }
-                
-                #wrapper #dialog h3 {
-                    margin: 0 0 10px;
-                    padding: 0;
-                    line-height: 1.25;
+                100% {
+                    background-position: 0% 50%;
                 }
-                
-                #wrapper #dialog span {
-                    font-size: 90%;
+            }
+            
+            .box {
+                position: relative;
+            }
+            
+            .box .square {
+                position: absolute;
+                background: rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(5px);
+                box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+                border: 1px solid rgba(255, 255, 255, 0.15);
+                border-radius: 15px;
+                animation: square 10s linear infinite;
+                animation-delay: calc(-1s * var(--i));
+            }
+            
+            @keyframes square {
+                0%,
+                100% {
+                    transform: translateY(-20px);
                 }
-                
-                #wrapper #dialog #form {
-                    max-width: 240px;
-                    margin: 25px auto 0;
+                50% {
+                    transform: translateY(20px);
                 }
-                
-                #wrapper #dialog #form input {
-                    margin: 0 5px;
-                    text-align: center;
-                    line-height: 80px;
-                    font-size: 50px;
-                    border: solid 1px #ccc;
-                    box-shadow: 0 0 5px #ccc inset;
-                    outline: none;
-                    width: 15%;
-                    transition: all .2s ease-in-out;
-                    border-radius: 3px;
-                }
-                
-                #wrapper #dialog #form input:focus {
-                    border-color: purple;
-                    box-shadow: 0 0 5px purple inset;
-                }
-                
-                #wrapper #dialog #form input::selection {
-                    background: transparent;
-                }
-                
-                #wrapper #dialog #form button {
-                    margin: 30px 0 50px;
-                    width: 100%;
-                    padding: 6px;
-                    border: none;
-                    text-transform: uppercase;
-                }
-                /* #wrapper #dialog button.close {
-                    border: solid 2px;
-                    border-radius: 30px;
-                    line-height: 19px;
-                    font-size: 120%;
-                    width: 22px;
-                    position: absolute;
-                    right: 5px;
-                    top: 5px;
-                } */
-                
-                #wrapper #dialog div {
-                    position: relative;
-                    z-index: 1;
-                }
-                
-                #wrapper #dialog img {
-                    position: absolute;
-                    bottom: -70px;
-                    right: -63px;
-                }
-            </style>
+            }
+            
+            .box .square:nth-child(1) {
+                width: 100px;
+                height: 100px;
+                top: -15px;
+                right: -45px;
+            }
+            
+            .box .square:nth-child(2) {
+                width: 150px;
+                height: 150px;
+                top: 105px;
+                left: -125px;
+                z-index: 2;
+            }
+            
+            .box .square:nth-child(3) {
+                width: 60px;
+                height: 60px;
+                bottom: 85px;
+                right: -45px;
+                z-index: 2;
+            }
+            
+            .box .square:nth-child(4) {
+                width: 50px;
+                height: 50px;
+                bottom: 35px;
+                left: -95px;
+            }
+            
+            .box .square:nth-child(5) {
+                width: 50px;
+                height: 50px;
+                top: -15px;
+                left: -25px;
+            }
+            
+            .box .square:nth-child(6) {
+                width: 85px;
+                height: 85px;
+                top: 165px;
+                right: -155px;
+                z-index: 2;
+            }
+            
+            .container {
+                position: relative;
+                padding: 30px;
+                width: 100%;
+                min-height: auto;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(5px);
+                border-radius: 10px;
+                box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+            }
+            
+            .container::after {
+                content: '';
+                position: absolute;
+                top: 5px;
+                right: 5px;
+                bottom: 5px;
+                left: 5px;
+                border-radius: 5px;
+                pointer-events: none;
+                background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.1) 2%);
+            }
+            
+            .form {
+                position: relative;
+                width: 100%;
+                height: 100%;
+            }
+            
+            .form h2 {
+                color: #fff;
+                letter-spacing: 2px;
+                margin-bottom: 30px;
+            }
+            
+            .form .inputBx {
+                position: relative;
+                width: 100%;
+                margin-bottom: 20px;
+            }
+            
+            .form .inputBx input {
+                width: 80%;
+                outline: none;
+                border: none;
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                background: rgba(255, 255, 255, 0.2);
+                padding: 8px 10px;
+                padding-left: 40px;
+                border-radius: 15px;
+                color: #fff;
+                font-size: 16px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            }
+            
+            .form .inputBx .password-control {
+                position: absolute;
+                top: 11px;
+                right: 10px;
+                display: inline-block;
+                width: 20px;
+                height: 20px;
+                background: url(https://snipp.ru/demo/495/view.svg) 0 0 no-repeat;
+                transition: 0.5s;
+            }
+            
+            .form .inputBx .view {
+                background: url(https://snipp.ru/demo/495/no-view.svg) 0 0 no-repeat;
+                transition: 0.5s;
+            }
+            
+            .form .inputBx img {
+                position: absolute;
+                top: 6px;
+                left: 8px;
+                transform: scale(0.6);
+                filter: invert(1);
+            }
+            
+            .form .inputBx input[type="submit"] {
+                background: #fff;
+                color: #111;
+                max-width: 100px;
+                padding: 8px 10px;
+                box-shadow: none;
+                letter-spacing: 1px;
+                cursor: pointer;
+                transition: 1.5s;
+            }
+            
+            .form .inputBx input[type="submit"]:hover {
+                background: linear-gradient(115deg, rgba(0, 0, 0, 0.10), rgba(255, 255, 255, 0.25));
+                color: #fff;
+                transition: 0.5s;
+            }
+            
+            .form .inputBx input::placeholder {
+                color: #fff;
+            }
+            
+            .form .inputBx span {
+                position: absolute;
+                left: 30px;
+                padding: 10px;
+                display: inline-block;
+                color: #fff;
+                transition: 0.5s;
+                pointer-events: none;
+            }
+            
+            .form .inputBx input:focus~span,
+            .form .inputBx input:valid~span {
+                transform: translateX(-30px) translateY(-25px);
+                font-size: 12px;
+            }
+            
+            .form p {
+                color: #fff;
+                font-size: 15px;
+                margin-top: 5px;
+            }
+            
+            .form p a {
+                color: #fff;
+            }
+            
+            .form p a:hover {
+                background-color: #000;
+                background-image: linear-gradient(to right, #434343 0%, black 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            
+            .remember {
+                position: relative;
+                display: inline-block;
+                color: #fff;
+                margin-bottom: 10px;
+                cursor: pointer;
+            }
+            
+            form {
+                max-width: 100%;
+                margin: 25px auto 0;
+            }
+            
+            form input {
+                margin: 0 5px;
+                text-align: center;
+                line-height: 60px;
+                font-size: 25px;
+                border: solid 1px #ccc;
+                box-shadow: 0 0 5px #ccc inset;
+                outline: none;
+                width: 20%;
+                transition: all .2s ease-in-out;
+                border-radius: 3px;
+            }
+            
+            form input:focus {
+                border-color: purple;
+                box-shadow: 0 0 5px purple inset;
+            }
+            
+            form input::selection {
+                background: transparent;
+            }
+            
+            form button {
+                margin: 30px 0 50px;
+                width: 100%;
+                padding: 6px;
+                border: none;
+                text-transform: uppercase;
+            }
+        </style>
+        <section>
 
-            <div id="wrapper">
-                <div id="dialog">
-                    <!-- <button class="close">×</button> -->
-                    <div class="alert alert-warning alert-dismissible">
-                                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&nbsp;</button>Please check your <b>Email</b> for verify your self(OTP) 
-                                            </div>
-                    <div id="form">
-                      <form method="post">
-                        <input type="text" id="1"  name="1"  maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
-                        <input type="text"  id="2" name="2" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
-                        <input type="text" id="3" name="3" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
-                        <input type="text" id="4" name="4" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}"  />
-                        <button class="btn btn-primary" type="submit"  name="submit" id="submit" onclick="return blank_validate();" >Verify</button>
-                        
-              </form>
-              <div id="hide1" style="display:none;">Time left = <span id="timer"></span></div>
-              <a id="hide2"  style="display:none;" onclick="javscript:location.href='risk.php' " class="btn btn-primary" style="color:white;"> RESEND</a>
-             
-                    
+            <div class="box">
 
-                    <!-- <div>
-                        Didn't receive the code?<br />
-                        <a href="#">Send code again</a><br />
-                        <a href="#">Change phone number</a>
-                    </div> -->
-                </div>
-            </div>
+                <div class="square" style="--i:0;"></div>
+                <div class="square" style="--i:1;"></div>
+                <div class="square" style="--i:2;"></div>
+                <div class="square" style="--i:3;"></div>
+                <div class="square" style="--i:4;"></div>
+                <div class="square" style="--i:5;"></div>
 
+                <div class="container">
+                    <div class="form">
+                        <h2>ENTER OTP</h2>
+                        <div id="form">
+                            <form method="post">
+                                <input type="text" id="1" name="1" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+                                <input type="text" id="2" name="2" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+                                <input type="text" id="3" name="3" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+                                <input type="text" id="4" name="4" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+                                <button class="btn btn-primary" type="submit" name="submit" id="submit" onclick="return blank_validate();">Verify</button>
 
-            <!-- <form method="post">
-            <input type="text" name="1"  maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
-                        <input type="text"  name="2" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
-                        <input type="text" name="3" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
-                        <input type="text" name="4" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}"  />
-                        <input  type="submit" name="submit" id="submit" value="submit">
+                            </form>
+                            <div id="hide1" style="display:none;color:white;">Time left = <span id="timer"></span></div>
+                            <a id="hide2" style="display:none;" onclick="javscript:location.href='risk.php' " class="btn btn-primary" style="color:white;"> RESEND</a>
 
-            </form>
-<?php
-// for testing purpose
-// if ($_SERVER['REQUEST_METHOD']=='POST') {
-//     $one=$_POST['1'];
-//     $one1=$_POST['2'];
-//     $one2=$_POST['3'];
-//     $one3=$_POST['4'];
-//     $arr = array($one,$one1,$one2,'$one3');
-//     echo implode(" ", $arr);
-//  }
-?> -->
-            <!--x`<div class="row justify-content-center">
-                <div class="col-lg-5">
-                    <div class="card">
-                        <div class="card-body p-4">
-                            <div class="p-2">
-                                <h5 class="mb-5 text-center">Reset Password</h5>
-                                <form class="form-horizontal" action="index.html">
-
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="alert alert-warning alert-dismissible">
-                                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button> Enter your <b>Email</b> and instructions will be sent to you!
-                                            </div>
-
-                                            <div class="form-group mt-4">
-                                                <label for="useremail">Email</label>
-                                                <input type="email" class="form-control" id="useremail" placeholder="Enter email">
-                                            </div>
-                                            <div class="mt-4">
-                                                <button class="btn btn-success btn-block waves-effect waves-light" type="submit">Send Email</button>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </form>
-
-
-
-                            </div>
                         </div>
+                        <p>Forgot password? <a href="auth-recoverpw.html">Click Here</a></p>
+                        <p>Don't have an account <a href="auth_register.php">Sign up</a></p>
                     </div>
                 </div>
-            </div> -->
-            <!-- end row -->
-        </div>
-    </div>
-    <!-- end Account pages -->
+
+            </div>
+        </section>
 
 
-    <!-- JAVASCRIPT -->
-    <script src="assets/libs/jquery/jquery.min.js"></script>
-    <script>
-        $(function() {
-            'use strict';
 
-            var body = $('body');
 
-            function goToNextInput(e) {
-                var key = e.which,
-                    t = $(e.target),
-                    sib = t.next('input');
 
-                if (key != 9 && (key < 48 || key > 57)) {
+
+
+
+        <!-- JAVASCRIPT -->
+        <script src="assets/libs/jquery/jquery.min.js"></script>
+        <script>
+            function blank_validate() {
+                //  debugger;
+                var error = document.getElementById('1').value;
+                var error1 = document.getElementById('2').value;
+                var error2 = document.getElementById('3').value;
+                var error3 = document.getElementById('4').value;
+
+                if (error == "" && error1 == "" && error2 == "" && error3 == "") {
+                    alert('Please Enter Your Otp');
+                }
+
+            }
+        </script>
+        <script>
+            $(function() {
+                'use strict';
+
+                var body = $('body');
+
+                function goToNextInput(e) {
+                    var key = e.which,
+                        t = $(e.target),
+                        sib = t.next('input');
+
+                    if (key != 9 && (key < 48 || key > 57)) {
+                        e.preventDefault();
+                        return false;
+                    }
+
+                    if (key === 9) {
+                        return true;
+                    }
+
+                    if (!sib || !sib.length) {
+                        sib = body.find('input').eq(0);
+                    }
+                    sib.select().focus();
+                }
+
+                function onKeyDown(e) {
+                    var key = e.which;
+
+                    if (key === 9 || (key >= 48 && key <= 57)) {
+                        return true;
+                    }
+
                     e.preventDefault();
                     return false;
                 }
 
-                if (key === 9) {
-                    return true;
+                function onFocus(e) {
+                    $(e.target).select();
                 }
 
-                if (!sib || !sib.length) {
-                    sib = body.find('input').eq(0);
+                body.on('keyup', 'input', goToNextInput);
+                body.on('keydown', 'input', onKeyDown);
+                body.on('click', 'input', onFocus);
+
+            });
+        </script>
+        <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/libs/metismenu/metisMenu.min.js"></script>
+        <script src="assets/libs/simplebar/simplebar.min.js"></script>
+        <script src="assets/libs/node-waves/waves.min.js"></script>
+
+        <script src="assets/js/app.js"></script>
+
+
+        <script>
+            //  debugger;
+            let timerOn = true;
+
+            function timer(remaining) {
+                var m = Math.floor(remaining / 60);
+                var s = remaining % 60;
+
+                m = m < 10 ? '0' + m : m;
+                s = s < 10 ? '0' + s : s;
+                document.getElementById('timer').innerHTML = m + ':' + s;
+                remaining -= 1;
+
+                //alert(remaining);
+
+                if (remaining >= 0 && timerOn) {
+                    setTimeout(function() {
+                        document.getElementById("hide1").style.display = "block";
+                        timer(remaining);
+
+                    }, 1000);
+
+                    return;
+                    // console.log("mybtn-show");
+
                 }
-                sib.select().focus();
-            }
+                //   if (remaining == 0 ) {
+                //     console.log("mybtn-show");
+                //   }
+                if (!timerOn) {
+                    // Do validate stuff here
 
-            function onKeyDown(e) {
-                var key = e.which;
-
-                if (key === 9 || (key >= 48 && key <= 57)) {
-                    return true;
+                    return;
                 }
 
-                e.preventDefault();
-                return false;
+                // Do timeout stuff here
+                alert('Timeout for otp');
+                // console.log("mybtn-show");
+                document.getElementById("hide1").style.display = "none";
+                document.getElementById("hide2").style.display = "block";
             }
 
-            function onFocus(e) {
-                $(e.target).select();
-            }
+            timer(120);
+        </script>
 
-            body.on('keyup', 'input', goToNextInput);
-            body.on('keydown', 'input', onKeyDown);
-            body.on('click', 'input', onFocus);
+    </body>
 
-        })
-    </script>
-    <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/libs/metismenu/metisMenu.min.js"></script>
-    <script src="assets/libs/simplebar/simplebar.min.js"></script>
-    <script src="assets/libs/node-waves/waves.min.js"></script>
-
-    <script src="assets/js/app.js"></script>
-
-
-    <script>
-  //  debugger;
-let timerOn = true;
-
-function timer(remaining) {
-  var m = Math.floor(remaining / 60);
-  var s = remaining % 60;
-  
-  m = m < 10 ? '0' + m : m;
-  s = s < 10 ? '0' + s : s;
-  document.getElementById('timer').innerHTML = m + ':' + s;
-  remaining -= 1;
-  
-//alert(remaining);
-
-  if(remaining >= 0 && timerOn) {
-    setTimeout(function() {
-        document.getElementById("hide1").style.display= "block"; 
-        timer(remaining);
-        
-    }, 1000);
-    
-    return;
-   // console.log("mybtn-show");
-    
-  }
-//   if (remaining == 0 ) {
-//     console.log("mybtn-show");
-//   }
-  if(!timerOn) {
-    // Do validate stuff here
-  
-    return;
-  }
-  
-  // Do timeout stuff here
-  alert('Timeout for otp');
- // console.log("mybtn-show");
- document.getElementById("hide1").style.display= "none";
- document.getElementById("hide2").style.display= "block";
-}
-
-timer(120);
-
-
-</script>
-
-</body>
-
-</html>
+    </html>
