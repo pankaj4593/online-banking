@@ -217,7 +217,7 @@ error_reporting(0);
                                                 
                                           
                                             </div>
-                                            <div class="col-md-3 mb-3">
+                                            <!-- <div class="col-md-3 mb-3">
                                                     <label>Account Type</label>
                                                     <select name="txt_account_type" class="custom-select" required>
                                                         <option value="">SELECT ACCOUNT TYPE</option>
@@ -225,7 +225,7 @@ error_reporting(0);
                                                         <option value="CURRENT">CURRENT</option>
                                                     </select>
                                                     <div class="invalid-feedback">select account type</div>
-                                                </div>
+                                                </div> -->
                                             <div class="row">
                                                 <div class="custom-control custom-checkbox mt-3 col-md-12 mb-3">
                                                     <input type="checkbox" class="custom-control-input" id="term-conditionCheck" checked>

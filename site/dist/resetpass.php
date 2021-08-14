@@ -131,22 +131,24 @@ background-position: center; */
 </html>
 <?php
 
+// if Session is getting account_no then user can access index.php else require login
+if(isset($_SESSION["s_account_no"]) && isset($_SESSION['s_login']))
 include("connect.php");
 if(isset($_POST['Submit']))
 {
- $oldpass=md5($_POST['opwd']);
+ $oldpass=$_POST['opwd'];
 
- $newpassword=md5($_POST['npwd']);
+ $newpassword=$_POST['npwd'];
 $sql=mysqli_query($con,"SELECT password tbl_account where password='$oldpass' ");
 $num=mysqli_fetch_array($sql);
 if($num>0)
 {
  $con=mysqli_query($con,"update tbl_account set password=' $newpassword' ");
-$_SESSION['msg1']="Password Changed Successfully !!";
+//$_SESSION['msg1']="Password Changed Successfully !!";
 }
 else
 {
-$_SESSION['msg1']="Old Password not match !!";
+//$_SESSION['msg1']="Old Password not match !!";
 }
 }
 ?>

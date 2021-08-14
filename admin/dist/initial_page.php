@@ -11,14 +11,14 @@
         $row_admin_detail = mysqli_fetch_array($result_admin);
 
         // For Getting All Customers Details
-        // $query_for_customer_details = "SELECT * FROM tbl_customer";
-        // $customers_details = mysqli_query($con,$query_for_customer_details);
-        // $row_customer_detail = mysqli_fetch_array($customers_details);
+       $query_for_customer_details = "SELECT * FROM tbl_customer";
+       $customers_details = mysqli_query($con,$query_for_customer_details);
+       $row_customer_detail = mysqli_fetch_array($customers_details);
 
-        // $no_of_customer
-        // $query_for_no_of_customer = "SELECT * FROM tbl_customer";
-        // $result_no_of_customer = mysqli_query($con,$query_for_no_of_customer);
-        // $no_of_customer = mysqli_num_rows($result_no_of_customer); 
+       $no_of_customer
+       $query_for_no_of_customer = "SELECT * FROM tbl_customer";
+        $result_no_of_customer = mysqli_query($con,$query_for_no_of_customer);
+        $no_of_customer = mysqli_num_rows($result_no_of_customer); 
 
         // // $debit_count
         // $query_for_debit_count = "SELECT * FROM tbl_transaction where trans_type='DEBIT'";

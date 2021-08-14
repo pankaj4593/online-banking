@@ -7,10 +7,13 @@
         });
     }
 
-    function rightAuth() {
-        location.replace("http://localhost/online-banking/site/dist/index.php");
-    }
+    // function rightAuth() {
+    //     location.replace("http://localhost/online-banking/site/dist/risk.php");
+    // }
+
+    
 </script>
+<!-- loading time -->
 <?php
 include('connect.php');
   session_start();
@@ -20,14 +23,20 @@ include('connect.php');
     $logout_time = date("Y-m-d H:i:s");
     $query_for_update_logout = "UPDATE tbl_login_history SET logout_time = '$logout_time' WHERE token_id = (select max(token_id) from tbl_login_history)";
     $result_for_update_logout = mysqli_query($con, $query_for_update_logout) or die('SQL Error :: '.mysqli_error($con));
-
-
   }
   session_unset();
   session_destroy();
 
-  
+
   session_start();
+
+  // my bind_textdomain_codeset
+
+
+
+
+
+
 ?>
 
 
@@ -61,7 +70,7 @@ include('connect.php');
     background-position: center; */
             background-color: white !important;
         }
-        
+
         .card {
             border-radius: 22px;
             background: #ffffff;
@@ -171,11 +180,11 @@ include('connect.php');
 </html>
 <?php
   if(isset($_REQUEST['btn_submit']))
-  { 
+  {
     $username = $_REQUEST["txt_username"];
     $password = $_REQUEST["txt_password"];
-    $query = "SELECT username, password FROM tbl_account WHERE username = '$username' AND  password='$password' ";
-    $result1 = mysqli_query($con,$query);
+    $query = "SELECT username, password  FROM tbl_account WHERE username = '$username' AND  password='$password' ";
+      $result1 = mysqli_query($con,$query);
     if(mysqli_num_rows($result1) > 0 )
     {
         // get account number from userame
@@ -189,18 +198,28 @@ include('connect.php');
         // insert record of login time
         $query_for_login_history = "INSERT INTO tbl_login_history (account_no, login_time) VALUES ($account_no,'$Login_time')";
         $result_for_login_history = mysqli_query($con, $query_for_login_history) or die('SQL Error :: '.mysqli_error($con));
-        echo '<script type="text/JavaScript">  
-              rightAuth();
-             </script>' 
-              ;
-    }
+        // echo '<script type="text/JavaScript">
+        //       rightAuth();
+        //      </script>';
+  echo "<script>alert('please Verify you one time password!');location.href='risk.php';</script>";
+    
+      }
+      // if(isset($_SESSION["s_login"]) && isset($_SESSION["s_account_no"]))
+      // {
+
+     // else
+
+     //{
+    //   echo "Email sending failed...";
+    // }
+
     else
     {
-        echo '<script type="text/JavaScript">  
+        echo '<script type="text/JavaScript">
               wrongAuth();
-             </script>' 
+             </script>'
               ;
     }
-  
+
 }
 ?>

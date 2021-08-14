@@ -36,21 +36,21 @@
 
 
 <?php
-                                                                                                    include('connect.php');
-                                                                                                    session_start();
-                                                                                                    // if Session is getting account_no then user can access index.php else require login
-                                                                                                    if(isset($_SESSION["s_account_no"]) && isset($_SESSION['s_login']))
-                                                                                                    {
-                                                                                                        $Account_no = $_SESSION["s_account_no"];
-                                                                                                        // For Getting Customer Details
-                                                                                                        $query_customer = "SELECT * FROM tbl_customer WHERE account_no='$Account_no'";
-                                                                                                        $result_customer = mysqli_query($con, $query_customer);
-                                                                                                        $row_customer = mysqli_fetch_array($result_customer);
-                                                                                                    } else {
-                                                                                                        header("location:http://localhost/online-banking/site/dist/auth_login.php");
-                                                                                                    }
+    include('connect.php');
+                       session_start();
+                       // if Session is getting account_no then user can access index.php else require login
+                       if(isset($_SESSION["s_account_no"]) && isset($_SESSION['s_login']))
+                       {
+                           $Account_no = $_SESSION["s_account_no"];
+                           // For Getting Customer Details
+                           $query_customer = "SELECT * FROM tbl_customer WHERE account_no='$Account_no'";
+                           $result_customer = mysqli_query($con, $query_customer);
+                           $row_customer = mysqli_fetch_array($result_customer);
+                       } else {
+                           header("location:http://localhost/online-banking/site/dist/auth_login.php");
+                       }
 
-                                                                                                ?>
+                   ?>
 
     <!doctype html>
     <html lang="en">
