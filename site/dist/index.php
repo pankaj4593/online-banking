@@ -4,6 +4,10 @@
     // if Session is getting account_no then user can access index.php else require login
     if(isset($_SESSION["s_account_no"]) && isset($_SESSION['s_login']))
     {
+
+        if ((time() - $_SESSION['last_login_timestamp']) > 60) {
+            header('location:auth_login.php');
+        }
         $Account_no = $_SESSION["s_account_no"];
         // For Getting Customer Details
         $query_customer = "SELECT * FROM tbl_customer WHERE account_no='$Account_no'";

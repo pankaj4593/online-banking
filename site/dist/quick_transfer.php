@@ -64,6 +64,7 @@
 <?php
     include('connect.php');
     session_start();
+    session_regenerate_id(false);
     // if Session is getting account_no then user can access index.php else require login
     if(isset($_SESSION["s_account_no"]))
     {

@@ -1,6 +1,8 @@
 <?php
 include 'connect.php';
 session_start();
+session_regenerate_id(false);
+// session_regenerate_id( false);
 if (isset($_SESSION["s_account_no"]) && isset($_SESSION['s_login'])) {
     $Account_no = $_SESSION["s_account_no"];
 
@@ -28,8 +30,105 @@ else {
    header("location:http://localhost/online-banking/site/dist/auth_login.php");
    }
 ?>
+<<<<<<< Updated upstream
     <!doctype html>
     <html lang="en">
+=======
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Recover Password | Apaxy - Responsive Bootstrap 4 Admin Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+    <meta content="Themesdesign" name="author" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+    <!-- Bootstrap Css -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!-- Icons Css -->
+    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <!-- App Css-->
+    <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" />
+<!--time out script -->
+
+</head>
+<!-- validation for blank -->
+
+<script>
+
+/**
+ * Document   : Auto Logout Script
+ * Author     : josephtinsley
+ * Description: Force a logout automatically after a certain amount of time using HTML/JQuery/PHP. 
+ * http://twitter.com/josephtinsley 
+*/
+
+
+$(function()
+{
+
+  function timeChecker()
+    {
+        setInterval(function()
+        {
+            var storedTimeStamp = sessionStorage.getItem("lastTimeStamp");  
+            timeCompare(storedTimeStamp);
+        },3000);
+    }
+
+
+    function timeCompare(timeString)
+    {
+        var maxMinutes  = 1;  //GREATER THEN 1 MIN.
+        var currentTime = new Date();
+        var pastTime    = new Date(timeString);
+        var timeDiff    = currentTime - pastTime;
+        var minPast     = Math.floor( (timeDiff/60000) ); 
+
+        if( minPast > maxMinutes)
+        {
+            sessionStorage.removeItem("lastTimeStamp");
+            alert('timeout');
+            window.location = "login_auth.php";
+            return false;
+        }else
+        {
+            //JUST ADDED AS A VISUAL CONFIRMATION
+            console.log(currentTime +" - "+ pastTime+" - "+minPast+" min past");
+        }
+    }
+
+    if(typeof(Storage) !== "undefined") 
+    {
+        $(document).mousemove(function()
+        {
+            var timeStamp = new Date();
+            sessionStorage.setItem("lastTimeStamp",timeStamp);
+        });
+
+        timeChecker();
+    }  
+});//END JQUERY
+
+
+
+
+function blank_validate()
+{
+  debugger;
+  var error=document.getElementById('1').value;
+  var error1=document.getElementById('2').value;
+  var error2=document.getElementById('3').value;
+  var error3=document.getElementById('4').value;
+
+if(error=="" && error1=="" && error2=="" && error3=="")
+{
+  alert('Please Enter Your Otp');
+}
+>>>>>>> Stashed changes
 
     <head>
         <meta charset="utf-8" />

@@ -1,9 +1,15 @@
 <?php
 include ('connect.php');
 session_start();
+session_regenerate_id(false);
 
 if (isset($_SESSION["s_account_no"]) && isset($_SESSION['s_login'])) 
 {
+    if((time() - $_SESSION['last_login_timestamp']) >60) // 900 = 15 * 60
+           {
+                header("location:auth_login.php");
+           }
+           
     $Account_no = $_SESSION["s_account_no"];
     $query= mysqli_query($con, "SELECT   email FROM  tbl_customer WHERE account_no='$Account_no' ")or die('not connect from databse');
     $email=mysqli_fetch_array($query) or die('sql server error');
@@ -25,7 +31,11 @@ $headers = "From: sender email";
 if (mail($to_email, $subject, $body, $headers)) 
 {
     // echo "Email successfully sent to $to_email...";
+<<<<<<< Updated upstream
     header('location:otp.php');
+=======
+     header('location:otp.php');
+>>>>>>> Stashed changes
 
 } 
 

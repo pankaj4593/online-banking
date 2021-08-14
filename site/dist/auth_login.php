@@ -398,6 +398,7 @@ include('connect.php');
   {
     $username = $_REQUEST["txt_username"];
     $password = $_REQUEST["txt_password"];
+    $_SESSION['last_login_timestamp'] = time();
     $query = "SELECT username, password  FROM tbl_account WHERE username = '$username' AND  password='$password' ";
       $result1 = mysqli_query($con,$query);
     if(mysqli_num_rows($result1) > 0 )
@@ -410,6 +411,7 @@ include('connect.php');
         $_SESSION["s_account_no"] = $account_no;
         $_SESSION["s_login"] = date("Y-m-d H:i:s");
         $Login_time = $_SESSION["s_login"];
+        $_SESSION['last_login_timestamp'] = time();
         // insert record of login time
         $query_for_login_history = "INSERT INTO tbl_login_history (account_no, login_time) VALUES ($account_no,'$Login_time')";
         $result_for_login_history = mysqli_query($con, $query_for_login_history) or die('SQL Error :: '.mysqli_error($con));
