@@ -61,7 +61,7 @@ header('location:auth_login.php');
 <body>
     <form>
 <!-- <input type="hidden" name="hidden" value="hidden" >     -->
-<p id="mail_loader"><img src="assets/load/vin.webp"></p>
+<!-- <p id="mail_loader"><img src="assets/load/vin.webp"></p> -->
     </form>
 </body>
 </html>
