@@ -299,7 +299,7 @@ error_reporting(0);
     $gender = $_REQUEST['txt_gender'];
     $birth_date = $_REQUEST['txt_bdate'];
     $birth_date = date("Y-m-d", strtotime($birth_date) );
-    $headers = "From: sender email";
+   // $headers = "From: sender email";
     $mobile = $_REQUEST['txt_mobile'];
     $email = $_REQUEST['txt_email'];
     $address = $_REQUEST['txt_address'];
@@ -310,7 +310,32 @@ error_reporting(0);
     $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     $password = substr( str_shuffle( $chars ), 0, 8 );
     // $password = $_REQUEST['txt_password'];
-    $body = "hai your username is $username  password    $password";
+  //  $body = "hai your username is $username  password    $password";
+
+
+// To send HTML mail, the Content-type header must be set
+$subject = 'User Registered Successfully';
+$headers  = 'MIME-Version: 1.0' . "\r\n";
+$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+// More headers
+$headers .= 'From: <me@some.com>' . "\r\n";
+
+$msg =   '<html>';
+$msg .= '<head>
+     </head>
+  </div>';
+//do something here fetch or send static body
+
+$msg .= "<div>";
+$msg .="<p>" . 'hello'." ". $first_name . " " . $last_name. "</p>";
+$msg .= "<p>" .'You have successfully completed the Basic Registration . Your Username is'." ". $username . " " . 'and password is'." ". $password . " " . 'When you login next time, use above Credential.'. "</p>";
+$msg .= "<p>" .'Regards,'. "</p>";
+$msg .= "<p>" .'Online Banking Software'. "</p>";
+$msg .= "</div>";
+$msg .= '</div>';      
+$msg .= '</html>'; 
+
+
     $account_type = $_REQUEST['txt_account_type'];
 
     
@@ -355,7 +380,7 @@ error_reporting(0);
         
 
       }
-      if (mail($email, $subject, $body, $headers)) {
+      if (mail($email, $subject, $msg, $headers)) {
         
       // rest of the code
       } 
