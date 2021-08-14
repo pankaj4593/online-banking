@@ -65,7 +65,7 @@ header('location:auth_login.php');
     </form>
 </body>
 </html>
-<script>
+<!-- <script>
 setTimeout('document.getElementById("mail_loader").innerHTML="";', 60000);
  setTimeout("location.href ='otp.php';", 10000);
-</script>
+</script> -->
