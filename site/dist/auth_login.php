@@ -10,8 +10,6 @@
     // function rightAuth() {
     //     location.replace("http://localhost/online-banking/site/dist/risk.php");
     // }
-
-    
 </script>
 <!-- loading time -->
 <?php
@@ -70,7 +68,7 @@ include('connect.php');
     background-position: center; */
             background-color: white !important;
         }
-
+        
         .card {
             border-radius: 22px;
             background: #ffffff;
@@ -78,44 +76,41 @@ include('connect.php');
         }
     </style>
 
-    <body class="bg-primary bg-pattern">
+    <body class="" style="background-image: url(https://i.imgur.com/3hXohqn.png);background-repeat: no-repeat;background-position: center;background-size: cover;">
         <!-- <div class="home-btn d-none d-sm-block">
+          https://i.imgur.com/3hXohqn.png
             <a href="https://localhost/online-banking/admin/dist/auth-login.php"><i class="mdi mdi-home-variant h2 text-white"></i></a>
         </div> -->
         <div class="account-pages my-5">
             <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="text-center mb-5">
-                            <div clas="row">
-                                <h5 class="font-size-20 text-white mb-4">
-                                    <img src="http://bigit.io/images/logo.png" height="24" alt="logo" />
-                                </h5>
-                            </div>
 
-                        </div>
+
+                <div class="row justify-content-center" style="margin-top: 10%;">
+                    <div class="col-lg-5" style="background-image: url(https://media.istockphoto.com/vectors/bank-modern-thin-line-design-style-vector-illustration-vector-id1031507604?k=6&m=1031507604&s=612x612&w=0&h=bnJDD3qU81dUXV5wKgKM39icU8b-BU29z1vEgdr0rCw=);background-repeat: no-repeat;background-position: center;background-size: cover;">
                     </div>
-                </div>
-                <!-- end row -->
-
-                <div class="row justify-content-center">
-                    <div class="col-lg-5">
-                        <div class="card">
+                    <div class="col-lg-7">
+                        <div class="card" style="box-shadow: -2px -2px 9px #d4d4d4, 0px 0px 0px #ffffff;">
                             <div class="card-body p-4">
                                 <div class="p-2">
                                     <h1 class="mb-2 text-center">
-                                        Sign
+                                        SIGN IN
                                     </h1>
-                                    <form class="form-horizontal" method="post">
+                                    <form class="form-horizontal mt-3" method="post">
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <div class="form-group mb-4">
-                                                    <label for="id">Username</label>
-                                                    <input type="text" class="form-control" id="adminId" name='txt_username' placeholder="Your Username" value="" required />
-                                                </div>
-                                                <div class="form-group mb-4">
-                                                    <label for="userpassword">Password</label>
-                                                    <input type="password" class="form-control" id="userpassword" name="txt_password" placeholder="Enter password" required />
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group mb-4">
+                                                            <label for="id">Username</label>
+                                                            <input type="text" class="form-control" id="adminId" name='txt_username' placeholder="Your Username" value="" required />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group mb-4">
+                                                            <label for="userpassword">Password</label>
+                                                            <input type="password" class="form-control" id="userpassword" name="txt_password" placeholder="Enter password" required />
+                                                        </div>
+                                                    </div>
                                                 </div>
 
                                                 <div class="row">
@@ -125,23 +120,23 @@ include('connect.php');
                                                             <label class="custom-control-label" for="customControlInline">Remember me</label
                               >
                             </div>
-                          </div>
-                          <div class="col-md-6">
-                            <div class="text-md-right mt-3 mt-md-0">
-                              <a href="auth-recoverpw.html" class="text-muted"
-                                ><i class="mdi mdi-lock"></i> Forgot your
-                                password?</a
-                              >
-                            </div>
-                          </div>
-                        </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                  <div class="text-md-right mt-3 mt-md-0">
+                                                    <a href="auth-recoverpw.html" class="text-muted"
+                                                      ><i class="mdi mdi-lock"></i> Forgot your
+                                                      password?</a
+                                                    >
+                                                  </div>
+                                                </div>
+                                              </div>
                         <div class="mt-4">
                           <button
-                            class="btn btn-success btn-block waves-effect waves-light"
+                            class="btn btn-outline-primary btn-block waves-effect waves-light"
                             type="submit"
                             name="btn_submit"
                           >
-                          Sign
+                          SIGN IN
                           </button>
                         </div>
                         <div class="mt-4 text-center">

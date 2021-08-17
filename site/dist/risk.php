@@ -31,11 +31,7 @@ $headers = "From: sender email";
 if (mail($to_email, $subject, $body, $headers)) 
 {
     // echo "Email successfully sent to $to_email...";
-<<<<<<< Updated upstream
-    header('location:otp.php');
-=======
      header('location:otp.php');
->>>>>>> Stashed changes
 
 } 
 

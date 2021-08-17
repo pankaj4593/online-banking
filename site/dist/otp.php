@@ -79,21 +79,21 @@ background-position: center; */
         }
     </style>
 
-    <body class="bg-primary bg-pattern">
+    <body class="" style="background-image: url(https://i.imgur.com/3hXohqn.png);background-repeat: no-repeat;background-position: center;background-size: cover;">
         <!-- <div class="home-btn d-none d-sm-block">
         <a href="index.html"><i class="mdi mdi-home-variant h2 text-white"></i></a>
     </div> -->
 
         <div class="account-pages ">
             <div class="container">
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col-lg-12">
                         <div class="text-center mb-5">
                             <a href="index.html" class="logo"><img src="http://bigit.io/images/logo.png" height="24" alt="logo"></a>
                             <h5 class="font-size-16 text-white-50 mb-4">Responsive Bootstrap 4 Admin Dashboard</h5>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <!-- end row -->
                 <style>
                     #wrapper {
@@ -117,7 +117,7 @@ background-position: center; */
                         /* border-radius:9px; */
                         border-radius: 26px;
                         background: #ffffff;
-                        box-shadow: 5px 5px 10px #d9d9d9, -5px -5px 10px #ffffff;
+                        box-shadow: -2px -2px 9px #d4d4d4, 0px 0px 0px #ffffff
                     }
                     
                     #wrapper #dialog h3 {
@@ -138,8 +138,8 @@ background-position: center; */
                     #wrapper #dialog #form input {
                         margin: 0 5px;
                         text-align: center;
-                        line-height: 80px;
-                        font-size: 50px;
+                        line-height: auto;
+                        font-size: 30px;
                         border: solid 1px #ccc;
                         box-shadow: 0 0 5px #ccc inset;
                         outline: none;
@@ -161,7 +161,6 @@ background-position: center; */
                         margin: 30px 0 50px;
                         width: 100%;
                         padding: 6px;
-                        border: none;
                         text-transform: uppercase;
                     }
                     /* #wrapper #dialog button.close {
@@ -186,44 +185,62 @@ background-position: center; */
                         right: -63px;
                     }
                 </style>
-
-                <div id="wrapper">
-                    <div id="dialog">
-                        <!-- <button class="close">×</button> -->
-                        <div class="alert alert-warning alert-dismissible">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&nbsp;</button>Please check your <b>Email</b> for verify your self(OTP)
-                        </div>
-                        <div id="form">
-                            <form method="post">
-                                <input type="text" id="1" name="1" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
-                                <input type="text" id="2" name="2" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
-                                <input type="text" id="3" name="3" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
-                                <input type="text" id="4" name="4" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
-                                <button class="btn btn-primary" type="submit" name="submit" id="submit" onclick="return blank_validate();">Verify</button>
-
-                            </form>
-                            <div id="hide1" style="display:none;">Time left = <span id="timer"></span></div>
-                            <a id="hide2" style="display:none;" onclick="javscript:location.href='risk.php' " class="btn btn-primary" style="color:white;"> RESEND</a>
+                <div class="row justify-content-center" style="margin-top: 8%;">
 
 
+                    <div class="col-lg-5" style="background-image: url(https://img.freepik.com/free-vector/online-registration-sign-up-with-man-sitting-near-smartphone_268404-95.jpg?size=626&ext=jpg);background-repeat: no-repeat;background-position: center;background-size: cover;">
+                    </div>
 
-                            <!-- <div>
+                    <div class="col-lg-6">
+
+                        <div id="wrapper">
+                            <div id="dialog">
+                                <!-- <button class="close">×</button> -->
+                                <div>
+                                    <img style="width: 50px;position:initial;" src="https://www.vippng.com/png/detail/318-3188825_send-a-message.png" alt="">
+                                    <p style="font-size: 20px;">OTP has been sent to your register email ID , Please Verify </p>
+                                </div>
+                                <!-- <div class="alert alert-warning alert-dismissible">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&nbsp;</button>Please check your <b>Email</b> for verify your self(OTP)
+                                </div> -->
+                                <div id="form">
+                                    <form method="post">
+                                        <input type="text" id="1" name="1" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+                                        <input type="text" id="2" name="2" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+                                        <input type="text" id="3" name="3" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+                                        <input type="text" id="4" name="4" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+                                        <div id="hide1" style="display:none;font-size:15px;margin-top:10px;color:blue;">Resend in <span id="timer"></span> &nbsp;Min</div>
+
+                                        <button class="btn btn-outline-primary" type="submit" name="submit" id="submit" onclick="return blank_validate();">Verify</button>
+
+                                    </form>
+                                    <a id="hide2" style="display:none;" onclick="javscript:location.href='risk.php' " class="btn btn-outline-primary" style="color:white;"> RESEND</a>
+
+
+
+                                    <!-- <div>
                         Didn't receive the code?<br />
                         <a href="#">Send code again</a><br />
                         <a href="#">Change phone number</a>
                     </div> -->
-                        </div>
-                    </div>
+                                </div>
+                            </div>
 
 
-                    <!-- <form method="post">
-            <input type="text" name="1"  maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+                            <!-- <form method="post">
+           
+           
+           
+           
+                    <input type="text" name="1"  maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
                         <input type="text"  name="2" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
                         <input type="text" name="3" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
                         <input type="text" name="4" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}"  />
                         <input  type="submit" name="submit" id="submit" value="submit">
 
-            </form>
+                        
+            
+                    </form>
 <?php
 // for testing purpose
 // if ($_SERVER['REQUEST_METHOD']=='POST') {
@@ -235,7 +252,7 @@ background-position: center; */
 //     echo implode(" ", $arr);
 //  }
 ?> -->
-                    <!--x`<div class="row justify-content-center">
+                            <!--x`<div class="row justify-content-center">
                 <div class="col-lg-5">
                     <div class="card">
                         <div class="card-body p-4">
@@ -268,8 +285,12 @@ background-position: center; */
                     </div>
                 </div>
             </div> -->
-                    <!-- end row -->
+                            <!-- end row -->
+                        </div>
+                    </div>
+
                 </div>
+
             </div>
             <!-- end Account pages -->
 
