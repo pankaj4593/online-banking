@@ -41,11 +41,11 @@
     
     .card {
         background: #fff;
-        -webkit-box-shadow: 0 0 13px 0 rgb(82 63 105 / 5%);
         box-shadow: 0 0 13px 0 rgb(82 63 105 / 5%);
         margin-bottom: 30px;
         border-radius: 20px;
-        border: 0;
+        border: 1px solid #E5E5E5 !important;
+        box-shadow: 8px 8px 15px #d4d4d4, -8px -8px 15px #ffffff;
     }
     
     body[data-layout=horizontal] .page-content {
@@ -68,10 +68,57 @@
     body[data-sidebar=dark] .navbar-brand-box {
         background: transparent;
     }
+    
+    body[data-sidebar=dark] .vertical-menu {
+        background: white;
+    }
+    
+    body {
+        background-color: white;
+        font-family: 'Nunito', sans-serif;
+    }
+    
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-weight: 600;
+    }
+    
+    body[data-sidebar=dark] #sidebar-menu ul li a {
+        color: black;
+    }
+    
+    body[data-sidebar=dark] #sidebar-menu ul li a i {
+        color: black;
+    }
+    
+    body[data-sidebar=dark] .mm-active {
+        color: blue !important;
+    }
+    
+    body[data-sidebar=dark] .mm-active .active {
+        color: inherit !important;
+    }
+    
+    body[data-sidebar=dark] .mm-active .active i {
+        color: inherit !important;
+    }
+    
+    body[data-sidebar=dark] #sidebar-menu ul li a:hover {
+        color: blue;
+    }
+    
+    body[data-sidebar=dark] #sidebar-menu ul li a:hover i {
+        color: blue;
+    }
 </style>
 
 
-<header id="page-topbar">
+<header id="page-topbar" style="border:1px solid #E5E5E5 !important;box-shadow:  5px 5px 10px #e8e8e8,
+-5px -5px 10px #ffffff;">
     <div class="navbar-header">
         <div class="d-flex">
             <!-- LOGO -->
@@ -238,7 +285,8 @@
 </header>
 
 <!-- ========== Left Sidebar Start ========== -->
-<div class="vertical-menu">
+<div class="vertical-menu" style="border:1px solid #E5E5E5 !important;box-shadow:  5px 5px 10px #e8e8e8,
+-5px -5px 10px #ffffff;">
 
     <div data-simplebar class="h-100">
 

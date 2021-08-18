@@ -1,153 +1,106 @@
 <script type="text/javascript">
-  function displayAdminId(admin_id)
-  {
-    alertify.alert("Info", "Your Admin id is "+ admin_id+"", function() {
-      alertify.success("Ok");
-      window.location = 'http://localhost/online-banking/admin/dist/auth-login.php';
+    function displayAdminId(admin_id) {
+        alertify.alert("Info", "Your Admin id is " + admin_id + "", function() {
+            alertify.success("Ok");
+            window.location = 'http://localhost/online-banking/admin/dist/auth-login.php';
 
-    });
-    return false;
-  }
+        });
+        return false;
+    }
 </script>
 
 <!DOCTYPE html>
 
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8" />
     <title>Register</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      content="Premium Multipurpose Admin & Dashboard Template"
-      name="description"
-    />
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesdesign" name="author" />
     <!-- App favicon -->
     <link rel="shortcut icon" href="assets/images/favicon.ico" />
 
-   <!-- alertifyjs Css -->
+    <!-- alertifyjs Css -->
     <link href="assets/libs/alertifyjs/build/css/alertify.min.css" rel="stylesheet" type="text/css" />
 
     <!-- alertifyjs default themes  Css -->
     <link href="assets/libs/alertifyjs/build/css/themes/default.min.css" rel="stylesheet" type="text/css" />
 
     <!-- Bootstrap Css -->
-    <link
-      href="assets/css/bootstrap.min.css"
-      rel="stylesheet"
-      type="text/css"
-    />
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
     <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
     <!-- App Css-->
     <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" />
-  </head>
-  <style>
-        .bg-pattern {
-            /* background-image: url('https://i.pinimg.com/originals/f9/11/d3/f911d38579709636499618b6b3d9b6f6.jpg'); */
-            /* background-size: cover;
-    background-position: center; */
-            background-color: white !important;
-        }
-        
-        .card {
-            border-radius: 22px;
-            background: #ffffff;
-            box-shadow: 7px 7px 21px #cfcfcf, -7px -7px 21px #ffffff;
-        }
-    </style>
-  <body class="bg-primary bg-pattern">
+</head>
+<style>
+    .card {
+        border-radius: 22px;
+        background: #ffffff;
+        box-shadow: -2px -2px 9px #d4d4d4, 0px 0px 0px #ffffff;
+    }
+</style>
+
+<body class="" style="background-image: url(https://i.imgur.com/3hXohqn.png);background-repeat: no-repeat;background-position: center;background-size: cover;">
     <div class="account-pages">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="text-center mb-5">
-              <div clas="row">
-                <h5 class="font-size-20 text-white mb-4">
-                  <img src="http://bigit.io/images/logo.png" height="24" alt="logo" />
-                         </h5>
-              </div>
-                </div>
-          </div>
-        </div>
-        <!-- end row -->
-        <!-- action="auth-register.php?action=add" -->
-        <form name="add" id="add" method="get"  enctype="multipart/form-data">
-<!-- 
+        <div class="container">
+
+            <!-- action="auth-register.php?action=add" -->
+            <form name="add" id="add" method="get" enctype="multipart/form-data">
+                <!-- 
         <form action=""> -->
-          <div class="row justify-content-center">
-            <div class="col-lg-5">
-              <div class="card">
-                <div class="card-body p-4">
-                  <div class="p-2">
-                    <h5 class="mb-5 text-center">
-                      Register Account to Central Bank.
-                    </h5>
-                    <form class="form-horizontal" action="auth-login.php">
-                      <div class="row">
-                        <div class="col-md-12">
-                          <div class="form-group mb-4">
-                            <label for="fullname">Full name</label>
-                            <input
-                              type="text"
-                              class="form-control"
-                              name="txt_fullname"
-                              placeholder="Enter full name"
-                              required
-                            />
-                          </div>
-                          <div class="form-group mb-4">
-                            <label for="mobile">Mobile</label>
-                            <input
-                              type="text"
-                              class="form-control"
-                              name="txt_mobile"
-                                placeholder="Enter Mobile"
-                              required
-                            />
-                          </div>
-                          <div class="form-group mb-4">
-                            <label for="email">Email</label>
-                            <input
-                              type="email"
-                              class="form-control"
-                              name="txt_email"
-                              placeholder="Enter email"
-                              required
-                            />
-                          </div>
-                          <div class="form-group mb-4">
-                            <label for="userpassword">Password</label>
-                            <input
-                              type="password"
-                              class="form-control"
-                              name="txt_password"
-                              placeholder="Enter password"
-                              required
-                            />
-                          </div>
-                          <div class="custom-control custom-checkbox">
+                <div class="row justify-content-center" style="margin-top: 8%;">
+                    <div class="col-lg-5" style="background-image: url(https://relibion.in/images/Logo/signup-page.png);background-repeat: no-repeat;background-position: center;background-size: cover;">
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="card">
+                            <div class="card-body p-4">
+                                <div class="p-2">
+                                    <h1 class="mb-5 text-center">
+                                        SIGN UP TO ADMIN PANEL
+                                    </h1>
+                                    <form class="form-horizontal" action="auth-login.php">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group mb-4">
+                                                    <label for="fullname">Full name</label>
+                                                    <input type="text" class="form-control" name="txt_fullname" placeholder="Enter full name" required />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group mb-4">
+                                                    <label for="mobile">Mobile</label>
+                                                    <input type="text" class="form-control" name="txt_mobile" placeholder="Enter Mobile" required />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group mb-4">
+                                                    <label for="email">Email</label>
+                                                    <input type="email" class="form-control" name="txt_email" placeholder="Enter email" required />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group mb-4">
+                                                    <label for="userpassword">Password</label>
+                                                    <input type="password" class="form-control" name="txt_password" placeholder="Enter password" required />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="custom-control custom-checkbox">
                                                     <input type="checkbox" class="custom-control-input" id="term-conditionCheck">
                                                     <label class="custom-control-label font-weight-normal" for="term-conditionCheck">I accept <a href="#" class="text-primary">Terms and Conditions</a></label>
-                          </div>
-                          
-                          
-                         
-                            </div>
-                          </div>
-                          <div class="mt-4">
-                            <input type="submit" 
-                            class="btn btn-success btn-block waves-effect waves-light" 
-                            
-                            value="Register"
-                            name="btnSubmit"
-                            >
-                              
-                            </button>
-                          </div>
-                          <div class="mt-4 text-center">
-                            <a href="auth-login.php" class="text-muted"
-                              ><i class="mdi mdi-account-circle mr-1"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mt-4 text-center">
+                                            <input type="submit" style="width: 40%;border-radius: 30px;" class="btn btn-outline-primary btn-block waves-effect waves-light" value="Register" name="btnSubmit">
+
+                                            </button>
+                                        </div>
+                                        <div class="mt-4">
+                                            <a href="auth-login.php" class="text-muted"><i class="mdi mdi-account-circle mr-1"></i>
                               Already have account?</a
                             >
                           </div>
