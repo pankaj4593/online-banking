@@ -78,7 +78,8 @@
         <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" />
         <!-- Sweet Alert-->
         <link href="assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
-
+    <!-- auto logout script -->
+    <script src="assets/js_autolog/script.js"></script>
     </head>
 
     <body data-topbar="dark" data-layout="horizontal">

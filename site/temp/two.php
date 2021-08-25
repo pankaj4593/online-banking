@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>The datalist element</h1>
+
+<form action="/action_page.php" method="get">
+  <!-- <label for="browser">Choose your browser from the list:</label> -->
+  <input list="browsers" name="browser" id="browser">
+  <datalist id="browsers">
+    <option value="Edge">
+    <option value="Firefox">
+    <option value="Chrome">
+    <option value="Opera">
+    <option value="Safari">
+  </datalist>
+  <input type="submit">
+</form>
+
+<!-- <p><strong>Note:</strong> The datalist tag is not supported in Safari 12.0 (or earlier).</p> -->
+
+</body>
+</html>
+<?php
+$my=mysqli_connect('localhost','root','', 'bank_db');
+if($my)
+{
+    // 
+}
+else
+{
+    // exit;
+}
+$data=mysqli_query($my,'select * from  tbl_transaction') or die('not use for sql server');
+?>

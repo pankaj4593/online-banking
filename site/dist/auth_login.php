@@ -59,7 +59,8 @@ include('connect.php');
 
         <!-- Sweet Alert-->
         <link href="assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
-
+    <!-- auto logout script -->
+    <script src="assets/js_autolog/script.js"></script>
     </head>
     <style>
         .card {
@@ -215,7 +216,7 @@ include('connect.php');
         // echo '<script type="text/JavaScript">
         //       rightAuth();
         //      </script>';
-  echo "<script>alert('please Verify you one time password!');location.href='risk.php';</script>";
+  echo "<script>alert('please Verify you one time password!');location.href='otp.php';</script>";
     
       }
       // if(isset($_SESSION["s_login"]) && isset($_SESSION["s_account_no"]))

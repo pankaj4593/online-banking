@@ -2,90 +2,80 @@
 error_reporting(0);
 // for debuging the error
 
-?>  
-
-
-
-
-<script type="text/javascript">
-    function RightAuth() {
+?>
+<script>
+function wrongAuth() {
         Swal.fire({
-            title: "beneficiary Account Added Successfully...!",
-           icon: "success"
+            title: "Banificary Added Successfully....! ",
+            text: "",
+            icon: "success"
         });
     }
+
     </script>
-<script>
 
-// onkeyup event will occur when the user
-// release the key and calls the function
-// assigned to this event
-function GetDetail(str) {
-    debugger;
-    if (str.length == 0) {
-        document.getElementById("first_name").value = "";
-        document.getElementById("re-account").value = "";
-
-        document.getElementById("swift_code").value = "";
-        document.getElementById("amount").value = "";
-        document.getElementById("purpose").value = "";
-        return;
-    }
-    else
-    {
-
-        // Creates a new XMLHttpRequest object
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function () {
-
-            // Defines a function to be called when
-            // the readyState property changes
-            if (this.readyState == 4 &&
-                    this.status == 200) {
-                
-                // Typical action to be performed
-                // when the document is ready
-                var myObj = JSON.parse(this.responseText);
-                
-
-                // Returns the response data as a
-                // string and store this array in
-                // a variable assign the value
-                // received to first name input field
-                
-                document.getElementById
-                    ("first_name").value = myObj[0];
-                
-                // Assign the value received to
-                // last name input field
-                document.getElementById(
-                    "re-account").value = myObj[1];
-                    document.getElementById(
-                    "swift_code").value = myObj[2];
-                    document.getElementById(
-                    "amount").value = myObj[3];
-                    document.getElementById(
-                    "purpose").value = myObj[4];
-                    // document.getElementById(
-                    // "last_name").value = myObj[1];
-            }
-        };
-        
-
-        // xhttp.open("GET", "filename", true);
-        xmlhttp.open("GET", "data_for_Access.php?user_id=" + str, true);
-        
-        // Sends the request to the server
-        xmlhttp.send();
-    
+<script type="text/javascript">
+    function checkPurpose(val) {
+        var element = document.getElementById('txt_purpose_hide');
+        if (val == 'Select' || val == 'Others')
+            element.style.display = 'block';
+        else
+            element.style.display = 'none';
     }
 
 
+    function sweetAlertSuccess() {
+        Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Money Successfully Transferred",
+            showConfirmButton: !1,
+            timer: 1500
+        });
+    }
 
-}
+    function wrongAccountNo() {
+        Swal.fire({
+            title: "Transaction Failed",
+            text: "Account Number is Incorrect",
+            icon: "error"
+        });
+    }
 
-        
+    function mismatchAccountNo() {
+        Swal.fire({
+            title: "Transaction Failed",
+            text: "Account Number Not Matched",
+            icon: "error"
+        });
+    }
+
+    function lowBalance() {
+        Swal.fire({
+            title: "Transaction Failed",
+            text: "You don't have sufficient balance for this Transaction.",
+            icon: "error"
+        });
+    }
+
+    function sameAccountNo() {
+        Swal.fire({
+            title: "Transaction Failed",
+            text: "You can not provide your own account number.",
+            icon: "error"
+        });
+    }
+
+    function transferLimit() {
+        Swal.fire({
+            title: "Transaction Failed",
+            text: "Limit of Quick Transfer is 500 to 20,000",
+            icon: "error"
+        });
+    }
 </script>
+
+<!-- jquery -->
 
 <?php
     include('connect.php');
@@ -396,7 +386,7 @@ $data_account=mysqli_query($con,'SELECT * from  tbl_customer') or die('not getti
                                                                         <div class="form-group ">
                                                                             <label>Account Number</label>
                                                                             <div>
-                                                                                <input data-parsley-type="number " type="text" id="account_number" "  name="account_no"  class="form-control " required placeholder="Enter only numbers " />
+                                                                                <input data-parsley-type="number " type="text" id="account_number" "  name="account_number"  class="form-control " required placeholder="Enter only numbers " />
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -498,15 +488,13 @@ $data_account=mysqli_query($con,'SELECT * from  tbl_customer') or die('not getti
                                             <div class="form-group col-md-6">
                                                     <label>Beneficiary Account Number</label>
                                                     <div>
-                                                         <input name="txt_purpose"  id=" "   name="user_id" 
-                                                          onkeyup="GetDetail(this.value)" 
-                                                           list="browsers" class="select2 form-control custom-select" type="text"
-                                                            placeholder="Name of Beneficiary" required autocomplete="off">
-
-                                                            <!-- <input type='text' name="user_id"
-							id='    ' class='form-control'
-							placeholder='Enter user id'
-							onkeyup="GetDetail(this.value)" value=""> -->
+                                                         <input name="txt_purpose"  id="" 
+                                                         autocomplete="off"  list="browsers" 
+                                                         class="select2 form-control custom-select" 
+                                                         onkeyup="GetDetail(this.value)"
+                                                         
+                                                         type="text" 
+                                                         placeholder="Beneficiary Account Number" required>
                                                         
                                                         <!-- data getting  fetchby host-->
 
@@ -517,17 +505,14 @@ $data_account=mysqli_query($con,'SELECT * from  tbl_customer') or die('not getti
 
 <datalist id="browsers">
     <?php
-while($server_risk=mysqli_fetch_array($data))
-{
-    ?>
-
-
-  <option value="<?=$server_risk['to_account']?>">
-
-<?php
-}
+    while($query=mysqli_fetch_array($data))
+    {
 ?>
 
+  <option value="<?php echo  $query['to_account'];?>">
+  <?php
+    }
+    ?>
 </datalist>
                                                              
                                                     
@@ -540,7 +525,7 @@ while($server_risk=mysqli_fetch_array($data))
 
                                                     <label>beneficiary Person Name</label>
                                                     <!-- <input type="text" class="form-control" required placeholder="Name of Beneficiary" /> -->
-                                                    <input name="txt" class="select2 form-control custom-select" id="first_name"   value=""  type="text" placeholder="Name of Beneficiary" required>
+                                                    <input name="txt" class="select2 form-control custom-select" id="person_name"  value=""  type="text" placeholder="Name of Beneficiary" required>
                                                         
                                                        
                                                 
@@ -553,7 +538,7 @@ while($server_risk=mysqli_fetch_array($data))
 
                                                 <div class="form-group col-md-6">
                                                     <label>Account Number</label>
-                                                    <input type="number" id="re-account"  value="" name="txt_ben_account_no_2" class="form-control" required data-parsley-minlength="9" data-parsley-equalto="#pass2" placeholder="Re-Type Account number" />
+                                                    <input type="number" id="account_no"  value="" name="txt_ben_account_no_2" class="form-control" required data-parsley-minlength="9" data-parsley-equalto="#pass2" placeholder="Re-Type Account number" />
 
                                                 </div>
 
@@ -563,7 +548,7 @@ while($server_risk=mysqli_fetch_array($data))
                                                     <label>Swift Code</label>
 
                                                     <div class="input-group">
-                                                        <input type="text" name="txt_swift" id="swift_code"  value="" class="form-control" placeholder="10,000" aria-label="Recipient 's username" aria-describedby="basic-addon2" required>
+                                                        <input type="text" name="txt_swift" id="last_name"  value="" class="form-control" placeholder="10,000" aria-label="Recipient 's username" aria-describedby="basic-addon2" required>
                                                         <div class="input-group-append">
                                                             <span class="input-group-text" id="basic-addon2">Code</span>
                                                         </div>
@@ -574,7 +559,7 @@ while($server_risk=mysqli_fetch_array($data))
                                                     <label>Amount</label>
 
                                                     <div class="input-group">
-                                                        <input type="text" name="txt_amount" id="amount" value="" class="form-control" placeholder="10,000" aria-label="Recipient 's username" aria-describedby="basic-addon2" required>
+                                                        <input type="text" name="txt_amount" id="first_name" value="" class="form-control" placeholder="10,000" aria-label="Recipient 's username" aria-describedby="basic-addon2" required>
                                                         <div class="input-group-append">
                                                             <span class="input-group-text" id="basic-addon2">&#x20b9;</span>
                                                         </div>
@@ -972,8 +957,7 @@ while($server_risk=mysqli_fetch_array($data))
 
         <!-- Sweet alert init js-->
         <script src="assets/js/pages/sweet-alerts.init.js"></script>
-    <!-- auto logout script -->
-    <script src="assets/js_autolog/script.js"></script>
+
 
     </body>
 
@@ -1168,20 +1152,78 @@ if(htmlspecialchars(isset($_POST['submit'])))
    city='".trim($_REQUEST['city'])."',
    benificary_address	='".trim($_REQUEST['address'])."',
    benificary_phone='".trim($_REQUEST['number'])."',
-   country_name='".trim($_REQUEST['country'])."'  ,
-    ip_address='".$_SERVER['REMOTE_ADDR']."'  
+   country_name='".trim($_REQUEST['country'])."'    
     
    " );
 if($binificary_Adding)
 {
 
     echo '<script type="text/JavaScript">
-    RightAuth();
+    wrongAuth();
    </script>'
     ;
 }
 }
 ?>
+<script>
+
+// onkeyup event will occur when the user
+// release the key and calls the function
+// assigned to this event
+function GetDetail(str) {
+    debugger;
+    if (str.length == 0) {
+        document.getElementById("first_name").value = "";
+        document.getElementById("last_name").value = "";
+        return;
+    }
+    else
+    {
+
+        // Creates a new XMLHttpRequest object
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+
+            // Defines a function to be called when
+            // the readyState property changes
+            if (this.readyState == 4 &&
+                    this.status == 200) {
+                
+                // Typical action to be performed
+                // when the document is ready
+                var myObj = JSON.parse(this.responseText);
+                
+
+                // Returns the response data as a
+                // string and store this array in
+                // a variable assign the value
+                // received to first name input field
+                
+                document.getElementById
+                    ("first_name").value = myObj[0];
+                
+                // Assign the value received to
+                // last name input field
+                document.getElementById(
+                    "last_name").value = myObj[1];
+            }
+        };
+        
+
+        // xhttp.open("GET", "filename", true);
+        xmlhttp.open("GET", "data_for_Access.php?user_id=" + str, true);
+        
+        // Sends the request to the server
+        xmlhttp.send();
+    
+    }
+
+
+
+}
+
+        
+</script>
 
 
 

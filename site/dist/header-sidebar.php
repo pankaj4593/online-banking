@@ -1,11 +1,54 @@
+<!-- gettign notification    by php code -->
+<?php
+session_start();
+$file_path=include('connect.php')   ;
+if($file_path)
+{ 
+    // echo "<script>alert('file is located');</script>"; 
+}
+else
+{
+    echo "<script>alert('file is  not located');</script>";
+}
+?>
+<?php
+if(isset($_SESSION["s_account_no"]) && isset($_SESSION['s_login']))
+{
+    $Account_no = $_SESSION["s_account_no"];
+   $query=mysqli_query($con,"select * from tbl_requests where account_no='$Account_no'  ");
+   $count=mysqli_num_rows($query);
+}
+?>
+
+
+<script type="text/javascript">
+var auto_refresh = setInterval(getData, 10000); // refresh every 10 seconds
+function getData()
+{
+	var xmlhttp = new XMLHttpRequest();
+ 	xmlhttp.open("GET", "get_auth_dat.php", true);
+	xmlhttp.send();
+	xmlhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+		   
+			document.getElementById("load_div").innerHTML = this.responseText;
+		}
+	};
+       
+}
+</script>
+
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+    <!-- auto logout script -->
+    <script src="assets/js_autolog/script.js"></script>
 
 <style>
     #page-topbar {
         background: #fff;
-        box-shadow: 0 0 13px 0 rgb(82 63 105 / 5%);
+        box-shadow: 0 0 13px 0 rgb(82 63 105 / 5%); 
         left: 0;
         position: fixed;
         right: 0;
@@ -147,69 +190,56 @@
 
 
 
-            <div class="dropdown d-inline-block">
+            <div class="dropdown d-inline-block" id="load_div">
                 <button type="button" class="btn header-item noti-icon waves-effect" id="page-header-notifications-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="mdi mdi-bell-outline"></i>
-                                <span class="badge badge-danger badge-pill" style="right: 0;">3</span>
+                                <span class="badge badge-danger badge-pill" style="right: 0;"><?=$count?></span>
                             </button>
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0" aria-labelledby="page-header-notifications-dropdown">
                     <div class="p-3">
                         <div class="row align-items-center">
                             <div class="col">
-                                <h6 class="m-0 font-weight-medium text-uppercase"> Notifications </h6>
+                                <h6 class="m-0 font-weight-medium text-uppercase">Notifications </h6>
                             </div>
                             <div class="col-auto">
-                                <span class="badge badge-pill badge-danger">New 3</span>
+                                <span class="badge badge-pill badge-primary">New <?=$count?></span>
                             </div>
                         </div>
                     </div>
                     <div data-simplebar style="max-height: 230px;">
-                        <a href="" class="text-reset notification-item">
+                    <?php
+                    while($data=mysqli_fetch_array($query))
+                    {
+                        ?>
+                            <a href="" class="text-reset notification-item">
+                            <div class="media">
+                                <span  class="fa fa-user rounded-circle avatar-xs" style="font-size:15px; color:blue;"> </span>
+                                <div class="media-body">
+                                    <h6 class="mt-0 mb-1">Account No-<?=$data['account_no']?></h6>
+                                    <div class="font-size-12 text-muted">
+                                        <p class="mb-1"><?=$data['message']?></p>
+                                        <p class="mb-0"><i class="mdi mdi-clock-outline"></i><?=$data['request_date']?>
+                                    </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+
+                        <?php
+                    }
+                    ?>
+                        <!-- <a href="" class="text-reset notification-item">
                             <div class="media">
                                 <div class="avatar-xs mr-3">
                                     <span class="avatar-title bg-primary rounded-circle font-size-16">
                                                     <i class="mdi mdi-cart"></i>
                                                 </span>
                                 </div>
-                                <div class="media-body">
-                                    <h6 class="mt-0 mb-1">Your order is placed</h6>
-                                    <div class="font-size-12 text-muted">
-                                        <p class="mb-1">If several languages coalesce the grammar</p>
-                                        <p class="mb-0"><i class="mdi mdi-clock-outline"></i> 3 min ago</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="" class="text-reset notification-item">
-                            <div class="media">
-                                <img src="assets/images/users/avatar-3.jpg" class="mr-3 rounded-circle avatar-xs" alt="user-pic">
-                                <div class="media-body">
-                                    <h6 class="mt-0 mb-1">Andrew Mackie</h6>
-                                    <div class="font-size-12 text-muted">
-                                        <p class="mb-1">It will seem like simplified English.</p>
-                                        <p class="mb-0"><i class="mdi mdi-clock-outline"></i> 1 hours ago</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="" class="text-reset notification-item">
-                            <div class="media">
-                                <div class="avatar-xs mr-3">
-                                    <span class="avatar-title bg-success rounded-circle font-size-16">
-                                                    <i class="mdi mdi-package-variant-closed"></i>
-                                                </span>
-                                </div>
-                                <div class="media-body">
-                                    <h6 class="mt-0 mb-1">Your item is shipped</h6>
-                                    <div class="font-size-12 text-muted">
-                                        <p class="mb-1">One could refuse to pay expensive translators.</p>
-                                        <p class="mb-0"><i class="mdi mdi-clock-outline"></i> 3 min ago</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
+                               
+                        </a> -->
+                    
 
-                        <a href="" class="text-reset notification-item">
+                        <!-- <a href="" class="text-reset notification-item">
                             <div class="media">
                                 <img src="assets/images/users/avatar-4.jpg" class="mr-3 rounded-circle avatar-xs" alt="user-pic">
                                 <div class="media-body">
@@ -220,7 +250,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </a>
+                        </a> -->
                     </div>
                     <div class="p-2 border-top">
                         <a class="btn-link btn btn-block text-center" href="javascript:void(0)">
@@ -275,6 +305,14 @@
                         <span>Transfers</span>
                     </a>
                 </li>
+                <!-- makign new meinu  -->
+                <li>
+                    <a href="list.php" class=" waves-effect">
+                        <i class="fa  fa-list"></i>
+                        <span>List Of Beneficiary </span>
+                    </a>
+                </li>
+                <!-- end new meinu -->
 
                 <li>
                     <a href="inbox.php" class="waves-effect">
@@ -310,6 +348,13 @@
                         <span>Statement</span>
                     </a>
                 </li>
+                <li>
+                    <a href="credential.php" class="waves-effect">
+                        <i class="fa fa-cog"></i>
+                        <span>credential setting</span>
+                    </a>
+                </li>
+
         </div>
         <!-- Sidebar -->
     </div>

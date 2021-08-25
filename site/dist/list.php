@@ -1,9 +1,31 @@
+
+
+
+<script type="text/javascript">
+    function wrongAuth() {
+        Swal.fire({
+            title: "Login Failed",
+            text: "username or password is incorrect !",
+            icon: "error"
+        });
+    }   
+
+    // function rightAuth() {
+    //     location.replace("http://localhost/online-banking/site/dist/risk.php");
+    // }
+</script>
+<!-- time checker -->
 <?php
     include('connect.php');
     session_start();
+    error_reporting(0);
     // if Session is getting account_no then user can access index.php else require login
     if(isset($_SESSION["s_account_no"]) && isset($_SESSION['s_login']))
     {
+
+        // if ((time() - $_SESSION['last_login_timestamp']) > 60) {
+        //     header('location:auth_login.php');
+        // }
         $Account_no = $_SESSION["s_account_no"];
         // For Getting Customer Details
         $query_customer = "SELECT * FROM tbl_customer WHERE account_no='$Account_no'";
@@ -14,6 +36,11 @@
         $query_for_transactions = "SELECT * FROM tbl_transaction where account_no = $Account_no ORDER BY trans_date DESC ";
         $transaction_result = mysqli_query($con,$query_for_transactions);
         $no_of_transaction = mysqli_num_rows($transaction_result); # $no_of_transaction
+
+        // For Getting Different Types of values in page
+        $query_for_transactions_of_this_month = "SELECT * FROM tbl_transaction where account_no = $Account_no AND MONTH(trans_date) = MONTH(CURRENT_DATE()) AND YEAR(trans_date) = YEAR(CURRENT_DATE()) ";
+        $transaction_result_of_this_month = mysqli_query($con,$query_for_transactions_of_this_month);
+        $no_of_transaction_of_this_month = mysqli_num_rows($transaction_result_of_this_month); # $no_of_transaction
 
         // For getting Acount Balance
         $query_for_account_bal = "SELECT balance FROM tbl_balance WHERE account_no=$Account_no";
@@ -41,6 +68,30 @@
         else {
             $debit_sum = 0;
         }
+
+        $query_credit_sum_this_month = "SELECT SUM(amount) as credit_sum_of_this_month FROM tbl_transaction where account_no = $Account_no and trans_type='CREDIT' and MONTH(trans_date) = MONTH(CURRENT_DATE()) AND YEAR(trans_date) = YEAR(CURRENT_DATE())";
+        $query_credit_sum_this_month_result = mysqli_query($con,$query_credit_sum_this_month);
+        $credit_sum_this_month = mysqli_fetch_assoc($query_credit_sum_this_month_result);
+        if (!empty($credit_sum_this_month['credit_sum_of_this_month'])) {
+            $credit_sum_of_this_month = $credit_sum_this_month['credit_sum_of_this_month'];
+        }
+        else {
+            $credit_sum_of_this_month = 0;
+        }
+
+        $query_debit_sum_this_month = "SELECT SUM(amount) as debit_sum_of_this_month FROM tbl_transaction where account_no = $Account_no and trans_type='DEBIT' and MONTH(trans_date) = MONTH(CURRENT_DATE()) AND YEAR(trans_date) = YEAR(CURRENT_DATE())";
+        $query_debit_sum_this_month_result = mysqli_query($con,$query_debit_sum_this_month);
+        $credit_sum_this_month = mysqli_fetch_assoc($query_debit_sum_this_month_result);
+        if (!empty($credit_sum_this_month['debit_sum_of_this_month'])) {
+            $debit_sum_of_this_month = $credit_sum_this_month['debit_sum_of_this_month'];
+        }
+        else {
+            $debit_sum_of_this_month = 0;
+        }
+//         SELECT *
+// FROM tbl_transaction
+// WHERE MONTH(trans_date) = MONTH(CURRENT_DATE())
+// AND YEAR(trans_date) = YEAR(CURRENT_DATE())
         
 
         
@@ -50,20 +101,33 @@
 
 ?>
 
+
     <!doctype html>
     <html lang="en">
 
+   
     <head>
         <meta charset="utf-8" />
-        <title>Send Requests</title>
+        <title>Quick Transfer</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
         <meta content="Themesdesign" name="author" />
         <!-- App favicon -->
         <link rel="shortcut icon" href="assets/images/favicon.ico">
 
-        <!-- Summernote css -->
-        <link href="assets/libs/summernote/summernote-bs4.css" rel="stylesheet" type="text/css" />
+        <!-- slick css -->
+        <link href="assets/libs/slick-slider/slick/slick.css" rel="stylesheet" type="text/css" />
+        <link href="assets/libs/slick-slider/slick/slick-theme.css" rel="stylesheet" type="text/css" />
+
+        <!-- Sweet Alert-->
+        <!-- <link href="assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" /> -->
+
+
+        <!-- alertifyjs default themes  Css -->
+        <link href="assets/libs/alertifyjs/build/css/themes/default.min.css" rel="stylesheet" type="text/css" />
+
+        <!-- jvectormap -->
+        <link href="assets/libs/jqvmap/jqvmap.min.css" rel="stylesheet" />
 
         <!-- Bootstrap Css -->
         <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -71,197 +135,187 @@
         <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
         <!-- App Css-->
         <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" />
-            <!-- auto logout script -->
-    <script src="assets/js_autolog/script.js"></script>
+        <link href="assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
+
+        
+        <!-- ajax using with API BAed curl and put  -->
+        <!-- auto logout  script using javscript -->
+        <script src="assets/js_autolog/script.js"></script>
+
 
     </head>
 
     <body data-topbar="dark" data-layout="horizontal">
+        
+<!-- modal popup -->
 
-        <!-- Begin page -->
+<!-- e -->
+
+<!-- Begin page -->
         <div id="layout-wrapper">
 
 
-            <?php
-            include "header-sidebar.php";
-            ?>
+         <?php
+         include "header-sidebar.php";
+         ?>
 
-                <!-- ============================================================== -->
-                <!-- Start right Content here -->
-                <!-- ============================================================== -->
-                <div class="main-content">
 
-                    <div class="page-content">
-                        <div class="container-fluid">
 
-                            <!-- start page title -->
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="page-title-box d-flex align-items-center justify-content-between">
-                                        <h4 class="mb-0 font-size-18">Request Money</h4>
 
-                                        <div class="page-title-right">
-                                            <ol class="breadcrumb m-0">
-                                                <li class="breadcrumb-item"><a href="javascript: void(0);">Net Banking</a></li>
-                                                <li class="breadcrumb-item"><a href="javascript: void(0);">Send Requests</a></li>
-                                            </ol>
+
+
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="main-content">
+
+                <div class="page-content">
+                    <div class="container-fluid">
+
+                        <!-- start page title -->
+                    
+                        <!-- end page title -->
+
+                        
+                        <div class="row"><br></div>
+                        <!-- end row -->
+                        <?php            
+
+                        
+
+                        // echo "<table>"; // start a table tag in the HTML
+                        // // For transactions in Home Page(index page)
+                        // $query_for_transactions = "SELECT * FROM tbl_transaction where account_no = $Account_no ORDER BY trans_date DESC ";
+                        // $transaction_result = mysqli_query($con,$query_for_transactions);
+
+                        // while($row = mysqli_fetch_array($transaction_result)) {
+                        // $to_account_no = $row['to_account'];
+                        // $query_for_ben_name = "SELECT full_name FROM tbl_customer WHERE account_no=$to_account_no";
+                        // $result_ben_name = mysqli_query($con, $query_for_ben_name);
+                        // $ben_name = mysqli_fetch_array($result_ben_name)[0];
+
+                        // echo "<tr><td>" . $row['trans_id'] . "</td><td>" .$ben_name . "</td><td>" . $row['trans_date'] . "</td><td>" . $row['purpose'] ."</td><td>" . $row['trans_type'] . "</td><td>" .  $row['amount'] . "</td><td>" . $row['account_bal'] . "</td></tr>";  //$row['index'] the index here is a field name
+                        // }
+
+                        // echo "</table>"; //Close the table in HTML
+                   
+                        
+                        // $result = mysql_query('SELECT SUM(value) AS value_sum FROM codes'); 
+                        // $row = mysql_fetch_assoc($result); 
+                        // $sum = $row['value_sum'];
+                    
+                        
+                        ?>
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="header-title mb-4 fa fa-list" >&nbsp;&nbsp;List of Benificary</h4>
+                                        <p style="    float: right  !important;     font-size: 15px;"> <i class="fa fa-edit" data-toggle="tooltip" data-placement="top" title="Benificary Edit " style="color:darkblue;">
+                                            &nbsp;Edit</i>&nbsp;&nbsp;<i class="fa fa-trash" style="color:green;" data-toggle="tooltip" data-placement="top" title="Benificary Delete " >&nbsp;Delete</i></p>
+
+                                        <div class="table-responsive">
+                                            <table class="table table-centered table-nowrap mb-0">
+                                                <thead>
+                                                    <tr style="color:black;">
+                                                        <th >Id</th>                                                     
+                                                        <th scope="col">Nick Name</th>
+                                                        <th scope="col">Full Name</th>
+                                                        <th scope="col">Phone Number</th>
+                                                         <!-- <th scope="col">Swift Code</th> -->
+                                                        <th scope="col">Benificary Address<br></th>
+                                                        <th scope="col">Country</th>
+                                                        <th scope="col">State</th>
+                                                        <th scope="col">Pincode</th>
+                                                        <th scope="col">City<br></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+<?php
+$getting_data=mysqli_query($con,"select trans_id,  nickname, firstname, 
+swiftcode,
+benificary_address,
+country_name,
+city,
+state,
+pin_code, 
+benificary_phone
+ from tbl_transaction where to_account='$Account_no' ") or die('sql problem');
+//  $decoded_value=htmlspecialchars
+?>
+<?php
+$i=1;
+while($benificary=mysqli_fetch_array($getting_data))
+{
+
+    ?>
+    <td data-toggle="tooltip"     class='edit-btn'  data-placement="left" edit-btn title="Click Here To See details"><a href="" data-toggle="modal" data-target="#exampleModal"> <?=$i++?></a></td>
+
+<td><?=$benificary['nickname']?></td>
+<td><?=$benificary['firstname']?></td>
+<td><?=$benificary['benificary_phone']?></td>
+<!-- <td><?=$benificary['swiftcode']?></td> -->
+<td><?=$benificary['benificary_address']?></td>
+<td><?=$benificary['country_name']?></td>
+<td><?=$benificary['state']?></td>
+<td><?=$benificary['pin_code']?></td>
+<td><?=$benificary['city']?></td>
+<td><i class="fa fa-edit" style="color:darkblue;" onclick="javascript:location.href='two.php?x=<?=htmlspecialchars($benificary['trans_id']);?>'; " ></i></td>
+<td><i class="fa fa-trash" style="color:green;"  onclick="javascript:var c=confirm('Are your sure to delete this benificary details ');
+if(c)
+{
+location.href='list.php?trash=<?=$benificary['trans_id']?>'; 
+
+    }
+ " ></i></td>
+                                               </tbody>
+                                               <?php
+
+}
+?>
+                                            </table>
+                                            
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <!-- end page title -->
-
-                            <div class="row mb-4">
-                                <div class="col-xl-3">
-                                    <div class="card h-100">
-                                        <div class="card-body email-leftbar">
-                                            <a href="request_money.php" class="btn btn-danger btn-block btn-rounded waves-effect waves-light"><i class="mdi mdi-plus mr-1"></i> New Request</a>
-
-                                            <div class="mail-list mt-4">
-                                                <?php
-                                                $query_for_no_of_requests = "SELECT * FROM tbl_requests where to_account = $Account_no";
-                                                $no_of_requests_result = mysqli_query($con,$query_for_no_of_requests);
-                                                $no_of_requests = mysqli_num_rows($no_of_requests_result);
-                                            ?>
-                                                    <a href="inbox.php"><i class="mdi mdi-inbox mr-2"></i> Inbox <span class="ml-1 float-right">(<?php echo $no_of_requests; ?>)</span></a>
-                                                    <a href="send_requests.php" class="active"><i class="mdi mdi-send-check-outline mr-2"></i>Send Requests</a>
-
-                                            </div>
-
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-xl-9">
-                                    <div class="row">
-                                        <div class="col-md-7">
-                                            <div class="btn-toolbar" role="toolbar">
-                                                <div class="btn-group mr-2 mb-3">
-                                                    <button type="button" class="btn btn-primary waves-light waves-effect"><i class="fa fa-inbox"></i></button>
-                                                    <button type="button" class="btn btn-primary waves-light waves-effect"><i class="fa fa-exclamation-circle"></i></button>
-                                                    <button type="button" class="btn btn-primary waves-light waves-effect"><i class="far fa-trash-alt"></i></button>
-                                                </div>
-                                                <div class="btn-group mr-2 mb-3">
-                                                    <button type="button" class="btn btn-primary waves-light waves-effect dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                                    <i class="fa fa-folder"></i> <i class="mdi mdi-chevron-down ml-1"></i>
-                                                </button>
-                                                    <div class="dropdown-menu">
-                                                        <a class="dropdown-item" href="#">Updates</a>
-                                                        <a class="dropdown-item" href="#">Social</a>
-                                                        <a class="dropdown-item" href="#">Team Manage</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-5">
-                                            <div class="btn-toolbar justify-content-md-end" role="toolbar">
-                                                <div class="btn-group ml-md-2 mb-3">
-                                                    <button type="button" class="btn btn-primary waves-light waves-effect dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                                    <i class="fa fa-tag"></i> <i class="mdi mdi-chevron-down ml-1"></i>
-                                                </button>
-                                                    <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class="dropdown-item" href="#">Updates</a>
-                                                        <a class="dropdown-item" href="#">Social</a>
-                                                        <a class="dropdown-item" href="#">Team Manage</a>
-                                                    </div>
-                                                </div>
-
-                                                <div class="btn-group ml-2 mb-3">
-                                                    <button type="button" class="btn btn-primary waves-light waves-effect dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                                    More <i class="mdi mdi-dots-vertical ml-1"></i>
-                                                </button>
-                                                    <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class="dropdown-item" href="#">Mark as Unread</a>
-                                                        <a class="dropdown-item" href="#">Mark as Important</a>
-                                                        <a class="dropdown-item" href="#">Add to Tasks</a>
-                                                        <a class="dropdown-item" href="#">Add Star</a>
-                                                        <a class="dropdown-item" href="#">Mute</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="card mb-0">
-                                        <div class="card-body">
-                                            <!-- Nav tabs -->
-                                            <ul class="nav nav-tabs nav-justified nav-tabs-custom" role="tablist">
-                                                <li class="nav-item">
-                                                    <a class="nav-link active" data-toggle="tab" href="#custom-primary" role="tab">
-                                                        <i class="mdi mdi-inbox mr-2 align-middle font-size-18"></i> <span class="d-none d-md-inline-block">Inbox</span>
-                                                    </a>
-                                                </li>
-
-                                            </ul>
-
-                                            <!-- Tab panes -->
-                                            <div class="tab-content pt-3">
-                                                <div class="tab-pane active" id="custom-primary" role="tabpanel">
-                                                    <ul class="message-list mb-0">
-
-                                                        <?php
-                                                    // For transactions in Home Page(index page)
-                                                    $query_for_request = "SELECT * FROM tbl_requests where account_no = $Account_no ORDER BY request_date DESC ";
-                                                    $request_result = mysqli_query($con,$query_for_request);
-                                                    $no_of_requests = mysqli_num_rows($request_result);
-
-                                                    while($row = mysqli_fetch_array($request_result)) {
-                                                        $to_account_no = $row['to_account'];
-                                                        $query_for_ben_name = "SELECT full_name FROM tbl_customer WHERE account_no=$to_account_no";
-                                                        $result_ben_name = mysqli_query($con, $query_for_ben_name);
-                                                        $sender_name = mysqli_fetch_array($result_ben_name)[0];
-                                                        $date_format = $row["request_date"];
-                                                        $date_format=substr($date_format, 0, 10);
-                                                        if($row['hasViewed'] == 0) {
-                                                            $unread = 'class="unread"';
-                                                        }
-                                                        else {
-                                                            $unread = '';
-                                                        }
-                                                        if($row['status'] != 'sent')
-                                                        {
-                                                            $badge_color = "badge-danger";
-                                                        } else {
-                                                            $badge_color = "badge-success";
-                                                        }
-                                                        
-                                                        echo '
-                                                        <li '.$unread.'>
-                                                        <div class="col-mail col-mail-1">
-                                                            <div class="checkbox-wrapper-mail">
-                                                                <input type="checkbox" id="chk16">
-                                                                <label for="chk16" class="toggle"></label>
-                                                            </div>
-                                                            <a href="send_requests_read.php?request_id='.$row['request_id'].'" class="title">'.$sender_name.'</a>
-                                                        </div>
-                                                        <div class="col-mail col-mail-2">
-                                                            <a href="send_requests_read.php?request_id='.$row['request_id'].'" class="subject"><span class="'.$badge_color.' badge mr-2">&#x20b9; '.$row['amount'].'</span>'.$row["message"].'
-                                                            </a>
-                                                            <div class="date">'.$date_format.'</div>
-                                                        </div>
-                                                    </li>';
-                                                    }
-                                                    ?>
-                                                    </ul>
-                                                </div>
-
-
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <!-- end card -->
-                                </div>
-                            </div>
-                            <!-- end row -->
-
                         </div>
-                        <!-- container-fluid -->
                     </div>
-                    <!-- End Page-content -->
-                </div>
-                <!-- end main content-->
+                </div><br>
+            </div>
+<!-- detele code rite here -->
+<?php
+
+if($_SERVER['REQUEST_METHOD']=="GET" && $_REQUEST['trash']!=="")
+{
+
+$delete=mysqli_query($con, "DELETE  from  tbl_transaction where  trans_id='".$_REQUEST['trash']."' ") or die('server erro  please connect from  the developer  perosn');
+if($delete)
+{
+    echo "<script type='text/JavaScript'>wrongAuth();</script>";
+}
+}
+else
+{
+    echo "<script type='text/JavaScript'>DeleteAuth();</script>";
+}
+
+
+
+
+
+
+
+?>
+
+
+
+
+
+
+<!-- end the code -->
+            <!-- end main content-->
 
         </div>
         <!-- END layout-wrapper -->
@@ -582,6 +636,51 @@
         <!-- Right bar overlay-->
         <div class="rightbar-overlay"></div>
 
+        <!-- modal popup -->
+        <!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"><i class="fa fa-university"></i>&nbsp;&nbsp;Benificary Account Details&nbsp;</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div class="row">
+      <div class="col-md-12">
+        <div class="form-group" id="demo">
+
+    <!-- <label>Acccount No</label> -->
+    
+    <!-- <input type="text" name="uname" id="uname" class="form-control" value="Account No "> 
+</div>
+</div>
+<div class="col-md-12">
+        <div class="form-group">
+            
+    <input type="text" name="uname" id="uname" class="form-control" value="Swift Code">
+    
+        <div>
+
+
+
+
+    </div>
+
+      </div>
+      <div class="modal-footer">
+        <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+        <!-- <button type="button" class="btn btn-primary"></button> -->
+      <!-- </div>
+    </div>
+  </div>
+</div> -->
+ <!-- end -->
+<!-- second model popup start -->
+
+
+
         <!-- JAVASCRIPT -->
         <script src="assets/libs/jquery/jquery.min.js"></script>
         <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -589,14 +688,20 @@
         <script src="assets/libs/simplebar/simplebar.min.js"></script>
         <script src="assets/libs/node-waves/waves.min.js"></script>
 
-        <!-- Summernote js -->
-        <script src="assets/libs/summernote/summernote-bs4.min.js"></script>
+        <!-- apexcharts -->
+        <script src="assets/libs/apexcharts/apexcharts.min.js"></script>
 
-        <!-- email summernote init -->
-        <script src="assets/js/pages/email-summernote.init.js"></script>
+        <script src="assets/libs/slick-slider/slick/slick.min.js"></script>
+
+        <!-- Jq vector map -->
+        <script src="assets/libs/jqvmap/jquery.vmap.min.js"></script>
+        <script src="assets/libs/jqvmap/maps/jquery.vmap.usa.js"></script>
+
+        <script src="assets/js/pages/dashboard.init.js"></script>
 
         <script src="assets/js/app.js"></script>
 
+  
     </body>
 
     </html>

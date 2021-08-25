@@ -1,14 +1,11 @@
 <?php
 include ('connect.php');
 session_start();
-session_regenerate_id(false);
+//session_regenerate_id(true);
 
 if (isset($_SESSION["s_account_no"]) && isset($_SESSION['s_login'])) 
 {
-    if((time() - $_SESSION['last_login_timestamp']) >60) // 900 = 15 * 60
-           {
-                header("location:auth_login.php");
-           }
+    
            
     $Account_no = $_SESSION["s_account_no"];
     $query= mysqli_query($con, "SELECT   email FROM  tbl_customer WHERE account_no='$Account_no' ")or die('not connect from databse');

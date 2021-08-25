@@ -66,7 +66,8 @@
         <!-- App Css-->
         <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" />
 
-
+    <!-- auto logout script -->
+    <script src="assets/js_autolog/script.js"></script>
 
     </head>
 
