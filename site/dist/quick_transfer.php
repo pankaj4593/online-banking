@@ -258,6 +258,35 @@ $data_account=mysqli_query($con,'SELECT * from  tbl_customer') or die('not getti
                                             .nav-tabs>li {
                                                 padding: 20px;
                                             }
+                                            
+                                            li {
+                                                cursor: pointer;
+                                            }
+                                        </style>
+                                        <style>
+                                            label {
+                                                order: -1;
+                                                padding-left: 5px;
+                                                transition: all 0.3s ease-in;
+                                                transform: translateY(-27px);
+                                                pointer-events: none;
+                                            }
+                                            /* input:focus+label {
+                                                transform: translateY(-60px);
+                                            } */
+                                            
+                                            input:focus:required:invalid+label {
+                                                transform: translateY(-60px);
+                                            }
+                                            
+                                            input:focus:required:valid+label,
+                                            input:required:valid+label {
+                                                transform: translateY(-60px);
+                                            }
+                                            
+                                            .custom-select:focus {
+                                                box-shadow: none;
+                                            }
                                         </style>
 
                                         <div class="col-12">
@@ -285,147 +314,191 @@ $data_account=mysqli_query($con,'SELECT * from  tbl_customer') or die('not getti
 
                                                         <div class="card" style="box-shadow: 2px 2px 4px #d4d4d4, -8px -8px 2px #ffffff;">
                                                             <div class="card-body">
+
+
+
+
+
+
                                                                 <div class="row">
-                                                                    <div class="col">
-                                                                        <h4 class="header-title">Quick Transfer</h4>
-                                                                    </div>
 
-                                                                </div>
-                                                                <style>
-                                                                    label {
-                                                                        order: -1;
-                                                                        padding-left: 5px;
-                                                                        transition: all 0.3s ease-in;
-                                                                        transform: translateY(-27px);
-                                                                        pointer-events: none;
-                                                                    }
-                                                                    
-                                                                    input:focus+label {
-                                                                        transform: translateY(-60px);
-                                                                    }
-                                                                </style>
+                                                                    <div class="col-lg-8" style="border-right: 2px solid #E5E5E5 !important;">
+                                                                        <h4 class="header-title mb-3">Quick Transfer</h4>
 
+                                                                        <form class="needs-validation  row  mt-4" novalidate>
+                                                                            <div class="form-group col-md-6 ">
 
+                                                                                <div>
+                                                                                    <input name="txt_purpose " id=" " name="user_id " onkeyup="GetDetail(this.value) " list="browsers " class="select2 form-control custom-select " type="text " required autocomplete="off ">
+                                                                                    <label>Beneficiary Account Number</label>
+                                                                                    <!-- <input type='text' name="user_id "
+                                                id='    ' class='form-control'
+                                                placeholder='Enter user id'
+                                                onkeyup="GetDetail(this.value) " value=" "> -->
 
-                                                                <p class="card-title-desc "> </p>
+                                                                                    <!-- data getting  fetchby host-->
 
-                                                                <form class="custom-validation row ">
-                                                                    <div class="form-group col-md-6 ">
-
-                                                                        <div>
-                                                                            <input name="txt_purpose " id=" " name="user_id " onkeyup="GetDetail(this.value) " list="browsers " class="select2 form-control custom-select " type="text " required autocomplete="off ">
-                                                                            <label>Beneficiary Account Number</label>
-                                                                            <!-- <input type='text' name="user_id "
-                                        id='    ' class='form-control'
-                                        placeholder='Enter user id'
-                                        onkeyup="GetDetail(this.value) " value=" "> -->
-
-                                                                            <!-- data getting  fetchby host-->
-
-                                                                            <?php
-                                                                    $data=mysqli_query($con,"select to_account from tbl_transaction ");
-                                                                    ?>
+                                                                                    <?php
+                                                                            $data=mysqli_query($con,"select to_account from tbl_transaction ");
+                                                                            ?>
 
 
-                                                                                <datalist id="browsers ">
-                <?php
-            while($server_risk=mysqli_fetch_array($data))
-            {
-                ?>
-            
-            
-              <option value="<?=$server_risk[ 'to_account']?>">
-            
-                                                                                                    <?php
-            }
-            ?>
-            
-                                                                                                        </datalist>
+                                                                                        <datalist id="browsers ">
+                        <?php
+                    while($server_risk=mysqli_fetch_array($data))
+                    {
+                        ?>
+                    
+                    
+                      <option value="<?=$server_risk[ 'to_account']?>">
+                    
+                                                                                                            <?php
+                    }
+                    ?>
+                    
+                                                                                                                </datalist>
 
 
-                                                                                <!-- <input type="password" name="txt_ben_account_no" id="pass2" class="form-control" required data-parsley-minlength="9" placeholder="Account number" /> -->
+                                                                                        <!-- <input type="password" name="txt_ben_account_no" id="pass2" class="form-control" required data-parsley-minlength="9" placeholder="Account number" /> -->
+                                                                                </div>
+
+                                                                            </div>
+
+                                                                            <div class="form-group col-md-6">
+
+                                                                                <!-- <input type="text" class="form-control" required placeholder="Name of Beneficiary" /> -->
+                                                                                <input name="txt" class="select2 form-control custom-select" id="first_name" value="" type="text" required>
+                                                                                <label>beneficiary Person Name</label>
+
+
+
+                                                                            </div>
+
+
+
+
+
+
+                                                                            <div class="form-group col-md-6">
+                                                                                <input type="number" id="re-account" value="" name="txt_ben_account_no_2" class="form-control" required data-parsley-minlength="9" data-parsley-equalto="#pass2" />
+                                                                                <label>Account Number</label>
+
+                                                                            </div>
+
+
+
+                                                                            <div class="form-group col-md-6">
+
+
+                                                                                <input type="text" name="txt_swift" id="swift_code" value="" class="form-control" aria-label="Recipient 's username" aria-describedby="basic-addon2" required>
+
+
+                                                                                <!-- <div class="input-group-append">
+                                                                                                            <span class="input-group-text" id="basic-addon2">Code</span>
+                                                                                                        </div> -->
+                                                                                <label>Swift Code</label>
+
+                                                                            </div>
+
+                                                                            <div class="form-group col-md-6">
+
+
+                                                                                <!-- <div class="input-group"> -->
+                                                                                <input type="text" name="txt_amount" id="amount" value="" class="form-control" aria-label="Recipient 's username" aria-describedby="basic-addon2" required>
+                                                                                <label>Amount</label>
+                                                                                <!-- <div class="input-group-append">
+                                                                                                                <span class="input-group-text" id="basic-addon2">&#x20b9;</span>
+                                                                                                            </div>
+                                                                                                        </div> -->
+                                                                            </div>
+
+                                                                            <!-- Purpose to Transfer Money -->
+
+                                                                            <div class="form-group col-md-6">
+
+                                                                                <input type="text" name="txt_purpose" value="" id="purpose" class="select2 form-control custom-select" style="width: 100%;height:36px;" onchange='checkPurpose(this.options[this.selectedIndex].value);' required>
+                                                                                <label>purpose</label>
+
+                                                                            </div>
+                                                                            <!-- <div class="form-group col-md-6">
+                                                                        <label> Enter purpose</label>
+                                                                        <div class="col-lg-4 col-md-12">
+                                                                            <div class="input-group">
+                                                                                <input type="text" id="txt_purpose_hide" name="txt_purpose_others" class="form-control" placeholder="Purpose of this transaction" aria-label="Recipient 's username" aria-describedby="basic-addon2" style='display:none;' />
+                    
+                                                                            </div>
                                                                         </div>
+                                                                    </div> -->
 
+
+                                                                            <div class="form-group col-12">
+                                                                                <div>
+                                                                                    <button type="submit" name="btn_submit" class="btn btn-primary waves-effect waves-light mr-1">Send</button>
+                                                                                    <button type="reset" class="btn btn-primary waves-effect waves-light mr-1"> Reset   </button>
+                                                                                    <button type="submit" name="btn_submit" class="btn btn-primary waves-effect waves-light mr-1">Save Template & Send</button>
+
+
+
+                                                                                </div>
+                                                                            </div>
+                                                                        </form>
                                                                     </div>
+                                                                    <div class="col-lg-4">
 
-                                                                    <div class="form-group col-md-6">
+                                                                        <h4 class="header-title mb-3">Saved Template</h4>
+                                                                        <ul style="list-style: none;height: 275px;overflow-y: scroll;padding-right: 10px;padding-left: 0px;">
+                                                                            <li>
+                                                                                <div class="card" style="box-shadow: 2px 2px 4px #d4d4d4, -8px -8px 2px #ffffff;border-radius: 5px;">
+                                                                                    <div class="card-body">
+                                                                                        <h5>Company Name</h5>
+                                                                                        <a class="text-muted">Account Number</a>
+                                                                                        <p class="text-muted" style="margin-bottom: 0;">Phone Number</p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </li>
+                                                                            <li>
+                                                                                <div class="card" style="box-shadow: 2px 2px 4px #d4d4d4, -8px -8px 2px #ffffff;border-radius: 5px;">
+                                                                                    <div class="card-body">
+                                                                                        <h5>Company Name</h5>
+                                                                                        <a class="text-muted">Account Number</a>
+                                                                                        <p class="text-muted" style="margin-bottom: 0;">Phone Number</p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </li>
+                                                                            <li>
+                                                                                <div class="card" style="box-shadow: 2px 2px 4px #d4d4d4, -8px -8px 2px #ffffff;border-radius: 5px;">
+                                                                                    <div class="card-body">
+                                                                                        <h5>Company Name</h5>
+                                                                                        <a class="text-muted">Account Number</a>
+                                                                                        <p class="text-muted" style="margin-bottom: 0;">Phone Number</p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </li>
+                                                                            <li>
+                                                                                <div class="card" style="box-shadow: 2px 2px 4px #d4d4d4, -8px -8px 2px #ffffff;border-radius: 5px;">
+                                                                                    <div class="card-body">
+                                                                                        <h5>Company Name</h5>
+                                                                                        <a class="text-muted">Account Number</a>
+                                                                                        <p class="text-muted" style="margin-bottom: 0;">Phone Number</p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </li>
+                                                                            <li>
+                                                                                <div class="card" style="box-shadow: 2px 2px 4px #d4d4d4, -8px -8px 2px #ffffff;border-radius: 5px;">
+                                                                                    <div class="card-body">
+                                                                                        <h5>Company Name</h5>
+                                                                                        <a class="text-muted">Account Number</a>
+                                                                                        <p class="text-muted" style="margin-bottom: 0;">Phone Number</p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </li>
+                                                                        </ul>
 
-                                                                        <!-- <input type="text" class="form-control" required placeholder="Name of Beneficiary" /> -->
-                                                                        <input name="txt" class="select2 form-control custom-select" id="first_name" value="" type="text" required>
-                                                                        <label>beneficiary Person Name</label>
 
 
-
-                                                                    </div>
-
-
-
-
-
-
-                                                                    <div class="form-group col-md-6">
-                                                                        <input type="number" id="re-account" value="" name="txt_ben_account_no_2" class="form-control" required data-parsley-minlength="9" data-parsley-equalto="#pass2" />
-                                                                        <label>Account Number</label>
-
-                                                                    </div>
-
-
-
-                                                                    <div class="form-group col-md-6">
-
-
-                                                                        <input type="text" name="txt_swift" id="swift_code" value="" class="form-control" aria-label="Recipient 's username" aria-describedby="basic-addon2" required>
-
-
-                                                                        <!-- <div class="input-group-append">
-                                                                                                    <span class="input-group-text" id="basic-addon2">Code</span>
-                                                                                                </div> -->
-                                                                        <label>Swift Code</label>
-
-                                                                    </div>
-
-                                                                    <div class="form-group col-md-6">
-
-
-                                                                        <!-- <div class="input-group"> -->
-                                                                        <input type="text" name="txt_amount" id="amount" value="" class="form-control" aria-label="Recipient 's username" aria-describedby="basic-addon2" required>
-                                                                        <label>Amount</label>
-                                                                        <!-- <div class="input-group-append">
-                                                                                                        <span class="input-group-text" id="basic-addon2">&#x20b9;</span>
-                                                                                                    </div>
-                                                                                                </div> -->
-                                                                    </div>
-
-                                                                    <!-- Purpose to Transfer Money -->
-
-                                                                    <div class="form-group col-md-6">
-
-                                                                        <input type="text" name="txt_purpose" value="" id="purpose" class="select2 form-control custom-select" style="width: 100%;height:36px;" onchange='checkPurpose(this.options[this.selectedIndex].value);' required>
-                                                                        <label>purpose</label>
-
-                                                                    </div>
-                                                                    <!-- <div class="form-group col-md-6">
-                                                                <label> Enter purpose</label>
-                                                                <div class="col-lg-4 col-md-12">
-                                                                    <div class="input-group">
-                                                                        <input type="text" id="txt_purpose_hide" name="txt_purpose_others" class="form-control" placeholder="Purpose of this transaction" aria-label="Recipient 's username" aria-describedby="basic-addon2" style='display:none;' />
-            
                                                                     </div>
                                                                 </div>
-                                                            </div> -->
 
-
-                                                                    <div class="form-group col-12">
-                                                                        <div>
-                                                                            <button type="submit" name="btn_submit" class="btn btn-primary waves-effect waves-light mr-1">Submit</button>
-
-
-                                                                            <button type="reset" class="btn btn-secondary waves-effect">
-                                                                    Reset
-                                                                </button>
-                                                                        </div>
-                                                                    </div>
-                                                                </form>
                                                             </div>
 
                                                         </div>
@@ -434,23 +507,20 @@ $data_account=mysqli_query($con,'SELECT * from  tbl_customer') or die('not getti
                                                 <div class="tab-pane" id="tab2">
                                                     <div class="card">
                                                         <div class="card-body">
+                                                            <h4 class="header-title mb-3">Add Beneficiary</h4>
                                                             <form class="needs-validation " method="post" novalidate>
                                                                 <div class="row ">
                                                                     <div class="col-md-6 mt-2">
 
                                                                         <input type="text " class="form-control " id="validationCustom01" id="nick_name" name="nick_name" required>
                                                                         <label for="validationCustom01 ">Nick Name</label>
-                                                                        <div class="valid-feedback ">
-                                                                            Looks good!
-                                                                        </div>
+
                                                                     </div>
                                                                     <div class="col-md-6 mt-2">
 
                                                                         <input type="text " class="form-control " id="validationCustom01" id="account_holder_name" name="account_holder_name" required>
                                                                         <label for="validationCustom01 ">Account Holder Name</label>
-                                                                        <div class="valid-feedback ">
-                                                                            Looks good!
-                                                                        </div>
+
                                                                     </div>
                                                                     <div class="col-md-6">
 
@@ -490,49 +560,37 @@ $data_account=mysqli_query($con,'SELECT * from  tbl_customer') or die('not getti
 
                                                                         <input type="text " class="form-control " id="validationCustom03 " name="country " id="country " required>
                                                                         <label for="validationCustom03 ">Country</label>
-                                                                        <div class="invalid-feedback ">
-                                                                            Please provide a valid Country.
-                                                                        </div>
+
                                                                     </div>
                                                                     <div class="col-md-6">
 
                                                                         <input type="text " class="form-control " id="validationCustom03 " name="state " id="state " required>
                                                                         <label for="validationCustom03 ">State</label>
-                                                                        <div class="invalid-feedback ">
-                                                                            Please provide a valid State.
-                                                                        </div>
+
                                                                     </div>
                                                                     <div class="col-md-6">
                                                                         <input type="text " class="form-control " id="validationCustom03 " name="city " id="city " required>
                                                                         <label for="validationCustom03 ">City</label>
 
-                                                                        <div class="invalid-feedback ">
-                                                                            Please provide a valid city.
-                                                                        </div>
+
                                                                     </div>
                                                                     <div class="col-md-6">
                                                                         <input type="text " class="form-control " id="validationCustom03 " name="pincode " id="pincode " required>
                                                                         <label for="validationCustom03 ">Pincode</label>
 
-                                                                        <div class="invalid-feedback ">
-                                                                            Please provide a valid city.
-                                                                        </div>
+
                                                                     </div>
                                                                     <div class="col-md-6">
                                                                         <input type="text " class="form-control " id="validationCustom03 " name="address " id="address " required>
                                                                         <label for="validationCustom03 ">Address</label>
 
-                                                                        <div class="invalid-feedback ">
-                                                                            Please provide a valid city.
-                                                                        </div>
+
                                                                     </div>
                                                                     <div class="col-md-6">
 
                                                                         <input type="text " class="form-control " id="validationCustom03 " id="number " name="number " required>
                                                                         <label for="validationCustom03 ">Phone Number</label>
-                                                                        <div class="invalid-feedback ">
-                                                                            Please provide a valid city.
-                                                                        </div>
+
                                                                     </div>
                                                                     <!-- <div class="col-md-6 mb-3 ">
                                                                         <label>State</label>
@@ -559,7 +617,7 @@ $data_account=mysqli_query($con,'SELECT * from  tbl_customer') or die('not getti
                                                     </div>
 
                                                 </div>
-                                                <div class="tab-pane" id="tab3">ji</div>
+                                                <div class="tab-pane" id="tab3">Demo filed</div>
                                             </div>
 
                                         </div>
