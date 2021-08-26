@@ -2,92 +2,86 @@
 error_reporting(0);
 // for debuging the error
 
-?>  
+?>
 
 
 
 
-<script type="text/javascript">
-    function RightAuth() {
-        Swal.fire({
-            title: "beneficiary Account Added Successfully...!",
-           icon: "success"
-        });
-    }
+    <script type="text/javascript">
+        function RightAuth() {
+            Swal.fire({
+                title: "beneficiary Account Added Successfully...!",
+                icon: "success"
+            });
+        }
     </script>
-<script>
+    <script>
+        // onkeyup event will occur when the user
+        // release the key and calls the function
+        // assigned to this event
+        function GetDetail(str) {
+            // debugger;
+            if (str.length == 0) {
+                document.getElementById("first_name").value = "";
+                document.getElementById("re-account").value = "";
 
-// onkeyup event will occur when the user
-// release the key and calls the function
-// assigned to this event
-function GetDetail(str) {
-    debugger;
-    if (str.length == 0) {
-        document.getElementById("first_name").value = "";
-        document.getElementById("re-account").value = "";
+                document.getElementById("swift_code").value = "";
+                document.getElementById("amount").value = "";
+                document.getElementById("purpose").value = "";
+                return;
+            } else {
 
-        document.getElementById("swift_code").value = "";
-        document.getElementById("amount").value = "";
-        document.getElementById("purpose").value = "";
-        return;
-    }
-    else
-    {
+                // Creates a new XMLHttpRequest object
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function() {
 
-        // Creates a new XMLHttpRequest object
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function () {
+                    // Defines a function to be called when
+                    // the readyState property changes
+                    if (this.readyState == 4 &&
+                        this.status == 200) {
 
-            // Defines a function to be called when
-            // the readyState property changes
-            if (this.readyState == 4 &&
-                    this.status == 200) {
-                
-                // Typical action to be performed
-                // when the document is ready
-                var myObj = JSON.parse(this.responseText);
-                
+                        // Typical action to be performed
+                        // when the document is ready
+                        var myObj = JSON.parse(this.responseText);
 
-                // Returns the response data as a
-                // string and store this array in
-                // a variable assign the value
-                // received to first name input field
-                
-                document.getElementById
-                    ("first_name").value = myObj[0];
-                
-                // Assign the value received to
-                // last name input field
-                document.getElementById(
-                    "re-account").value = myObj[1];
-                    document.getElementById(
-                    "swift_code").value = myObj[2];
-                    document.getElementById(
-                    "amount").value = myObj[3];
-                    document.getElementById(
-                    "purpose").value = myObj[4];
-                    // document.getElementById(
-                    // "last_name").value = myObj[1];
+
+                        // Returns the response data as a
+                        // string and store this array in
+                        // a variable assign the value
+                        // received to first name input field
+
+                        document.getElementById("first_name").value = myObj[0];
+
+                        // Assign the value received to
+                        // last name input field
+                        document.getElementById(
+                            "re-account").value = myObj[1];
+                        document.getElementById(
+                            "swift_code").value = myObj[2];
+                        document.getElementById(
+                            "amount").value = myObj[3];
+                        document.getElementById(
+                            "purpose").value = myObj[4];
+                        // document.getElementById(
+                        // "last_name").value = myObj[1];
+                    }
+                };
+
+
+                // xhttp.open("GET", "filename", true);
+                xmlhttp.open("GET", "data_for_Access.php?user_id=" + str, true);
+
+                // Sends the request to the server
+                xmlhttp.send();
+
             }
-        };
-        
-
-        // xhttp.open("GET", "filename", true);
-        xmlhttp.open("GET", "data_for_Access.php?user_id=" + str, true);
-        
-        // Sends the request to the server
-        xmlhttp.send();
-    
-    }
 
 
 
-}
+        }
+    </script>
 
-        
-</script>
-
-<?php
+    <?php
     include('connect.php');
     session_start();
     session_regenerate_id(false);
@@ -167,168 +161,168 @@ function GetDetail(str) {
 
     
 ?>
-<?php
+        <?php
 $data_account=mysqli_query($con,'SELECT * from  tbl_customer') or die('not getting any data pleasa connect from the techincal  person!');
 // $see_data_in_decoded=mysqli_fetch_array($data_account) or die('technical issue please  try again later!');
 ?>
 
 
-<!doctype html>
-    <html lang="en">
+            <!doctype html>
+            <html lang="en">
 
-    <head>
-        <meta charset="utf-8" />
-        <title>Quick Transfer</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
-        <meta content="Themesdesign" name="author" />
-        <!-- App favicon -->
-        <link rel="shortcut icon" href="assets/images/favicon.ico">
+            <head>
+                <meta charset="utf-8" />
+                <title>Quick Transfer</title>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+                <meta content="Themesdesign" name="author" />
+                <!-- App favicon -->
+                <link rel="shortcut icon" href="assets/images/favicon.ico">
 
-        <!-- slick css -->
-        <link href="assets/libs/slick-slider/slick/slick.css" rel="stylesheet" type="text/css" />
-        <link href="assets/libs/slick-slider/slick/slick-theme.css" rel="stylesheet" type="text/css" />
+                <!-- slick css -->
+                <link href="assets/libs/slick-slider/slick/slick.css" rel="stylesheet" type="text/css" />
+                <link href="assets/libs/slick-slider/slick/slick-theme.css" rel="stylesheet" type="text/css" />
 
-        <!-- Sweet Alert-->
-        <link href="assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
-
-
-        <!-- alertifyjs default themes  Css -->
-        <link href="assets/libs/alertifyjs/build/css/themes/default.min.css" rel="stylesheet" type="text/css" />
-
-        <!-- jvectormap -->
-        <link href="assets/libs/jqvmap/jqvmap.min.css" rel="stylesheet" />
-
-        <!-- Bootstrap Css -->
-        <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <!-- Icons Css -->
-        <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
-        <!-- App Css-->
-        <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" />
+                <!-- Sweet Alert-->
+                <link href="assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
 
 
+                <!-- alertifyjs default themes  Css -->
+                <link href="assets/libs/alertifyjs/build/css/themes/default.min.css" rel="stylesheet" type="text/css" />
+
+                <!-- jvectormap -->
+                <link href="assets/libs/jqvmap/jqvmap.min.css" rel="stylesheet" />
+
+                <!-- Bootstrap Css -->
+                <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+                <!-- Icons Css -->
+                <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+                <!-- App Css-->
+                <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" />
 
 
 
 
-    </head>
 
-    <body data-topbar="dark" data-layout="horizontal">
 
-        <!-- Begin page -->
-        <div id="layout-wrapper">
+            </head>
 
-            <?php
+            <body data-topbar="dark" data-layout="horizontal">
+
+                <!-- Begin page -->
+                <div id="layout-wrapper">
+
+                    <?php
             include "header-sidebar.php";
             ?>
-                <!-- ============================================================== -->
-                <!-- Start right Content here -->
-                <!-- ============================================================== -->
-                <div class="main-content">
+                        <!-- ============================================================== -->
+                        <!-- Start right Content here -->
+                        <!-- ============================================================== -->
+                        <div class="main-content">
 
-                    <div class="page-content">
-                        <div class="container-fluid">
+                            <div class="page-content">
+                                <div class="container-fluid">
 
-                            <!-- start page title -->
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="page-title-box d-flex align-items-center justify-content-between">
-                                        <h4 class="mb-0 font-size-18">Quick transfer<br></h4>
+                                    <!-- start page title -->
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="page-title-box d-flex align-items-center justify-content-between">
+                                                <h4 class="mb-0 font-size-18">Quick transfer<br></h4>
 
-                                        <div class="page-title-right">
-                                            <ol class="breadcrumb m-0">
-                                                <li class="breadcrumb-item">Net Banking<br></li>
-                                                <li class="breadcrumb-item active">Quick transfer<br></li>
-                                            </ol>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- end page title -->
-
-                            <div class="row">
-                                <div class="col-sm-6 col-xl-3">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="media">
-                                                <div class="media-body">
-                                                    <h5 class="font-size-14">Number of Transactions<br></h5>
+                                                <div class="page-title-right">
+                                                    <ol class="breadcrumb m-0">
+                                                        <li class="breadcrumb-item">Net Banking<br></li>
+                                                        <li class="breadcrumb-item active">Quick transfer<br></li>
+                                                    </ol>
                                                 </div>
-                                                <div class="avatar-xs">
-                                                    <span class="avatar-title rounded-circle bg-primary">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end page title -->
+
+                                    <div class="row">
+                                        <div class="col-sm-6 col-xl-3">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="media">
+                                                        <div class="media-body">
+                                                            <h5 class="font-size-14">Number of Transactions<br></h5>
+                                                        </div>
+                                                        <div class="avatar-xs">
+                                                            <span class="avatar-title rounded-circle bg-primary">
                                                     <i class="dripicons-box"></i>
                                                 </span>
+                                                        </div>
+                                                    </div>
+                                                    <h4 class="m-0 align-self-center">
+                                                        <?php echo $no_of_transaction?>
+                                                    </h4>
+
+                                                    <p class="mb-0 mt-3 text-muted"><span class="text-dark"> <?php echo $no_of_transaction_of_this_month; ?> </span> Transaction From This Month</p>
                                                 </div>
                                             </div>
-                                            <h4 class="m-0 align-self-center">
-                                                <?php echo $no_of_transaction?>
-                                            </h4>
-
-                                            <p class="mb-0 mt-3 text-muted"><span class="text-dark"> <?php echo $no_of_transaction_of_this_month; ?> </span> Transaction From This Month</p>
                                         </div>
-                                    </div>
-                                </div>
 
-                                <div class="col-sm-6 col-xl-3">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="media">
-                                                <div class="media-body">
-                                                    <h5 class="font-size-14">Total Credit Amount<br></h5>
-                                                </div>
-                                                <div class="avatar-xs">
-                                                    <span class="avatar-title rounded-circle bg-primary">
+                                        <div class="col-sm-6 col-xl-3">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="media">
+                                                        <div class="media-body">
+                                                            <h5 class="font-size-14">Total Credit Amount<br></h5>
+                                                        </div>
+                                                        <div class="avatar-xs">
+                                                            <span class="avatar-title rounded-circle bg-primary">
                                                     <i class="dripicons-briefcase"></i>
                                                 </span>
+                                                        </div>
+                                                    </div>
+                                                    <h4 class="m-0 align-self-center">&#x20b9;
+                                                        <?php echo $credit_sum ?>
+                                                    </h4>
+                                                    <p class="mb-0 mt-3 text-muted"><span class="text-success">&#x20b9; <?php echo $credit_sum_of_this_month ?> <i class="mdi mdi-trending-up mr-1"></i></span> From This Month</p>
                                                 </div>
                                             </div>
-                                            <h4 class="m-0 align-self-center">&#x20b9;
-                                                <?php echo $credit_sum ?>
-                                            </h4>
-                                            <p class="mb-0 mt-3 text-muted"><span class="text-success">&#x20b9; <?php echo $credit_sum_of_this_month ?> <i class="mdi mdi-trending-up mr-1"></i></span> From This Month</p>
                                         </div>
-                                    </div>
-                                </div>
 
-                                <div class="col-sm-6 col-xl-3">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="media">
-                                                <div class="media-body">
-                                                    <h5 class="font-size-14">Total Debit Amount<br></h5>
-                                                </div>
-                                                <div class="avatar-xs">
-                                                    <span class="avatar-title rounded-circle bg-primary">
+                                        <div class="col-sm-6 col-xl-3">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="media">
+                                                        <div class="media-body">
+                                                            <h5 class="font-size-14">Total Debit Amount<br></h5>
+                                                        </div>
+                                                        <div class="avatar-xs">
+                                                            <span class="avatar-title rounded-circle bg-primary">
                                                     <i class="dripicons-tags"></i>
                                                 </span>
+                                                        </div>
+                                                    </div>
+                                                    <h4 class="m-0 align-self-center">&#x20b9;
+                                                        <?php echo $debit_sum ?>
+                                                    </h4>
+                                                    <p class="mb-0 mt-3 text-muted"><span class="text-danger">&#x20b9; <?php echo $debit_sum_of_this_month ?> <i class="mdi mdi-trending-up mr-1"></i></span> From This Month</p>
                                                 </div>
                                             </div>
-                                            <h4 class="m-0 align-self-center">&#x20b9;
-                                                <?php echo $debit_sum ?>
-                                            </h4>
-                                            <p class="mb-0 mt-3 text-muted"><span class="text-danger">&#x20b9; <?php echo $debit_sum_of_this_month ?> <i class="mdi mdi-trending-up mr-1"></i></span> From This Month</p>
                                         </div>
-                                    </div>
-                                </div>
 
-                                <div class="col-sm-6 col-xl-3">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="media">
-                                                <div class="media-body">
-                                                    <h5 class="font-size-14">Current Balance<br></h5>
-                                                </div>
-                                                <div class="avatar-xs">
-                                                    <span class="avatar-title rounded-circle bg-primary">
+                                        <div class="col-sm-6 col-xl-3">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="media">
+                                                        <div class="media-body">
+                                                            <h5 class="font-size-14">Current Balance<br></h5>
+                                                        </div>
+                                                        <div class="avatar-xs">
+                                                            <span class="avatar-title rounded-circle bg-primary">
                                                     <i class="dripicons-cart"></i>
                                                 </span>
-                                                </div>
-                                            </div>
-                                            <h4 class="m-0 align-self-center">&#x20b9;
-                                                <?php echo $account_bal ?>
-                                            </h4>
-                                            <?php 
+                                                        </div>
+                                                    </div>
+                                                    <h4 class="m-0 align-self-center">&#x20b9;
+                                                        <?php echo $account_bal ?>
+                                                    </h4>
+                                                    <?php 
                                             $result_of_this_month = $credit_sum_of_this_month - $debit_sum_of_this_month;
                                             if ($result_of_this_month < 0)
                                             {
@@ -342,130 +336,154 @@ $data_account=mysqli_query($con,'SELECT * from  tbl_customer') or die('not getti
                                             echo $echo_result_of_this_month;
                                         ?>
 
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="row"><br></div>
-                            <!-- end row -->
-                            <!-- Modal -->
-
-                            <div class="row mb-3 align-items-center">
-                                <div class="col-12">
-
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col">
-                                                    <h4 class="header-title">Quick Transfer</h4>
-                                                </div>
-                                                <div class="col"> <a type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-outline-info float-lg-right"><i class="fas fa-plus"></i> Add Beneficiary</a>
                                                 </div>
                                             </div>
 
-                                            <!-- Modal -->
-                                            <!-- add benificary name start -->
-                                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">Add Beneficiary</h5>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        </div>
+                                    </div>
+                                    <div class="row"><br></div>
+                                    <!-- end row -->
+                                    <!-- Modal -->
+
+                                    <div class="row mb-3 align-items-center">
+                                        <div class="col-12">
+
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <h4 class="header-title">Quick Transfer</h4>
+                                                        </div>
+                                                        <div class="col"> <a type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-outline-info float-lg-right"><i class="fas fa-plus"></i> Add Beneficiary</a>
+                                                        </div>
+                                                    </div>
+                                                    <style>
+                                                        label {
+                                                            order: -1;
+                                                            padding-left: 5px;
+                                                            transition: all 0.3s ease-in;
+                                                            transform: translateY(-27px);
+                                                            pointer-events: none;
+                                                        }
+                                                        
+                                                        input:focus+label {
+                                                            transform: translateY(-60px);
+                                                        }
+                                                    </style>
+
+                                                    <!-- Modal -->
+                                                    <!-- add benificary name start -->
+                                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="exampleModalLabel">Add Beneficiary</h5>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <form class="needs-validation "  method="post"  novalidate>
-                                                                <div class="row ">
-                                                                <div class="col-md-6 mb-3">
-                                                                        <label for="validationCustom01 ">Nick Name</label>
-                                                                        <input type="text " class="form-control " id="validationCustom01"   id="nick_name"  name="nick_name"  placeholder="First name " value="Nick Name " required>
-                                                                        <div class="valid-feedback ">
-                                                                            Looks good!
-                                                                        </div>
-                                        </div>
-                                                                    <div class="col-md-6 mb-3 ">
-                                                                        <label for="validationCustom01 ">Account Holder Name</label>
-                                                                        <input type="text " class="form-control " id="validationCustom01" id="account_holder_name"  name="account_holder_name"  placeholder="First name " value="Account Holder Name " required>
-                                                                        <div class="valid-feedback ">
-                                                                            Looks good!
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-6 mb-3 ">
-                                                                        <div class="form-group ">
-                                                                            <label>Account Number</label>
-                                                                            <div>
-                                                                                <input data-parsley-type="number " type="text" id="account_number" "  name="account_no"  class="form-control " required placeholder="Enter only numbers " />
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <form class="needs-validation " method="post" novalidate>
+                                                                        <div class="row ">
+                                                                            <div class="col-md-6 mt-2">
+
+                                                                                <input type="text " class="form-control " id="validationCustom01" id="nick_name" name="nick_name" required>
+                                                                                <label for="validationCustom01 ">Nick Name</label>
+                                                                                <div class="valid-feedback ">
+                                                                                    Looks good!
+                                                                                </div>
                                                                             </div>
-                                                                        </div>
-                                                                    </div>
+                                                                            <div class="col-md-6 mt-2">
 
-                                                                    <div class="col-md-6 mb-3 ">
-                                                                        <div class="form-group ">
-                                                                            <label>Swift Code</label>
-                                                                            <div>
-                                                                                <input data-parsley-type="number " type="text" name="swift"  id="swift"  class="form-control " required placeholder="Enter only numbers " />
+                                                                                <input type="text " class="form-control " id="validationCustom01" id="account_holder_name" name="account_holder_name" required>
+                                                                                <label for="validationCustom01 ">Account Holder Name</label>
+                                                                                <div class="valid-feedback ">
+                                                                                    Looks good!
+                                                                                </div>
                                                                             </div>
-                                                                        </div>
-                                                                    </div>
+                                                                            <div class="col-md-6">
 
 
-                                                                    <div class="col-md-6 mb-3">
-                                                                        <div class="form-group ">
-                                                                            <label>Re-Account Number</label>
-                                                                            <div>
-                                                                                <input data-parsley-type="number " type="text" name="re_account_number" id="re_account_number"  class="form-control " required placeholder="Enter Retype Account " />
+                                                                                <div>
+                                                                                    <input data-parsley-type="number " type="text" id="account_number" name="account_no " class="form-control " required />
+                                                                                    <label>Account Number</label>
+                                                                                </div>
+
                                                                             </div>
-                                                                        </div>
-                                                                    </div>
 
-                                                               
-                                                                <!-- <div class="row "> -->
+                                                                            <div class="col-md-6 ">
 
-                                                                <div class="col-md-6 mb-3">
-                                                                        <label for="validationCustom03 ">Country</label>
-                                                                        <input type="text " class="form-control " id="validationCustom03" name="country" id="country"  placeholder="country " required>
-                                                                        <div class="invalid-feedback ">
-                                                                            Please provide a valid Country.
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-6 mb-3">
-                                                                        <label for="validationCustom03 ">State</label>
-                                                                        <input type="text " class="form-control " id="validationCustom03 " name="state"  id="state"  placeholder="State " required>
-                                                                        <div class="invalid-feedback ">
-                                                                            Please provide a valid State.
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-6 mb-3">
-                                                                        <label for="validationCustom03 ">City</label>
-                                                                        <input type="text " class="form-control " id="validationCustom03" name="city" id="city"  placeholder="City " required>
-                                                                        <div class="invalid-feedback ">
-                                                                            Please provide a valid city.
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-6 mb-3">
-                                                                        <label for="validationCustom03 ">Pincode</label>
-                                                                        <input type="text " class="form-control " id="validationCustom03 " name="pincode"  id="pincode" placeholder="pincode " required>
-                                                                        <div class="invalid-feedback ">
-                                                                            Please provide a valid city.
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-6 mb-3">
-                                                                        <label for="validationCustom03 ">Address</label>
-                                                                        <input type="text " class="form-control " id="validationCustom03 "  name="address"   id="address"  placeholder="Address " required>
-                                                                        <div class="invalid-feedback ">
-                                                                            Please provide a valid city.
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-6 mb-3">
-                                                                        <label for="validationCustom03 ">Phone Number</label>
-                                                                        <input type="text " class="form-control " id="validationCustom03 "   id="number"  name="number" placeholder="Phone Number" required>
-                                                                        <div class="invalid-feedback ">
-                                                                            Please provide a valid city.
-                                                                        </div>
-                                                                    </div>
-                                                                    <!-- <div class="col-md-6 mb-3">
+
+                                                                                <div>
+                                                                                    <input data-parsley-type="number " type="text " name="swift " id="swift " class="form-control " required />
+                                                                                    <label>Swift Code</label>
+                                                                                </div>
+
+                                                                            </div>
+
+
+                                                                            <div class="col-md-6">
+
+
+                                                                                <div>
+                                                                                    <input data-parsley-type="number " type="text " name="re_account_number " id="re_account_number " class="form-control " required />
+                                                                                    <label>Re-Account Number</label>
+
+                                                                                </div>
+                                                                            </div>
+
+
+                                                                            <!-- <div class="row "> -->
+
+                                                                            <div class="col-md-6">
+
+                                                                                <input type="text " class="form-control " id="validationCustom03 " name="country " id="country " required>
+                                                                                <label for="validationCustom03 ">Country</label>
+                                                                                <div class="invalid-feedback ">
+                                                                                    Please provide a valid Country.
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-6">
+
+                                                                                <input type="text " class="form-control " id="validationCustom03 " name="state " id="state " required>
+                                                                                <label for="validationCustom03 ">State</label>
+                                                                                <div class="invalid-feedback ">
+                                                                                    Please provide a valid State.
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-6">
+                                                                                <input type="text " class="form-control " id="validationCustom03 " name="city " id="city " required>
+                                                                                <label for="validationCustom03 ">City</label>
+
+                                                                                <div class="invalid-feedback ">
+                                                                                    Please provide a valid city.
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-6">
+                                                                                <input type="text " class="form-control " id="validationCustom03 " name="pincode " id="pincode " required>
+                                                                                <label for="validationCustom03 ">Pincode</label>
+
+                                                                                <div class="invalid-feedback ">
+                                                                                    Please provide a valid city.
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-6">
+                                                                                <input type="text " class="form-control " id="validationCustom03 " name="address " id="address " required>
+                                                                                <label for="validationCustom03 ">Address</label>
+
+                                                                                <div class="invalid-feedback ">
+                                                                                    Please provide a valid city.
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-6">
+
+                                                                                <input type="text " class="form-control " id="validationCustom03 " id="number " name="number " required>
+                                                                                <label for="validationCustom03 ">Phone Number</label>
+                                                                                <div class="invalid-feedback ">
+                                                                                    Please provide a valid city.
+                                                                                </div>
+                                                                            </div>
+                                                                            <!-- <div class="col-md-6 mb-3 ">
                                                                         <label>State</label>
                                                                         <select class="custom-select " required>
                                                                             <option value=" ">Open this select State</option>
@@ -476,119 +494,120 @@ $data_account=mysqli_query($con,'SELECT * from  tbl_customer') or die('not getti
                                                                         <div class="invalid-feedback ">Example invalid custom select feedback</div>
                                                                     </div> -->
 
+                                                                        </div>
+
+                                                                        <!-- <button class="btn btn-primary " type="submit ">Submit form</button> -->
+
                                                                 </div>
+                                                                <div class="modal-footer ">
+                                                                    <!-- <button type="button " class="btn btn-secondary " data-dismiss="modal ">Close</button> -->
+                                                                    <button type="submit " name="submit " onclick=" retrun validateion(); " class="btn btn-primary ">Save changes</button>
 
-                                                                <!-- <button class="btn btn-primary " type="submit ">Submit form</button> -->
-                                                          
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
-                                                            <button type="submit" name="submit"  onclick=" retrun validateion();"  class="btn btn-primary">Save changes</button>
-
-                                                            </form>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
 
 
-                                            <p class="card-title-desc"> </p>
+                                                    <p class="card-title-desc "> </p>
 
-                                            <form class="custom-validation row">
-                                            <div class="form-group col-md-6">
-                                                    <label>Beneficiary Account Number</label>
-                                                    <div>
-                                                         <input name="txt_purpose"  id=" "   name="user_id" 
-                                                          onkeyup="GetDetail(this.value)" 
-                                                           list="browsers" class="select2 form-control custom-select" type="text"
-                                                            placeholder="Name of Beneficiary" required autocomplete="off">
+                                                    <form class="custom-validation row ">
+                                                        <div class="form-group col-md-6 ">
 
-                                                            <!-- <input type='text' name="user_id"
+                                                            <div>
+                                                                <input name="txt_purpose " id=" " name="user_id " onkeyup="GetDetail(this.value) " list="browsers " class="select2 form-control custom-select " type="text " required autocomplete="off ">
+                                                                <label>Beneficiary Account Number</label>
+                                                                <!-- <input type='text' name="user_id "
 							id='    ' class='form-control'
 							placeholder='Enter user id'
-							onkeyup="GetDetail(this.value)" value=""> -->
-                                                        
-                                                        <!-- data getting  fetchby host-->
+							onkeyup="GetDetail(this.value) " value=" "> -->
 
-                                                        <?php
-                                                        $data=mysqli_query($con,"select to_account from tbl_transaction");
+                                                                <!-- data getting  fetchby host-->
+
+                                                                <?php
+                                                        $data=mysqli_query($con,"select to_account from tbl_transaction ");
                                                         ?>
 
 
-<datalist id="browsers">
+                                                                    <datalist id="browsers ">
     <?php
 while($server_risk=mysqli_fetch_array($data))
 {
     ?>
 
 
-  <option value="<?=$server_risk['to_account']?>">
+  <option value="<?=$server_risk[ 'to_account']?>">
 
-<?php
+                                                                                        <?php
 }
 ?>
 
-</datalist>
-                                                             
-                                                    
-                                                        <!-- <input type="password" name="txt_ben_account_no" id="pass2" class="form-control" required data-parsley-minlength="9" placeholder="Account number" /> -->
-                                                    </div>
-
-                                                </div>
-
-                                                <div class="form-group col-md-6">
-
-                                                    <label>beneficiary Person Name</label>
-                                                    <!-- <input type="text" class="form-control" required placeholder="Name of Beneficiary" /> -->
-                                                    <input name="txt" class="select2 form-control custom-select" id="first_name"   value=""  type="text" placeholder="Name of Beneficiary" required>
-                                                        
-                                                       
-                                                
-                                                </div>
+                                                                                            </datalist>
 
 
+                                                                    <!-- <input type="password" name="txt_ben_account_no" id="pass2" class="form-control" required data-parsley-minlength="9" placeholder="Account number" /> -->
+                                                            </div>
 
-                                                
-
-
-                                                <div class="form-group col-md-6">
-                                                    <label>Account Number</label>
-                                                    <input type="number" id="re-account"  value="" name="txt_ben_account_no_2" class="form-control" required data-parsley-minlength="9" data-parsley-equalto="#pass2" placeholder="Re-Type Account number" />
-
-                                                </div>
-
-
-
-                                                <div class="form-group col-md-6">
-                                                    <label>Swift Code</label>
-
-                                                    <div class="input-group">
-                                                        <input type="text" name="txt_swift" id="swift_code"  value="" class="form-control" placeholder="10,000" aria-label="Recipient 's username" aria-describedby="basic-addon2" required>
-                                                        <div class="input-group-append">
-                                                            <span class="input-group-text" id="basic-addon2">Code</span>
                                                         </div>
-                                                    </div>
-                                                </div>
 
-                                                <div class="form-group col-md-6">
-                                                    <label>Amount</label>
+                                                        <div class="form-group col-md-6">
 
-                                                    <div class="input-group">
-                                                        <input type="text" name="txt_amount" id="amount" value="" class="form-control" placeholder="10,000" aria-label="Recipient 's username" aria-describedby="basic-addon2" required>
-                                                        <div class="input-group-append">
-                                                            <span class="input-group-text" id="basic-addon2">&#x20b9;</span>
+                                                            <!-- <input type="text" class="form-control" required placeholder="Name of Beneficiary" /> -->
+                                                            <input name="txt" class="select2 form-control custom-select" id="first_name" value="" type="text" required>
+                                                            <label>beneficiary Person Name</label>
+
+
+
                                                         </div>
-                                                    </div>
-                                                </div>
 
-                                                <!-- Purpose to Transfer Money -->
 
-                                                <div class="form-group col-md-6">
-                                                    <label>purpose</label>
-                                                    <input  type="text" name="txt_purpose"  value=""  id="purpose" class="select2 form-control custom-select" style="width: 100%;height:36px;" onchange='checkPurpose(this.options[this.selectedIndex].value);' required>
-                                                    
-                                                </div>
-                                                <!-- <div class="form-group col-md-6">
+
+
+
+
+                                                        <div class="form-group col-md-6">
+                                                            <input type="number" id="re-account" value="" name="txt_ben_account_no_2" class="form-control" required data-parsley-minlength="9" data-parsley-equalto="#pass2" />
+                                                            <label>Account Number</label>
+
+                                                        </div>
+
+
+
+                                                        <div class="form-group col-md-6">
+
+
+                                                            <input type="text" name="txt_swift" id="swift_code" value="" class="form-control" aria-label="Recipient 's username" aria-describedby="basic-addon2" required>
+
+
+                                                            <!-- <div class="input-group-append">
+                                                                                        <span class="input-group-text" id="basic-addon2">Code</span>
+                                                                                    </div> -->
+                                                            <label>Swift Code</label>
+
+                                                        </div>
+
+                                                        <div class="form-group col-md-6">
+
+
+                                                            <!-- <div class="input-group"> -->
+                                                            <input type="text" name="txt_amount" id="amount" value="" class="form-control" aria-label="Recipient 's username" aria-describedby="basic-addon2" required>
+                                                            <label>Amount</label>
+                                                            <!-- <div class="input-group-append">
+                                                                                            <span class="input-group-text" id="basic-addon2">&#x20b9;</span>
+                                                                                        </div>
+                                                                                    </div> -->
+                                                        </div>
+
+                                                        <!-- Purpose to Transfer Money -->
+
+                                                        <div class="form-group col-md-6">
+
+                                                            <input type="text" name="txt_purpose" value="" id="purpose" class="select2 form-control custom-select" style="width: 100%;height:36px;" onchange='checkPurpose(this.options[this.selectedIndex].value);' required>
+                                                            <label>purpose</label>
+
+                                                        </div>
+                                                        <!-- <div class="form-group col-md-6">
                                                     <label> Enter purpose</label>
                                                     <div class="col-lg-4 col-md-12">
                                                         <div class="input-group">
@@ -599,390 +618,390 @@ while($server_risk=mysqli_fetch_array($data))
                                                 </div> -->
 
 
-                                                <div class="form-group col-12">
-                                                    <div>
-                                                        <button type="submit" name="btn_submit" class="btn btn-primary waves-effect waves-light mr-1">Submit</button>
+                                                        <div class="form-group col-12">
+                                                            <div>
+                                                                <button type="submit" name="btn_submit" class="btn btn-primary waves-effect waves-light mr-1">Submit</button>
 
 
-                                                        <button type="reset" class="btn btn-secondary waves-effect">
+                                                                <button type="reset" class="btn btn-secondary waves-effect">
                                                         Reset
                                                     </button>
-                                                    </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
                                                 </div>
-                                            </form>
+
+                                            </div>
                                         </div>
 
                                     </div>
+                                    <!-- end col -->
                                 </div>
+
+
 
                             </div>
-                            <!-- end col -->
-                        </div>
-
-
-
-                    </div>
-                </div><br>
-        </div>
-        <!-- end main content-->
-
-        </div>
-        <!-- END layout-wrapper -->
-
-        <!-- Right Sidebar -->
-        <div class="right-bar">
-            <div data-simplebar class="h-100">
-
-                <!-- Nav tabs -->
-                <ul class="nav nav-tabs nav-tabs-custom rightbar-nav-tab nav-justified" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link py-3 active" data-toggle="tab" href="#chat-tab" role="tab">
-                            <i class="mdi mdi-message-text font-size-22"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link py-3" data-toggle="tab" href="#tasks-tab" role="tab">
-                            <i class="mdi mdi-format-list-checkbox font-size-22"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link py-3" data-toggle="tab" href="#settings-tab" role="tab">
-                            <span class="d-block d-sm-none"><i class="far fa-envelope"></i></span>
-                            <i class="mdi mdi-settings font-size-22"></i>
-                        </a>
-                    </li>
-                </ul>
-
-                <!-- Tab panes -->
-                <div class="tab-content text-muted">
-                    <div class="tab-pane active" id="chat-tab" role="tabpanel">
-
-                        <form class="search-bar py-4 px-3">
-                            <div class="position-relative">
-                                <input type="text" class="form-control" placeholder="Search...">
-                                <span class="mdi mdi-magnify"></span>
-                            </div>
-                        </form>
-
-                        <h6 class="font-weight-medium px-4 mt-2 text-uppercase">Group Chats</h6>
-
-                        <div class="p-2">
-                            <a href="javascript: void(0);" class="text-reset notification-item pl-3 mb-2 d-block">
-                                <i class="mdi mdi-checkbox-blank-circle-outline mr-1 text-success"></i>
-                                <span class="mb-0 mt-1">App Development</span>
-                            </a>
-
-                            <a href="javascript: void(0);" class="text-reset notification-item pl-3 mb-2 d-block">
-                                <i class="mdi mdi-checkbox-blank-circle-outline mr-1 text-warning"></i>
-                                <span class="mb-0 mt-1">Office Work</span>
-                            </a>
-
-                            <a href="javascript: void(0);" class="text-reset notification-item pl-3 mb-2 d-block">
-                                <i class="mdi mdi-checkbox-blank-circle-outline mr-1 text-danger"></i>
-                                <span class="mb-0 mt-1">Personal Group</span>
-                            </a>
-
-                            <a href="javascript: void(0);" class="text-reset notification-item pl-3 d-block">
-                                <i class="mdi mdi-checkbox-blank-circle-outline mr-1"></i>
-                                <span class="mb-0 mt-1">Freelance</span>
-                            </a>
-                        </div>
-
-                        <h6 class="font-weight-medium px-4 mt-4 text-uppercase">Favourites</h6>
-
-                        <div class="p-2">
-                            <a href="javascript: void(0);" class="text-reset notification-item">
-                                <div class="media">
-                                    <div class="position-relative mr-3">
-                                        <img src="assets/images/users/avatar-10.jpg" class="rounded-circle avatar-xs" alt="user-pic">
-                                        <i class="mdi mdi-circle user-status online"></i>
-                                    </div>
-                                    <div class="media-body overflow-hidden">
-                                        <h6 class="mt-0 mb-1">Andrew Mackie</h6>
-                                        <div class="font-size-12 text-muted">
-                                            <p class="mb-0 text-truncate">It will seem like simplified English.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-
-                            <a href="javascript: void(0);" class="text-reset notification-item">
-                                <div class="media">
-                                    <div class="position-relative mr-3">
-                                        <img src="assets/images/users/avatar-1.jpg" class="rounded-circle avatar-xs" alt="user-pic">
-                                        <i class="mdi mdi-circle user-status away"></i>
-                                    </div>
-                                    <div class="media-body overflow-hidden">
-                                        <h6 class="mt-0 mb-1">Rory Dalyell</h6>
-                                        <div class="font-size-12 text-muted">
-                                            <p class="mb-0 text-truncate">To an English person, it will seem like simplified</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-
-                            <a href="javascript: void(0);" class="text-reset notification-item">
-                                <div class="media">
-                                    <div class="position-relative mr-3">
-                                        <img src="assets/images/users/avatar-9.jpg" class="rounded-circle avatar-xs" alt="user-pic">
-                                        <i class="mdi mdi-circle user-status busy"></i>
-                                    </div>
-                                    <div class="media-body overflow-hidden">
-                                        <h6 class="mt-0 mb-1">Jaxon Dunhill</h6>
-                                        <div class="font-size-12 text-muted">
-                                            <p class="mb-0 text-truncate">To achieve this, it would be necessary.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-
-                        <h6 class="font-weight-medium px-4 mt-4 text-uppercase">Other Chats</h6>
-
-                        <div class="p-2 pb-4">
-                            <a href="javascript: void(0);" class="text-reset notification-item">
-                                <div class="media">
-                                    <div class="position-relative mr-3">
-                                        <img src="assets/images/users/avatar-2.jpg" class="rounded-circle avatar-xs" alt="user-pic">
-                                        <i class="mdi mdi-circle user-status online"></i>
-                                    </div>
-                                    <div class="media-body overflow-hidden">
-                                        <h6 class="mt-0 mb-1">Jackson Therry</h6>
-                                        <div class="font-size-12 text-muted">
-                                            <p class="mb-0 text-truncate">Everyone realizes why a new common language.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-
-                            <a href="javascript: void(0);" class="text-reset notification-item">
-                                <div class="media">
-                                    <div class="position-relative mr-3">
-                                        <img src="assets/images/users/avatar-4.jpg" class="rounded-circle avatar-xs" alt="user-pic">
-                                        <i class="mdi mdi-circle user-status away"></i>
-                                    </div>
-                                    <div class="media-body overflow-hidden">
-                                        <h6 class="mt-0 mb-1">Charles Deakin</h6>
-                                        <div class="font-size-12 text-muted">
-                                            <p class="mb-0 text-truncate">The languages only differ in their grammar.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-
-                            <a href="javascript: void(0);" class="text-reset notification-item">
-                                <div class="media">
-                                    <div class="position-relative mr-3">
-                                        <img src="assets/images/users/avatar-5.jpg" class="rounded-circle avatar-xs" alt="user-pic">
-                                        <i class="mdi mdi-circle user-status online"></i>
-                                    </div>
-                                    <div class="media-body overflow-hidden">
-                                        <h6 class="mt-0 mb-1">Ryan Salting</h6>
-                                        <div class="font-size-12 text-muted">
-                                            <p class="mb-0 text-truncate">If several languages coalesce the grammar of the resulting.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-
-                            <a href="javascript: void(0);" class="text-reset notification-item">
-                                <div class="media">
-                                    <div class="position-relative mr-3">
-                                        <img src="assets/images/users/avatar-6.jpg" class="rounded-circle avatar-xs" alt="user-pic">
-                                        <i class="mdi mdi-circle user-status online"></i>
-                                    </div>
-                                    <div class="media-body overflow-hidden">
-                                        <h6 class="mt-0 mb-1">Sean Howse</h6>
-                                        <div class="font-size-12 text-muted">
-                                            <p class="mb-0 text-truncate">It will seem like simplified English.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-
-                            <a href="javascript: void(0);" class="text-reset notification-item">
-                                <div class="media">
-                                    <div class="position-relative mr-3">
-                                        <img src="assets/images/users/avatar-7.jpg" class="rounded-circle avatar-xs" alt="user-pic">
-                                        <i class="mdi mdi-circle user-status busy"></i>
-                                    </div>
-                                    <div class="media-body overflow-hidden">
-                                        <h6 class="mt-0 mb-1">Dean Coward</h6>
-                                        <div class="font-size-12 text-muted">
-                                            <p class="mb-0 text-truncate">The new common language will be more simple.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-
-                            <a href="javascript: void(0);" class="text-reset notification-item">
-                                <div class="media">
-                                    <div class="position-relative mr-3">
-                                        <img src="assets/images/users/avatar-8.jpg" class="rounded-circle avatar-xs" alt="user-pic">
-                                        <i class="mdi mdi-circle user-status away"></i>
-                                    </div>
-                                    <div class="media-body overflow-hidden">
-                                        <h6 class="mt-0 mb-1">Hayley East</h6>
-                                        <div class="font-size-12 text-muted">
-                                            <p class="mb-0 text-truncate">One could refuse to pay expensive translators.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-
-                    </div>
-
-                    <div class="tab-pane" id="tasks-tab" role="tabpanel">
-                        <h6 class="font-weight-medium px-3 mb-0 mt-4">Working Tasks</h6>
-
-                        <div class="p-2">
-                            <a href="javascript: void(0);" class="text-reset item-hovered d-block p-3">
-                                <p class="text-muted mb-0">App Development<span class="float-right">75%</span></p>
-                                <div class="progress mt-2" style="height: 4px;">
-                                    <div class="progress-bar bg-success" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </a>
-
-                            <a href="javascript: void(0);" class="text-reset item-hovered d-block p-3">
-                                <p class="text-muted mb-0">Database Repair<span class="float-right">37%</span></p>
-                                <div class="progress mt-2" style="height: 4px;">
-                                    <div class="progress-bar bg-info" role="progressbar" style="width: 37%" aria-valuenow="37" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </a>
-
-                            <a href="javascript: void(0);" class="text-reset item-hovered d-block p-3">
-                                <p class="text-muted mb-0">Backup Create<span class="float-right">52%</span></p>
-                                <div class="progress mt-2" style="height: 4px;">
-                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 52%" aria-valuenow="52" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </a>
-                        </div>
-
-                        <h6 class="font-weight-medium px-3 mb-0 mt-4">Upcoming Tasks</h6>
-
-                        <div class="p-2">
-                            <a href="javascript: void(0);" class="text-reset item-hovered d-block p-3">
-                                <p class="text-muted mb-0">Sales Reporting<span class="float-right">12%</span></p>
-                                <div class="progress mt-2" style="height: 4px;">
-                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 12%" aria-valuenow="12" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </a>
-
-                            <a href="javascript: void(0);" class="text-reset item-hovered d-block p-3">
-                                <p class="text-muted mb-0">Redesign Website<span class="float-right">67%</span></p>
-                                <div class="progress mt-2" style="height: 4px;">
-                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 67%" aria-valuenow="67" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </a>
-
-                            <a href="javascript: void(0);" class="text-reset item-hovered d-block p-3">
-                                <p class="text-muted mb-0">New Admin Design<span class="float-right">84%</span></p>
-                                <div class="progress mt-2" style="height: 4px;">
-                                    <div class="progress-bar bg-success" role="progressbar" style="width: 84%" aria-valuenow="84" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </a>
-                        </div>
-
-                        <div class="p-3 mt-2">
-                            <a href="javascript: void(0);" class="btn btn-success btn-block waves-effect waves-light">Create Task</a>
-                        </div>
-
-                    </div>
-                    <div class="tab-pane" id="settings-tab" role="tabpanel">
-                        <h6 class="font-weight-medium px-4 py-3 text-uppercase bg-light">General Settings</h6>
-
-                        <div class="p-4">
-                            <h6 class="font-weight-medium">Online Status</h6>
-                            <div class="custom-control custom-switch mb-1">
-                                <input type="checkbox" class="custom-control-input" id="settings-check1" name="settings-check1" checked="">
-                                <label class="custom-control-label font-weight-normal" for="settings-check1">Show your status to all</label>
-                            </div>
-
-                            <h6 class="font-weight-medium mt-4">Auto Updates</h6>
-                            <div class="custom-control custom-switch mb-1">
-                                <input type="checkbox" class="custom-control-input" id="settings-check2" name="settings-check2" checked="">
-                                <label class="custom-control-label font-weight-normal" for="settings-check2">Keep up to date</label>
-                            </div>
-
-                            <h6 class="font-weight-medium mt-4">Backup Setup</h6>
-                            <div class="custom-control custom-switch mb-1">
-                                <input type="checkbox" class="custom-control-input" id="settings-check3" name="settings-check3">
-                                <label class="custom-control-label font-weight-normal" for="settings-check3">Auto backup</label>
-                            </div>
-
-                        </div>
-
-                        <h6 class="font-weight-medium px-4 py-3 mt-2 text-uppercase bg-light">Advanced Settings</h6>
-
-                        <div class="p-4">
-                            <h6 class="font-weight-medium">Application Alerts</h6>
-                            <div class="custom-control custom-switch mb-1">
-                                <input type="checkbox" class="custom-control-input" id="settings-check4" name="settings-check4" checked="">
-                                <label class="custom-control-label font-weight-normal" for="settings-check4">Email Notifications</label>
-                            </div>
-
-                            <div class="custom-control custom-switch mb-1">
-                                <input type="checkbox" class="custom-control-input" id="settings-check5" name="settings-check5">
-                                <label class="custom-control-label font-weight-normal" for="settings-check5">SMS Notifications</label>
-                            </div>
-
-                            <h6 class="font-weight-medium mt-4">API</h6>
-                            <div class="custom-control custom-switch mb-1">
-                                <input type="checkbox" class="custom-control-input" id="settings-check6" name="settings-check6">
-                                <label class="custom-control-label font-weight-normal" for="settings-check6">Enable access</label>
-                            </div>
-
-                        </div>
-                    </div>
+                        </div><br>
                 </div>
+                <!-- end main content-->
 
-            </div>
-            <!-- end slimscroll-menu-->
-        </div>
-        <!-- /Right-bar -->
+                </div>
+                <!-- END layout-wrapper -->
 
-        <!-- Right bar overlay-->
-        <div class="rightbar-overlay"></div>
+                <!-- Right Sidebar -->
+                <div class="right-bar">
+                    <div data-simplebar class="h-100">
 
-        <!-- JAVASCRIPT -->
-        <script src="assets/libs/jquery/jquery.min.js"></script>
-        <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="assets/libs/metismenu/metisMenu.min.js"></script>
-        <script src="assets/libs/simplebar/simplebar.min.js"></script>
-        <script src="assets/libs/node-waves/waves.min.js"></script>
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs nav-tabs-custom rightbar-nav-tab nav-justified" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link py-3 active" data-toggle="tab" href="#chat-tab" role="tab">
+                                    <i class="mdi mdi-message-text font-size-22"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link py-3" data-toggle="tab" href="#tasks-tab" role="tab">
+                                    <i class="mdi mdi-format-list-checkbox font-size-22"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link py-3" data-toggle="tab" href="#settings-tab" role="tab">
+                                    <span class="d-block d-sm-none"><i class="far fa-envelope"></i></span>
+                                    <i class="mdi mdi-settings font-size-22"></i>
+                                </a>
+                            </li>
+                        </ul>
+
+                        <!-- Tab panes -->
+                        <div class="tab-content text-muted">
+                            <div class="tab-pane active" id="chat-tab" role="tabpanel">
+
+                                <form class="search-bar py-4 px-3">
+                                    <div class="position-relative">
+                                        <input type="text" class="form-control" placeholder="Search...">
+                                        <span class="mdi mdi-magnify"></span>
+                                    </div>
+                                </form>
+
+                                <h6 class="font-weight-medium px-4 mt-2 text-uppercase">Group Chats</h6>
+
+                                <div class="p-2">
+                                    <a href="javascript: void(0);" class="text-reset notification-item pl-3 mb-2 d-block">
+                                        <i class="mdi mdi-checkbox-blank-circle-outline mr-1 text-success"></i>
+                                        <span class="mb-0 mt-1">App Development</span>
+                                    </a>
+
+                                    <a href="javascript: void(0);" class="text-reset notification-item pl-3 mb-2 d-block">
+                                        <i class="mdi mdi-checkbox-blank-circle-outline mr-1 text-warning"></i>
+                                        <span class="mb-0 mt-1">Office Work</span>
+                                    </a>
+
+                                    <a href="javascript: void(0);" class="text-reset notification-item pl-3 mb-2 d-block">
+                                        <i class="mdi mdi-checkbox-blank-circle-outline mr-1 text-danger"></i>
+                                        <span class="mb-0 mt-1">Personal Group</span>
+                                    </a>
+
+                                    <a href="javascript: void(0);" class="text-reset notification-item pl-3 d-block">
+                                        <i class="mdi mdi-checkbox-blank-circle-outline mr-1"></i>
+                                        <span class="mb-0 mt-1">Freelance</span>
+                                    </a>
+                                </div>
+
+                                <h6 class="font-weight-medium px-4 mt-4 text-uppercase">Favourites</h6>
+
+                                <div class="p-2">
+                                    <a href="javascript: void(0);" class="text-reset notification-item">
+                                        <div class="media">
+                                            <div class="position-relative mr-3">
+                                                <img src="assets/images/users/avatar-10.jpg" class="rounded-circle avatar-xs" alt="user-pic">
+                                                <i class="mdi mdi-circle user-status online"></i>
+                                            </div>
+                                            <div class="media-body overflow-hidden">
+                                                <h6 class="mt-0 mb-1">Andrew Mackie</h6>
+                                                <div class="font-size-12 text-muted">
+                                                    <p class="mb-0 text-truncate">It will seem like simplified English.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                    <a href="javascript: void(0);" class="text-reset notification-item">
+                                        <div class="media">
+                                            <div class="position-relative mr-3">
+                                                <img src="assets/images/users/avatar-1.jpg" class="rounded-circle avatar-xs" alt="user-pic">
+                                                <i class="mdi mdi-circle user-status away"></i>
+                                            </div>
+                                            <div class="media-body overflow-hidden">
+                                                <h6 class="mt-0 mb-1">Rory Dalyell</h6>
+                                                <div class="font-size-12 text-muted">
+                                                    <p class="mb-0 text-truncate">To an English person, it will seem like simplified</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                    <a href="javascript: void(0);" class="text-reset notification-item">
+                                        <div class="media">
+                                            <div class="position-relative mr-3">
+                                                <img src="assets/images/users/avatar-9.jpg" class="rounded-circle avatar-xs" alt="user-pic">
+                                                <i class="mdi mdi-circle user-status busy"></i>
+                                            </div>
+                                            <div class="media-body overflow-hidden">
+                                                <h6 class="mt-0 mb-1">Jaxon Dunhill</h6>
+                                                <div class="font-size-12 text-muted">
+                                                    <p class="mb-0 text-truncate">To achieve this, it would be necessary.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <h6 class="font-weight-medium px-4 mt-4 text-uppercase">Other Chats</h6>
+
+                                <div class="p-2 pb-4">
+                                    <a href="javascript: void(0);" class="text-reset notification-item">
+                                        <div class="media">
+                                            <div class="position-relative mr-3">
+                                                <img src="assets/images/users/avatar-2.jpg" class="rounded-circle avatar-xs" alt="user-pic">
+                                                <i class="mdi mdi-circle user-status online"></i>
+                                            </div>
+                                            <div class="media-body overflow-hidden">
+                                                <h6 class="mt-0 mb-1">Jackson Therry</h6>
+                                                <div class="font-size-12 text-muted">
+                                                    <p class="mb-0 text-truncate">Everyone realizes why a new common language.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                    <a href="javascript: void(0);" class="text-reset notification-item">
+                                        <div class="media">
+                                            <div class="position-relative mr-3">
+                                                <img src="assets/images/users/avatar-4.jpg" class="rounded-circle avatar-xs" alt="user-pic">
+                                                <i class="mdi mdi-circle user-status away"></i>
+                                            </div>
+                                            <div class="media-body overflow-hidden">
+                                                <h6 class="mt-0 mb-1">Charles Deakin</h6>
+                                                <div class="font-size-12 text-muted">
+                                                    <p class="mb-0 text-truncate">The languages only differ in their grammar.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                    <a href="javascript: void(0);" class="text-reset notification-item">
+                                        <div class="media">
+                                            <div class="position-relative mr-3">
+                                                <img src="assets/images/users/avatar-5.jpg" class="rounded-circle avatar-xs" alt="user-pic">
+                                                <i class="mdi mdi-circle user-status online"></i>
+                                            </div>
+                                            <div class="media-body overflow-hidden">
+                                                <h6 class="mt-0 mb-1">Ryan Salting</h6>
+                                                <div class="font-size-12 text-muted">
+                                                    <p class="mb-0 text-truncate">If several languages coalesce the grammar of the resulting.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                    <a href="javascript: void(0);" class="text-reset notification-item">
+                                        <div class="media">
+                                            <div class="position-relative mr-3">
+                                                <img src="assets/images/users/avatar-6.jpg" class="rounded-circle avatar-xs" alt="user-pic">
+                                                <i class="mdi mdi-circle user-status online"></i>
+                                            </div>
+                                            <div class="media-body overflow-hidden">
+                                                <h6 class="mt-0 mb-1">Sean Howse</h6>
+                                                <div class="font-size-12 text-muted">
+                                                    <p class="mb-0 text-truncate">It will seem like simplified English.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                    <a href="javascript: void(0);" class="text-reset notification-item">
+                                        <div class="media">
+                                            <div class="position-relative mr-3">
+                                                <img src="assets/images/users/avatar-7.jpg" class="rounded-circle avatar-xs" alt="user-pic">
+                                                <i class="mdi mdi-circle user-status busy"></i>
+                                            </div>
+                                            <div class="media-body overflow-hidden">
+                                                <h6 class="mt-0 mb-1">Dean Coward</h6>
+                                                <div class="font-size-12 text-muted">
+                                                    <p class="mb-0 text-truncate">The new common language will be more simple.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                    <a href="javascript: void(0);" class="text-reset notification-item">
+                                        <div class="media">
+                                            <div class="position-relative mr-3">
+                                                <img src="assets/images/users/avatar-8.jpg" class="rounded-circle avatar-xs" alt="user-pic">
+                                                <i class="mdi mdi-circle user-status away"></i>
+                                            </div>
+                                            <div class="media-body overflow-hidden">
+                                                <h6 class="mt-0 mb-1">Hayley East</h6>
+                                                <div class="font-size-12 text-muted">
+                                                    <p class="mb-0 text-truncate">One could refuse to pay expensive translators.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+
+                            </div>
+
+                            <div class="tab-pane" id="tasks-tab" role="tabpanel">
+                                <h6 class="font-weight-medium px-3 mb-0 mt-4">Working Tasks</h6>
+
+                                <div class="p-2">
+                                    <a href="javascript: void(0);" class="text-reset item-hovered d-block p-3">
+                                        <p class="text-muted mb-0">App Development<span class="float-right">75%</span></p>
+                                        <div class="progress mt-2" style="height: 4px;">
+                                            <div class="progress-bar bg-success" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </a>
+
+                                    <a href="javascript: void(0);" class="text-reset item-hovered d-block p-3">
+                                        <p class="text-muted mb-0">Database Repair<span class="float-right">37%</span></p>
+                                        <div class="progress mt-2" style="height: 4px;">
+                                            <div class="progress-bar bg-info" role="progressbar" style="width: 37%" aria-valuenow="37" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </a>
+
+                                    <a href="javascript: void(0);" class="text-reset item-hovered d-block p-3">
+                                        <p class="text-muted mb-0">Backup Create<span class="float-right">52%</span></p>
+                                        <div class="progress mt-2" style="height: 4px;">
+                                            <div class="progress-bar bg-warning" role="progressbar" style="width: 52%" aria-valuenow="52" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <h6 class="font-weight-medium px-3 mb-0 mt-4">Upcoming Tasks</h6>
+
+                                <div class="p-2">
+                                    <a href="javascript: void(0);" class="text-reset item-hovered d-block p-3">
+                                        <p class="text-muted mb-0">Sales Reporting<span class="float-right">12%</span></p>
+                                        <div class="progress mt-2" style="height: 4px;">
+                                            <div class="progress-bar bg-danger" role="progressbar" style="width: 12%" aria-valuenow="12" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </a>
+
+                                    <a href="javascript: void(0);" class="text-reset item-hovered d-block p-3">
+                                        <p class="text-muted mb-0">Redesign Website<span class="float-right">67%</span></p>
+                                        <div class="progress mt-2" style="height: 4px;">
+                                            <div class="progress-bar bg-primary" role="progressbar" style="width: 67%" aria-valuenow="67" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </a>
+
+                                    <a href="javascript: void(0);" class="text-reset item-hovered d-block p-3">
+                                        <p class="text-muted mb-0">New Admin Design<span class="float-right">84%</span></p>
+                                        <div class="progress mt-2" style="height: 4px;">
+                                            <div class="progress-bar bg-success" role="progressbar" style="width: 84%" aria-valuenow="84" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <div class="p-3 mt-2">
+                                    <a href="javascript: void(0);" class="btn btn-success btn-block waves-effect waves-light">Create Task</a>
+                                </div>
+
+                            </div>
+                            <div class="tab-pane" id="settings-tab" role="tabpanel">
+                                <h6 class="font-weight-medium px-4 py-3 text-uppercase bg-light">General Settings</h6>
+
+                                <div class="p-4">
+                                    <h6 class="font-weight-medium">Online Status</h6>
+                                    <div class="custom-control custom-switch mb-1">
+                                        <input type="checkbox" class="custom-control-input" id="settings-check1" name="settings-check1" checked="">
+                                        <label class="custom-control-label font-weight-normal" for="settings-check1">Show your status to all</label>
+                                    </div>
+
+                                    <h6 class="font-weight-medium mt-4">Auto Updates</h6>
+                                    <div class="custom-control custom-switch mb-1">
+                                        <input type="checkbox" class="custom-control-input" id="settings-check2" name="settings-check2" checked="">
+                                        <label class="custom-control-label font-weight-normal" for="settings-check2">Keep up to date</label>
+                                    </div>
+
+                                    <h6 class="font-weight-medium mt-4">Backup Setup</h6>
+                                    <div class="custom-control custom-switch mb-1">
+                                        <input type="checkbox" class="custom-control-input" id="settings-check3" name="settings-check3">
+                                        <label class="custom-control-label font-weight-normal" for="settings-check3">Auto backup</label>
+                                    </div>
+
+                                </div>
+
+                                <h6 class="font-weight-medium px-4 py-3 mt-2 text-uppercase bg-light">Advanced Settings</h6>
+
+                                <div class="p-4">
+                                    <h6 class="font-weight-medium">Application Alerts</h6>
+                                    <div class="custom-control custom-switch mb-1">
+                                        <input type="checkbox" class="custom-control-input" id="settings-check4" name="settings-check4" checked="">
+                                        <label class="custom-control-label font-weight-normal" for="settings-check4">Email Notifications</label>
+                                    </div>
+
+                                    <div class="custom-control custom-switch mb-1">
+                                        <input type="checkbox" class="custom-control-input" id="settings-check5" name="settings-check5">
+                                        <label class="custom-control-label font-weight-normal" for="settings-check5">SMS Notifications</label>
+                                    </div>
+
+                                    <h6 class="font-weight-medium mt-4">API</h6>
+                                    <div class="custom-control custom-switch mb-1">
+                                        <input type="checkbox" class="custom-control-input" id="settings-check6" name="settings-check6">
+                                        <label class="custom-control-label font-weight-normal" for="settings-check6">Enable access</label>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- end slimscroll-menu-->
+                </div>
+                <!-- /Right-bar -->
+
+                <!-- Right bar overlay-->
+                <div class="rightbar-overlay"></div>
+
+                <!-- JAVASCRIPT -->
+                <script src="assets/libs/jquery/jquery.min.js"></script>
+                <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+                <script src="assets/libs/metismenu/metisMenu.min.js"></script>
+                <script src="assets/libs/simplebar/simplebar.min.js"></script>
+                <script src="assets/libs/node-waves/waves.min.js"></script>
 
 
 
-        <!-- Jq vector map -->
-        <script src="assets/libs/jqvmap/jquery.vmap.min.js"></script>
-        <script src="assets/libs/jqvmap/maps/jquery.vmap.usa.js"></script>
+                <!-- Jq vector map -->
+                <script src="assets/libs/jqvmap/jquery.vmap.min.js"></script>
+                <script src="assets/libs/jqvmap/maps/jquery.vmap.usa.js"></script>
 
-        <script src="assets/js/pages/dashboard.init.js"></script>
+                <script src="assets/js/pages/dashboard.init.js"></script>
 
-        <script src="assets/js/app.js"></script>
+                <script src="assets/js/app.js"></script>
 
-        <!-- parsleyjs -->
-        <script src="assets/libs/parsleyjs/parsley.min.js"></script>
-        <!-- validation init -->
-        <script src="assets/js/pages/form-validation.init.js"></script>
+                <!-- parsleyjs -->
+                <script src="assets/libs/parsleyjs/parsley.min.js"></script>
+                <!-- validation init -->
+                <script src="assets/js/pages/form-validation.init.js"></script>
 
-        <!-- Sweet Alerts js -->
-        <script src="assets/libs/sweetalert2/sweetalert2.min.js"></script>
+                <!-- Sweet Alerts js -->
+                <script src="assets/libs/sweetalert2/sweetalert2.min.js"></script>
 
-        <!-- Sweet alert init js-->
-        <script src="assets/js/pages/sweet-alerts.init.js"></script>
-    <!-- auto logout script -->
-    <script src="assets/js_autolog/script.js"></script>
+                <!-- Sweet alert init js-->
+                <script src="assets/js/pages/sweet-alerts.init.js"></script>
+                <!-- auto logout script -->
+                <script src="assets/js_autolog/script.js"></script>
 
-    </body>
+            </body>
 
-    </html>
-
-
+            </html>
 
 
-    <?php
+
+
+            <?php
 
     if(isset($_REQUEST['btn_submit']))
     {
@@ -1182,7 +1201,3 @@ if($binificary_Adding)
 }
 }
 ?>
-
-
-
-

@@ -60,7 +60,7 @@ include('connect.php');
         <!-- Sweet Alert-->
         <link href="assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
     <!-- auto logout script -->
-    <script src="assets/js_autolog/script.js"></script>
+    <!-- <script src="assets/js_autolog/script.js"></script> -->
     </head>
     <style>
         .card {
