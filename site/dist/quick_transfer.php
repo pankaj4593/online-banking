@@ -325,7 +325,7 @@ $data_account=mysqli_query($con,'SELECT * from  tbl_customer') or die('not getti
                                                                     <div class="col-lg-8" style="border-right: 2px solid #E5E5E5 !important;">
                                                                         <h4 class="header-title mb-3">Quick Transfer</h4>
 
-                                                                        <form class="needs-validation  row  mt-4" novalidate>
+                                                                        <form class="needs-validation  row  mt-5" novalidate>
                                                                             <div class="form-group col-md-6 ">
 
                                                                                 <div>

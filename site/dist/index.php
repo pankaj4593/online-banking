@@ -109,11 +109,11 @@
         <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
         <!-- App Css-->
         <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" />
-            <!-- auto logout script -->
-    <script src="assets/js_autolog/script.js"></script>
+        <!-- auto logout script -->
+        <script src="assets/js_autolog/script.js"></script>
 
 
-     
+
 
 
     </head>
@@ -124,7 +124,7 @@
         <div id="layout-wrapper">
 
 
-         <?php
+            <?php
          include "header-sidebar.php";
          ?>
 
@@ -133,135 +133,162 @@
 
 
 
-            <!-- ============================================================== -->
-            <!-- Start right Content here -->
-            <!-- ============================================================== -->
-            <div class="main-content">
+                <!-- ============================================================== -->
+                <!-- Start right Content here -->
+                <!-- ============================================================== -->
+                <div class="main-content">
 
-                <div class="page-content">
-                    <div class="container-fluid">
+                    <div class="page-content">
+                        <div class="container-fluid">
 
-                        <!-- start page title -->
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="page-title-box d-flex align-items-center justify-content-between">
-                                    <h4 class="mb-0 font-size-18">Transactions<br></h4>
+                            <!-- start page title -->
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="page-title-box d-flex align-items-center justify-content-between">
+                                        <h4 class="mb-0 font-size-18">Transactions<br></h4>
 
-                                    <div class="page-title-right">
-                                        <ol class="breadcrumb m-0">
-                                            <li class="breadcrumb-item">Net Banking<br></li>
-                                            <li class="breadcrumb-item active">Transactions<br></li>
-                                        </ol>
+                                        <div class="page-title-right">
+                                            <ol class="breadcrumb m-0">
+                                                <li class="breadcrumb-item">Net Banking<br></li>
+                                                <li class="breadcrumb-item active">Transactions<br></li>
+                                            </ol>
+                                        </div>
+
                                     </div>
-
                                 </div>
                             </div>
-                        </div>
-                        <!-- end page title -->
+                            <!-- end page title -->
+                            <div class="row">
+                                <div class="col-sm-6 ">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="card ">
+                                                <div class="card-body ">
 
-                        <div class="row">
-                            <div class="col-sm-6 col-xl-3">
-                                <div class="card" style="height: 165px;">
-                                    <div class="card-body">
-                                        <div class="media">
-                                            <div class="media-body">
-                                                <h5 class="font-size-14">Number of Transactions<br></h5>
-                                            </div>
-                                            <div class="avatar-xs">
-                                                <span class="avatar-title rounded-circle bg-primary">
-                                                    <i class="dripicons-box"></i>
-                                                </span>
+                                                    <h4 class="header-title ">Profile Completed</h4>
+                                                    <div class=" ">
+                                                        <div class="progress ">
+                                                            <div class="progress-bar " role="progressbar " style="width: 25%; " aria-valuenow="25 " aria-valuemin="0 " aria-valuemax="100 ">25%</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                        <h4 class="m-0 align-self-center">
-                                            <?php echo $no_of_transaction?>
-                                        </h4>
+                                        <div class="col-sm-6 col-xl-6">
+                                            <div class="card" style="height: 165px;">
+                                                <div class="card-body">
+                                                    <div class="media">
+                                                        <div class="media-body">
+                                                            <h5 class="font-size-14">Number of Transactions<br></h5>
+                                                        </div>
+                                                        <div class="avatar-xs">
+                                                            <span class="avatar-title rounded-circle bg-primary">
+                                                            <i class="dripicons-box"></i>
+                                                        </span>
+                                                        </div>
+                                                    </div>
+                                                    <h4 class="m-0 align-self-center">
+                                                        <?php echo $no_of_transaction?>
+                                                    </h4>
 
-                                        <p class="mb-0 mt-3 text-muted"><span class="text-dark"> <?php echo $no_of_transaction_of_this_month; ?> </span> Transaction From This Month</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-6 col-xl-3">
-                                <div class="card" style="height: 165px;">
-                                    <div class="card-body">
-                                        <div class="media">
-                                            <div class="media-body">
-                                                <h5 class="font-size-14">Total Credit Amount<br></h5>
-                                            </div>
-                                            <div class="avatar-xs">
-                                                <span class="avatar-title rounded-circle bg-primary">
-                                                    <i class="dripicons-briefcase"></i>
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <h4 class="m-0 align-self-center">&#x20b9;
-                                            <?php echo $credit_sum ?>
-                                        </h4>
-                                        <p class="mb-0 mt-3 text-muted"><span class="text-success">&#x20b9; <?php echo $credit_sum_of_this_month ?> <i class="mdi mdi-trending-up mr-1"></i></span> From This Month</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-6 col-xl-3">
-                                <div class="card" style="height: 165px;">
-                                    <div class="card-body">
-                                        <div class="media">
-                                            <div class="media-body">
-                                                <h5 class="font-size-14">Total Debit Amount<br></h5>
-                                            </div>
-                                            <div class="avatar-xs">
-                                                <span class="avatar-title rounded-circle bg-primary">
-                                                    <i class="dripicons-tags"></i>
-                                                </span>
+                                                    <p class="mb-0 mt-3 text-muted"><span class="text-dark"> <?php echo $no_of_transaction_of_this_month; ?> </span> Transaction From This Month</p>
+                                                </div>
                                             </div>
                                         </div>
-                                        <h4 class="m-0 align-self-center">&#x20b9;
-                                            <?php echo $debit_sum ?>
-                                        </h4>
-                                        <p class="mb-0 mt-3 text-muted"><span class="text-danger">&#x20b9; <?php echo $debit_sum_of_this_month ?> <i class="mdi mdi-trending-up mr-1"></i></span> From This Month</p>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div class="col-sm-6 col-xl-3">
-                                <div class="card" style="height: 165px;">
-                                    <div class="card-body">
-                                        <div class="media">
-                                            <div class="media-body">
-                                                <h5 class="font-size-14">Current Balance<br></h5>
-                                            </div>
-                                            <div class="avatar-xs">
-                                                <span class="avatar-title rounded-circle bg-primary">
-                                                    <i class="dripicons-cart"></i>
-                                                </span>
+                                        <div class="col-sm-6 col-xl-6">
+                                            <div class="card" style="height: 165px;">
+                                                <div class="card-body">
+                                                    <div class="media">
+                                                        <div class="media-body">
+                                                            <h5 class="font-size-14">Total Credit Amount<br></h5>
+                                                        </div>
+                                                        <div class="avatar-xs">
+                                                            <span class="avatar-title rounded-circle bg-primary">
+                                                            <i class="dripicons-briefcase"></i>
+                                                        </span>
+                                                        </div>
+                                                    </div>
+                                                    <h4 class="m-0 align-self-center">&#x20b9;
+                                                        <?php echo $credit_sum ?>
+                                                    </h4>
+                                                    <p class="mb-0 mt-3 text-muted"><span class="text-success">&#x20b9; <?php echo $credit_sum_of_this_month ?> <i class="mdi mdi-trending-up mr-1"></i></span> From This Month</p>
+                                                </div>
                                             </div>
                                         </div>
-                                        <h4 class="m-0 align-self-center">&#x20b9;
-                                            <?php echo $account_bal ?>
-                                        </h4>
-                                        <?php 
-                                            $result_of_this_month = $credit_sum_of_this_month - $debit_sum_of_this_month;
-                                            if ($result_of_this_month < 0)
-                                            {
-                                                $echo_result_of_this_month =  '<p class="mb-0 mt-3 text-muted"><span class="text-danger">&#x20b9; '.$result_of_this_month.' <i class="mdi mdi-trending-up mr-1"></i></span> From This Month</p>';
-                                            }
-                                            else
-                                            {
-                                                $echo_result_of_this_month =  '<p class="mb-0 mt-3 text-muted"><span class="text-success">&#x20b9; '.$result_of_this_month.' <i class="mdi mdi-trending-up mr-1"></i></span> From This Month</p>';
-                                            }
 
-                                            echo $echo_result_of_this_month;
-                                        ?>
+                                        <div class="col-sm-6 col-xl-6">
+                                            <div class="card" style="height: 165px;">
+                                                <div class="card-body">
+                                                    <div class="media">
+                                                        <div class="media-body">
+                                                            <h5 class="font-size-14">Total Debit Amount<br></h5>
+                                                        </div>
+                                                        <div class="avatar-xs">
+                                                            <span class="avatar-title rounded-circle bg-primary">
+                                                            <i class="dripicons-tags"></i>
+                                                        </span>
+                                                        </div>
+                                                    </div>
+                                                    <h4 class="m-0 align-self-center">&#x20b9;
+                                                        <?php echo $debit_sum ?>
+                                                    </h4>
+                                                    <p class="mb-0 mt-3 text-muted"><span class="text-danger">&#x20b9; <?php echo $debit_sum_of_this_month ?> <i class="mdi mdi-trending-up mr-1"></i></span> From This Month</p>
+                                                </div>
+                                            </div>
+                                        </div>
 
+                                        <div class="col-sm-6 col-xl-6">
+                                            <div class="card" style="height: 165px;">
+                                                <div class="card-body">
+                                                    <div class="media">
+                                                        <div class="media-body">
+                                                            <h5 class="font-size-14">Current Balance<br></h5>
+                                                        </div>
+                                                        <div class="avatar-xs">
+                                                            <span class="avatar-title rounded-circle bg-primary">
+                                                            <i class="dripicons-cart"></i>
+                                                        </span>
+                                                        </div>
+                                                    </div>
+                                                    <h4 class="m-0 align-self-center">&#x20b9;
+                                                        <?php echo $account_bal ?>
+                                                    </h4>
+                                                    <?php 
+                                                    $result_of_this_month = $credit_sum_of_this_month - $debit_sum_of_this_month;
+                                                    if ($result_of_this_month < 0)
+                                                    {
+                                                        $echo_result_of_this_month =  '<p class="mb-0 mt-3 text-muted"><span class="text-danger">&#x20b9; '.$result_of_this_month.' <i class="mdi mdi-trending-up mr-1"></i></span> From This Month</p>';
+                                                    }
+                                                    else
+                                                    {
+                                                        $echo_result_of_this_month =  '<p class="mb-0 mt-3 text-muted"><span class="text-success">&#x20b9; '.$result_of_this_month.' <i class="mdi mdi-trending-up mr-1"></i></span> From This Month</p>';
+                                                    }
+        
+                                                    echo $echo_result_of_this_month;
+                                                ?>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
                                     </div>
                                 </div>
+                                <div class="col-sm-6">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h4 class="header-title mb-4">Transactions Info</h4>
 
+                                            <div id="column_chart" class="apex-charts" dir="ltr"></div>
+                                        </div>
+                                    </div>
+                                    <!--end card-->
+                                </div>
                             </div>
-                        </div>
-                        <div class="row"><br></div>
-                        <!-- end row -->
-                        <?php            
+
+                            <div class="row"><br></div>
+                            <!-- end row -->
+                            <?php            
 
                         
 
@@ -289,36 +316,36 @@
                         
                         ?>
 
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h4 class="header-title mb-4">Latest Transaction</h4>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h4 class="header-title mb-4">Latest Transaction</h4>
 
-                                        <div class="table-responsive">
-                                            <table class="table table-centered table-nowrap mb-0">
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="col" style="width: 50px;">
-                                                            <div class="custom-control custom-checkbox">
-                                                                <input type="checkbox" class="custom-control-input" id="customCheckall">
-                                                                <label class="custom-control-label" for="customCheckall"></label>
-                                                            </div>
-                                                        </th>
-                                                        <th scope="col" style="width: 60px;"><br></th>
-                                                        <th scope="col">Transaction ID &amp; Name</th>
-                                                        <th scope="col">Date</th>
-                                                        <th scope="col"><br></th>
-                                                        <th scope="col">Purpose</th>
-                                                        <th scope="col">Transaction Type<br></th>
-                                                        <th scope="col">Amount</th>
-                                                        <th scope="col">Balance<br></th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
+                                            <div class="table-responsive">
+                                                <table class="table table-centered table-nowrap mb-0">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col" style="width: 50px;">
+                                                                <div class="custom-control custom-checkbox">
+                                                                    <input type="checkbox" class="custom-control-input" id="customCheckall">
+                                                                    <label class="custom-control-label" for="customCheckall"></label>
+                                                                </div>
+                                                            </th>
+                                                            <th scope="col" style="width: 60px;"><br></th>
+                                                            <th scope="col">Transaction ID &amp; Name</th>
+                                                            <th scope="col">Date</th>
+                                                            <th scope="col"><br></th>
+                                                            <th scope="col">Purpose</th>
+                                                            <th scope="col">Transaction Type<br></th>
+                                                            <th scope="col">Amount</th>
+                                                            <th scope="col">Balance<br></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
 
 
-                                                    <?php
+                                                        <?php
                                                     // For transactions in Home Page(index page)
                                                     $query_for_transactions = "SELECT * FROM tbl_transaction where account_no = $Account_no ORDER BY trans_date DESC ";
                                                     $transaction_result = mysqli_query($con,$query_for_transactions);
@@ -367,17 +394,17 @@
                                                     </tr>';
                                                    } 
                                                 ?>
-                                                </tbody>
-                                            </table>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div><br>
-            </div>
-            <!-- end main content-->
+                    </div><br>
+                </div>
+                <!-- end main content-->
 
         </div>
         <!-- END layout-wrapper -->
@@ -715,6 +742,13 @@
         <script src="assets/libs/jqvmap/maps/jquery.vmap.usa.js"></script>
 
         <script src="assets/js/pages/dashboard.init.js"></script>
+
+
+
+        <!-- demo js-->
+        <script src="assets/js/pages/apex.init.js"></script>
+
+
 
         <script src="assets/js/app.js"></script>
 

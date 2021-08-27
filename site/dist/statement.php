@@ -105,8 +105,8 @@
         <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
         <!-- App Css-->
         <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" />
-            <!-- auto logout script -->
-    <script src="assets/js_autolog/script.js"></script>
+        <!-- auto logout script -->
+        <script src="assets/js_autolog/script.js"></script>
 
 
 
@@ -169,38 +169,76 @@
                         
                         ?>
 
+                            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="card">
                                         <div class="card-body">
-                                            <a class="btn btn-outline-info mb-2" id="btnExport" onclick="javascript:xport.toCSV('testTable');">
-                                                <i class="fas fa-file-download"></i>&nbsp;Download
-                                                <a>
+                                            <div class="mb-2">
+                                                <a class="btn btn-outline-info" id="btnExport" onclick="javascript:xport.toCSV('testTable');">
+                                                    <i class="fas fa-file-download"></i>&nbsp;Download
+                                                </a>
+                                            </div>
+                                            <div class="row mb-2" style="display: block;overflow-x: auto;white-space: nowrap;">
 
-                                                    <div class="table-responsive">
-                                                        <table class="table table-centered table-nowrap mb-0" id="testTable">
-                                                            <thead>
-                                                                <tr>
-                                                                    <!-- <th scope="col" style="width: 50px;">
+                                                <div class="col-lg-3" style="display: inline-block;">
+                                                    <label for="example-text-input " class="col-form-label">Payment Id</label>
+                                                    <input class="form-control " type="text ">
+                                                </div>
+                                                <div class="col-lg-3" style="display: inline-block;padding: 0;">
+                                                    <label for="example-text-input " class="col-form-label ">Date Select</label>
+                                                    <div id="reportrange" class="form-control">
+                                                        <i class="fa fa-calendar"></i>&nbsp;
+                                                        <span></span> <i class="fa fa-caret-down"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3" style="display: inline-block;">
+                                                    <label for="example-text-input " class="col-form-label ">Status</label>
+                                                    <select class="form-control ">
+                                                        <option>Success</option>
+                                                        <option>Open</option>
+                                                        <option>Send</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-lg-1" style="display: inline-block;padding: 0;width: auto;">
+                                                    <a class="btn btn-outline-primary">
+                                                        <i class="fas fa-search"></i>
+                                                    </a>
+                                                </div>
+                                                <div class="col-lg-1" style="display: inline-block;">
+                                                    <a class="btn btn-outline-primary">
+                                                        <i class="fas fa-times-circle"></i>
+                                                    </a>
+                                                </div>
+
+
+                                            </div>
+
+                                            <div class="table-responsive">
+                                                <table class="table table-centered table-nowrap mb-0" id="testTable">
+                                                    <thead>
+                                                        <tr>
+                                                            <!-- <th scope="col" style="width: 50px;">
                                                                         <div class="custom-control custom-checkbox">
                                                                             <input type="checkbox" class="custom-control-input" id="customCheckall">
                                                                             <label class="custom-control-label" for="customCheckall"></label>
                                                                         </div>
                                                                     </th>
                                                                     <th scope="col" style="width: 60px;"><br></th> -->
-                                                                    <th scope="col">Transaction ID &amp; Name</th>
-                                                                    <th scope="col">Date</th>
-                                                                    <th scope="col"><br></th>
-                                                                    <th scope="col">Purpose</th>
-                                                                    <th scope="col">Transaction Type<br></th>
-                                                                    <th scope="col">Amount</th>
-                                                                    <th scope="col">Balance<br></th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
+                                                            <th scope="col">Transaction ID &amp; Name</th>
+                                                            <th scope="col">Date</th>
+                                                            <th scope="col"><br></th>
+                                                            <th scope="col">Purpose</th>
+                                                            <th scope="col">Transaction Type<br></th>
+                                                            <th scope="col">Amount</th>
+                                                            <th scope="col">Balance<br></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
 
 
-                                                                <?php
+                                                        <?php
                                                     // For transactions in Home Page(index page)
                                                     $query_for_transactions = "SELECT * FROM tbl_transaction where account_no = $Account_no ORDER BY trans_date DESC ";
                                                     $transaction_result = mysqli_query($con,$query_for_transactions);
@@ -249,9 +287,9 @@
                                                     </tr>';
                                                    } 
                                                 ?>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -701,11 +739,52 @@
 
         <!-- Jq vector map -->
         <script src="assets/libs/jqvmap/jquery.vmap.min.js"></script>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
+
+
+        <script type="text/javascript">
+            $(function() {
+
+                var start = moment().subtract(29, 'days');
+                var end = moment();
+
+                function cb(start, end) {
+                    $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+                }
+
+                $('#reportrange').daterangepicker({
+                    startDate: start,
+                    endDate: end,
+                    ranges: {
+                        'Today': [moment(), moment()],
+                        'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                        'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                        'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                        'This Month': [moment().startOf('month'), moment().endOf('month')],
+                        'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                    }
+                }, cb);
+
+                cb(start, end);
+
+            });
+        </script>
+
+
         <script src="assets/libs/jqvmap/maps/jquery.vmap.usa.js"></script>
 
         <script src="assets/js/pages/dashboard.init.js"></script>
 
         <script src="assets/js/app.js"></script>
+
+
+
+
+
+
 
     </body>
 
