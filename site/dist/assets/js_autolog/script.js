@@ -12,9 +12,9 @@ setInterval(updateTimer, 1000);
 function updateTimer() {
 	duration--;
 	if ( duration < 1 ) {
-		window.location = "auth_login.php";
+		window.location = Auth_login.php
 	} else {
-		timer.innerText = "Auto Logout In: " + formatTime(duration);
+		// timer.innerText = "Auto Logout In: " + formatTime(duration);
 	}	
 }
 

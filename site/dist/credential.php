@@ -20,6 +20,40 @@
     // if Session is getting account_no then user can access index.php else require login
     ?>
 
+<!-- code for notification -->
+<?php
+                                            if(isset($_SESSION["s_account_no"]) && isset($_SESSION['s_login']))
+                                            {
+                                        
+                                                $Account_no = $_SESSION["s_account_no"];
+                                        $high_risk=mysqli_query($con,"select ip_address from tbl_transaction where account_no='".$Account_no."'  ") or die('unable to connect from the database!');
+                                        if($high_risk)
+                                        {
+                                            $getting_Fetch=mysqli_fetch_array($high_risk);
+                                            if($getting)
+                                            {
+                                                // rest of the code
+                                            }
+                                            else
+                                            {
+                                                // echo "<script>alert('server error due to technical session please try again later ');</script>"; 
+                                                
+                                            }
+                                            
+                                        }
+                                    }
+                                        else
+                                            {
+                                                // echo "<script>alert('technical issuse  undermintaince ');</script>";
+                                            }
+
+                                        ?>
+
+<?php
+$notified_me = mysqli_query($con,'SELECT  *  from tbl_login_history   where account_no ="'.$Account_no.'" ');
+// $data_Rec=mysqli_Fetch_Array($notified_me);
+$get_notifiy=mysqli_num_rows($notified_me);
+?>
     <!doctype html>
     <html lang="en">
 
@@ -147,7 +181,8 @@
                                 <div class="col-lg-12">
                                     <div class="card">
                                         <div class="card-body">
-                                            <h4 class="header-title mb-4"><i class="fa fa-cog"></i> &nbsp;Credentials settings</h4>
+                                            <h4 class="header-title mb-4"><i class="fa fa-cog"></i> &nbsp;Credentials settings
+                                        </h4>
                                             <style>
 
                                             </style>
@@ -159,71 +194,102 @@
 
                                                     <div class="tab-content">
                                                         <div class="tab-pane active" id="ClientInfo">
-                                                            <h4 class="text-lg font-bold text-gray-700 leading-tight mt-4 mb-4">Last Login</h4>
+                                                            <h4 class="text-lg font-bold text-gray-700 leading-tight mt-4 mb-4"><i class="fa fa-step-forward" aria-hidden="true"></i>
+                                                                Last Login&nbsp;&nbsp;<span data-toggle="tooltip" data-placement="right" title="You Have New Alert for securty " class ="badge badge-primary"><?=$get_notifiy?>&nbsp;&nbsp;New</span></h4>
                                                             <div class="table-responsive ">
                                                                 <table class="table table-bordered mb-0 ">
                                                                     <thead>
                                                                         <tr>
-                                                                            <th>#</th>
-                                                                            <th>First Name</th>
-                                                                            <th>Last Name</th>
-                                                                            <th>Username</th>
+                                                                            <th data-toggle="tooltip" data-placement="top" title="Your seeing by Current Date & time">Date & Time</th>
+                                                                            <th>Token Id</th>
+                                                                            <th>Login Time</th>
+                                                                            <th>Logout Time</th>
+                                                                            <th>Status</th>
                                                                         </tr>
                                                                     </thead>
-                                                                    <tbody>
-                                                                        <tr>
-                                                                            <th scope="row ">1</th>
-                                                                            <td>Mark</td>
-                                                                            <td>Otto</td>
-                                                                            <td>@mdo</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th scope="row ">2</th>
-                                                                            <td>Jacob</td>
-                                                                            <td>Thornton</td>
-                                                                            <td>@fat</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th scope="row ">3</th>
-                                                                            <td>Larry</td>
-                                                                            <td>the Bird</td>
-                                                                            <td>@twitter</td>
-                                                                        </tr>
+                                                                                                                                       <tbody>
+                                                                                                                                            
+                                                                    
+                                                                        <?php
+                                                                        while($query=mysqli_fetch_array($notified_me))
+                                                                        {
+                                                                            ?>
+                                                                   
+                                                                   <tr>
+                                                                            <th scope=""><?=date('d-m-y');?></th>
+                                                                            <td><?=$query['token_id']?></td>
+                                                                            
+                                                                            <td><?=$query['login_time']?></td>
+                                                                            <td><?php if(isset($query['last_login'])=="")
+                                                                            {
+                                                                                echo $query['logout_time'];
+                                                                                
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                echo " current Active"; 
+                                                                            }
+
+                                                                            
+                                                                            ?></td>
+                                                                            <td><button type="button" class=""
+                                                                            
+                                                                    onclick="javscript:
+                                                                    var c=confirm('are  you sure to delete this alert');
+                                                                   if(c)
+                                                                   {
+                                                                location.herf='credential.php' ;   
+                                                                }
+
+
+
+
+
+
+
+
+                                                                    <i class="fa fa-trash"  style="color:black; border:none;" aria-hidden="true"></i></td>
+                                                                            </tr>
+                                                                            <?php    
+                                                                    }
+                                                                        ?>
+                                                                      
+                                                                       
                                                                     </tbody>
                                                                 </table>
                                                             </div>
-
+<?php
+$ip_Address=mysqli_query($con, 'SELECT   * FROM   tbl_transaction WHERE  account_no="'.$Account_no.'"  ') or die('error sql');
+?>
                                                             <h4 class="text-lg font-bold text-gray-700 leading-tight mt-4 mb-4">IP Address</h4>
                                                             <div class="table-responsive ">
                                                                 <table class="table table-bordered mb-0 ">
                                                                     <thead>
                                                                         <tr>
-                                                                            <th>#</th>
-                                                                            <th>First Name</th>
-                                                                            <th>Last Name</th>
-                                                                            <th>Username</th>
+                                                                            <th>id</th>
+                                                                            <th>Ip Address</th>
+                                                                            <th>System Info</th>
+                                                                            <th>Time</th>
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
+                                                                        <?php
+                                                                        $i=1;
+                                                                        while($data=mysqli_fetch_array($ip_Address))
+                                                                        {
+                                                                            ?>
                                                                         <tr>
-                                                                            <th scope="row ">1</th>
-                                                                            <td>Mark</td>
-                                                                            <td>Otto</td>
-                                                                            <td>@mdo</td>
+                                                                            <td><?=$i++?></td>
+                                                                            <td><?=$data['ip_address'];?></td>
+                                                                            <td><?=$data['system_info']?></td>
+                                                                            <td><?=$data['time']?></td>
                                                                         </tr>
-                                                                        <tr>
-                                                                            <th scope="row ">2</th>
-                                                                            <td>Jacob</td>
-                                                                            <td>Thornton</td>
-                                                                            <td>@fat</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th scope="row ">3</th>
-                                                                            <td>Larry</td>
-                                                                            <td>the Bird</td>
-                                                                            <td>@twitter</td>
-                                                                        </tr>
-                                                                    </tbody>
+                                                                       
+                                                                    
+                                                                            <?php
+                                                                        }
+                                                                        ?>
+                                                                        
                                                                 </table>
                                                             </div>
                                                         </div>
@@ -454,34 +520,7 @@
 
 
 
-                                            <?php
-                                            if(isset($_SESSION["s_account_no"]) && isset($_SESSION['s_login']))
-                                            {
-                                        
-                                               
-                                        $high_risk=mysqli_query($con,"select ip_address from tbl_transaction where account_no='".$Account_no."'  ") or die('unable to connect from the database!');
-                                        if($high_risk)
-                                        {
-                                            $getting_Fetch=mysqli_fetch_array($high_risk);
-                                            if($getting)
-                                            {
-                                                // rest of the code
-                                            }
-                                            else
-                                            {
-                                                echo "<script>alert('server error due to technical session please try again later ');</script>"; 
-                                                
-                                            }
                                             
-                                        }
-                                    }
-                                        else
-                                            {
-                                                echo "<script>alert('technical issuse  undermintaince ');</script>";
-                                            }
-
-                                        ?>
-
 
 
 
