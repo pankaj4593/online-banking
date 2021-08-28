@@ -368,7 +368,7 @@ $data_account=mysqli_query($con,'SELECT * from  tbl_customer') or die('not getti
 
                                                                                 <!-- <input type="text" class="form-control" required placeholder="Name of Beneficiary" /> -->
                                                                                 <input name="txt" class="select2 form-control custom-select" id="first_name" value="" type="text" required>
-                                                                                <label>beneficiary Person Name</label>
+                                                                                <label>Beneficiary Person Name</label>
 
 
 
@@ -417,7 +417,7 @@ $data_account=mysqli_query($con,'SELECT * from  tbl_customer') or die('not getti
                                                                             <div class="form-group col-md-6">
 
                                                                                 <input type="text" name="txt_purpose" value="" id="purpose" class="select2 form-control custom-select" style="width: 100%;height:36px;" onchange='checkPurpose(this.options[this.selectedIndex].value);' required>
-                                                                                <label>purpose</label>
+                                                                                <label>Purpose</label>
 
                                                                             </div>
                                                                             <!-- <div class="form-group col-md-6">

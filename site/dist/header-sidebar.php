@@ -125,6 +125,9 @@ if(isset($_SESSION["s_account_no"]) && isset($_SESSION['s_login']))
             h6 {
                 font-weight: 800;
             }
+            .progress{
+                height:14px !important;
+            }
             
         </style>
 
