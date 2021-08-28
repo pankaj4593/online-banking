@@ -196,10 +196,16 @@ $get_notifiy=mysqli_num_rows($notified_me);
                                                         <div class="tab-pane active" id="ClientInfo">
                                                             <h4 class="text-lg font-bold text-gray-700 leading-tight mt-4 mb-4"><i class="fa fa-step-forward" aria-hidden="true"></i>
                                                                 Last Login&nbsp;&nbsp;<span data-toggle="tooltip" data-placement="right" title="You Have New Alert for securty " class ="badge badge-primary"><?=$get_notifiy?>&nbsp;&nbsp;New</span></h4>
-                                                            <div class="table-responsive ">
-                                                                <table class="table table-bordered mb-0 ">
+                                                            <div class="table-responsive " style="height:300px;">
+                                                                <table class="table table-centered table-nowrap mb-0 ">
                                                                     <thead>
                                                                         <tr>
+                                                                        <th scope="col" style="width: 50px;">
+                                                        <div class="custom-control custom-checkbox">
+                                                            <input type="checkbox" class="custom-control-input" id="customCheckall">
+                                                            <label class="custom-control-label" for="customCheckall"></label>
+                                                        </div>
+                                                    </th>
                                                                             <th data-toggle="tooltip" data-placement="top" title="Your seeing by Current Date & time">Date & Time</th>
                                                                             <th>Token Id</th>
                                                                             <th>Login Time</th>
@@ -216,7 +222,18 @@ $get_notifiy=mysqli_num_rows($notified_me);
                                                                             ?>
                                                                    
                                                                    <tr>
+                                                                   <td>
+                                                                <div class="custom-control custom-checkbox">
+                                                                    <input type="checkbox" class="custom-control-input"
+                                                                        id="<?=$query['token_id']?>">
+                                                                    <label class="custom-control-label" for="<?=$query['token_id']?>"></label>
+                                                                </div>
+                                                            </td>
                                                                             <th scope=""><?=date('d-m-y');?></th>
+
+
+
+                                                                            
                                                                             <td><?=$query['token_id']?></td>
                                                                             
                                                                             <td><?=$query['login_time']?></td>
@@ -585,6 +602,22 @@ $ip_Address=mysqli_query($con, 'SELECT   * FROM   tbl_transaction WHERE  account
 
         <!-- JAVASCRIPT -->
         <script src="assets/libs/jquery/jquery.min.js"></script>
+
+<script>
+    $('#customCheckall').click(function(event) {   
+    if(this.checked) {
+        // Iterate each checkbox
+        $(':checkbox').each(function() {
+            this.checked = true;                        
+        });
+    } else {
+        $(':checkbox').each(function() {
+            this.checked = false;                       
+        });
+    }
+});
+</script>
+
         <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
         <script src="assets/libs/metismenu/metisMenu.min.js"></script>
         <script src="assets/libs/simplebar/simplebar.min.js"></script>

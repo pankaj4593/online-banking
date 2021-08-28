@@ -148,9 +148,8 @@
                                                 <li>
                                                     <a href="#tab2" class="myclass" data-toggle="tab"> <i class="fas fa-home"></i> &nbsp;Account </a>
                                                 </li>
-                                                <li><a href="#tab3" class="myclass" data-toggle="tab"><i class="fas fa-cogs"></i>&nbsp; Fee </a></li>
-                                                <li><a href="#tab4" class="myclass" data-toggle="tab"><i class="fas fa-edit"></i>&nbsp; Customizition </a></li>
-                                                <li><a href="#tab4" class="myclass" data-toggle="tab"><i class="fas  fa-headphones"></i>&nbsp; Request & Otp </a></li>
+                                                <li><a href="#tab3" class="myclass" data-toggle="tab"><i class="fas fa-cogs"></i>&nbsp; Customizition </a></li>
+
                                                 <li><a href="#tab6" class="myclass" data-toggle="tab"><i class="fas fa-laptop"></i>&nbsp; System Config</a></li>
 
                                             </ul>
@@ -232,130 +231,7 @@
                                                                 </tr>';
                                                                } 
                                                             ?>
-                                                                        <!-- <tr>
-                                                                    <td>
-                                                                        <div class="custom-control custom-checkbox">
-                                                                            <input type="checkbox" class="custom-control-input" id="customCheck2">
-                                                                            <label class="custom-control-label" for="customCheck2"></label>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td>
-                                                                        <div class="avatar-xs">
-                                                                            <span class="avatar-title rounded-circle bg-soft-primary text-primary">
-                                                                                W
-                                                                            </span>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td>
-                                                                        <p class="mb-1 font-size-12">#AP1235</p>
-                                                                        <h5 class="font-size-15 mb-0">Walter Jones</h5>
-                                                                    </td>
-                                                                    <td>04 Nov, 2019</td>
-                                                                    <td>$ 822</td>
-                                                                    <td>2</td>
-                                                                    
-                                                                    <td>
-                                                                        $ 1,644
-                                                                    </td>
-                                                                    <td>
-                                                                        <i class="mdi mdi-checkbox-blank-circle text-success mr-1"></i> Confirm
-                                                                    </td>
-                                                                    <td>
-                                                                        <button type="button" class="btn btn-outline-success btn-sm">Edit</button>
-                                                                        <button type="button" class="btn btn-outline-danger btn-sm">Cancel</button>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="custom-control custom-checkbox">
-                                                                            <input type="checkbox" class="custom-control-input" id="customCheck3">
-                                                                            <label class="custom-control-label" for="customCheck3"></label>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td>
-                                                                        <img src="assets/images/users/avatar-3.jpg" alt="user" class="avatar-xs rounded-circle" />
-                                                                    </td>
-                                                                    <td>
-                                                                        <p class="mb-1 font-size-12">#AP1236</p>
-                                                                        <h5 class="font-size-15 mb-0">Eric Ryder</h5>
-                                                                    </td>
-                                                                    <td>05 Nov, 2019</td>
-                                                                    <td>$ 1,153</td>
-                                                                    <td>1</td>
-                                                                    
-                                                                    <td>
-                                                                        $ 1,153
-                                                                    </td>
-                                                                    <td>
-                                                                        <i class="mdi mdi-checkbox-blank-circle text-danger mr-1"></i> Cancel
-                                                                    </td>
-                                                                    <td>
-                                                                        <button type="button" class="btn btn-outline-success btn-sm">Edit</button>
-                                                                        <button type="button" class="btn btn-outline-danger btn-sm">Cancel</button>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="custom-control custom-checkbox">
-                                                                            <input type="checkbox" class="custom-control-input" id="customCheck4">
-                                                                            <label class="custom-control-label" for="customCheck4"></label>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td>
-                                                                        <img src="assets/images/users/avatar-6.jpg" alt="user" class="avatar-xs rounded-circle" />
-                                                                    </td>
-                                                                    <td>
-                                                                        <p class="mb-1 font-size-12">#AP1237</p>
-                                                                        <h5 class="font-size-15 mb-0">Kenneth Jackson</h5>
-                                                                    </td>
-                                                                    <td>06 Nov, 2019</td>
-                                                                    <td>$ 1,365</td>
-                                                                    <td>1</td>
-                                                                    
-                                                                    <td>
-                                                                        $ 1,365
-                                                                    </td>
-                                                                    <td>
-                                                                        <i class="mdi mdi-checkbox-blank-circle text-success mr-1"></i> Confirm
-                                                                    </td>
-                                                                    <td>
-                                                                        <button type="button" class="btn btn-outline-success btn-sm">Edit</button>
-                                                                        <button type="button" class="btn btn-outline-danger btn-sm">Cancel</button>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="custom-control custom-checkbox">
-                                                                            <input type="checkbox" class="custom-control-input" id="customCheck5">
-                                                                            <label class="custom-control-label" for="customCheck5"></label>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td>
-                                                                        <div class="avatar-xs">
-                                                                            <span class="avatar-title rounded-circle bg-soft-primary text-primary">
-                                                                                R
-                                                                            </span>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td>
-                                                                        <p class="mb-1 font-size-12">#AP1238</p>
-                                                                        <h5 class="font-size-15 mb-0">Ronnie Spiller</h5>
-                                                                    </td>
-                                                                    <td>08 Nov, 2019</td>
-                                                                    <td>$ 740</td>
-                                                                    <td>2</td>
-                                                                    
-                                                                    <td>
-                                                                        $ 1,480
-                                                                    </td>
-                                                                    <td>
-                                                                        <i class="mdi mdi-checkbox-blank-circle text-warning mr-1"></i> Pending
-                                                                    </td>
-                                                                    <td>
-                                                                        <button type="button" class="btn btn-outline-success btn-sm">Edit</button>
-                                                                        <button type="button" class="btn btn-outline-danger btn-sm">Cancel</button>
-                                                                    </td>
-                                                                </tr> -->
+
                                                                 </tbody>
                                                             </table>
                                                         </div>
@@ -379,12 +255,126 @@
                                                         <li>
                                                             <a href="#tab21" class="myclass" data-toggle="tab"> <i class="fas fa-receipt"></i> &nbsp;Exchange Rate</a>
                                                         </li>
-                                                        <li><a href="#tab22" class="myclass" data-toggle="tab"><i class="fas fa-universal-access"></i>&nbsp; Account Type</a></li>
                                                     </ul>
-                                                    <div class="tab-content mt-5">
-                                                        <div class="tab-pane active" id="tab20">Demo filed</div>
-                                                        <div class="tab-pane" id="tab21">Demo filed2</div>
-                                                        <div class="tab-pane" id="tab22">Demo filed3</div>
+                                                    <div class="tab-content">
+                                                        <div class="tab-pane active" id="tab20">
+                                                            <div class="table-responsive">
+                                                                <table class="table mb-0">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th><strong> Currency</strong></th>
+                                                                            <th><strong>Active </strong></th>
+                                                                            <th><strong>Main</strong></th>
+
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <th scope="row">Aud</th>
+                                                                            <td>
+                                                                                <div class="form-check">
+                                                                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                                                                    <label class="form-check-label" for="defaultCheck1">
+                                                                                    </label>
+                                                                                </div>
+                                                                            </td>
+                                                                            <td>
+                                                                                <div class="form-check">
+                                                                                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked="">
+                                                                                    <label class="form-check-label" for="exampleRadios1">
+                                                                                       </label>
+                                                                                </div>
+                                                                            </td>
+
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="row">Rupees</th>
+                                                                            <td>
+                                                                                <div class="form-check">
+                                                                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                                                                    <label class="form-check-label" for="defaultCheck1">
+                                                                                    </label>
+                                                                                </div>
+                                                                            </td>
+                                                                            <td>
+                                                                                <div class="form-check">
+                                                                                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option1" checked="">
+                                                                                    <label class="form-check-label" for="exampleRadios2">
+                                                                                       </label>
+                                                                                </div>
+                                                                            </td>
+
+                                                                        </tr>
+
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="tab-pane" id="tab21">
+                                                            <div class="row mt-3">
+                                                                <div class="col-2">
+                                                                    <div class="card" style="box-shadow:2px 3px 2px #d4d4d4, -8px -8px 15px #ffffff;">
+                                                                        <div class="card-body">
+                                                                            Flat
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-2">
+                                                                    <div class="card" style="box-shadow:2px 3px 2px #d4d4d4, -8px -8px 15px #ffffff;">
+                                                                        <div class="card-body">
+                                                                            Crypto
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+
+                                                            <div class="table-responsive">
+                                                                <table class="table mb-0">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th><strong> Currency</strong></th>
+                                                                            <th><strong>Exchange Rate </strong></th>
+                                                                            <th><strong>Exchange Rate Margin%</strong></th>
+
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <th scope="row">Aud</th>
+                                                                            <td>
+                                                                                <input type="text" value="1.4566" class="form-control">
+                                                                            </td>
+                                                                            <td>
+                                                                                <input type="text" value="0" class="form-control">
+                                                                            </td>
+
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="row">BGN</th>
+                                                                            <td>
+                                                                                <input type="text" value="1.4566" class="form-control">
+                                                                            </td>
+                                                                            <td>
+                                                                                <input type="text" value="0" class="form-control">
+                                                                            </td>
+
+                                                                        </tr>
+
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                            <div class="row mt-3">
+                                                                <div class="col-2">
+                                                                    <a class="btn btn-outline-primary">Save</a>
+                                                                </div>
+                                                                <div class="col-2">
+                                                                    <a class="btn btn-outline-primary">Cancle</a>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
 
 
                                                     </div>
@@ -393,9 +383,161 @@
                                             </div>
 
                                         </div>
-                                        <div class="tab-pane" id="tab3">Demo filed</div>
-                                        <div class="tab-pane" id="tab4">Demo filed1</div>
-                                        <div class="tab-pane" id="tab5">Demo filed2</div>
+                                        <div class="tab-pane" id="tab3">
+
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <ul class="nav nav-tabs">
+                                                        <li class="active">
+                                                            <a href="#tab30" class="myclass active" data-toggle="tab"> <i class="fas fa-money-bill"></i>&nbsp; Schema List</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#tab31" class="myclass" data-toggle="tab"> <i class="fas fa-receipt"></i> &nbsp;Logo </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#tab32" class="myclass" data-toggle="tab"> <i class="fas fa-receipt"></i> &nbsp;Site Text</a>
+                                                        </li>
+                                                    </ul>
+                                                    <style>
+                                                        #color1 {
+                                                            border: none;
+                                                            width: 100px;
+                                                            height: 100px;
+                                                            outline: none;
+                                                            padding: 0px;
+                                                            box-shadow: 1px 0px 3px #333, -1px 0px 3px #333;
+                                                        }
+                                                        
+                                                        input[type="button"] {
+                                                            padding: 10px 15px;
+                                                            border: none;
+                                                            background-color: #333;
+                                                            color: white;
+                                                        }
+                                                        
+                                                        p#output {
+                                                            color: white;
+                                                            letter-spacing: 1px;
+                                                        }
+                                                        
+                                                        input[type="button"]:hover {
+                                                            background-color: #444;
+                                                            cursor: pointer;
+                                                            transition: .2s linear;
+                                                        }
+                                                    </style>
+                                                    <div class="tab-content mt-3">
+                                                        <div class="tab-pane active" id="tab30">
+                                                            <h4>Default</h4>
+                                                            <p>Color Schema</p>
+                                                            <div class="row mt-5">
+                                                                <div class="col-2">
+                                                                    <input type="color" value="#ff0000" name="color1" id="color1">
+                                                                    <p class="mt-2">Header Color</p>
+                                                                </div>
+                                                                <div class="col-2">
+                                                                    <input type="color" value="#0EE1BE" name="color1" id="color1">
+                                                                    <p class="mt-2">Background Color</p>
+                                                                </div>
+                                                                <div class="col-2">
+                                                                    <input type="color" name="color1" id="color1">
+                                                                    <p class="mt-2">Main Color</p>
+                                                                </div>
+                                                                <div class="col-2">
+                                                                    <input type="color" name="color1" id="color1">
+                                                                    <p class="mt-2">Header element Color</p>
+                                                                </div>
+                                                                <div class="col-2">
+                                                                    <input type="color" name="color1" id="color1">
+                                                                    <p class="mt-2">Sidebar Color</p>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="tab-pane" id="tab31">
+                                                            <div class="row mt-3">
+                                                                <form id="form1" runat="server">
+
+                                                                    <div class="row">
+                                                                        <div class="col-lg-12">
+                                                                            <h2>Logo</h2>
+                                                                        </div>
+                                                                        <center>
+                                                                            <div class="col-lg-12">
+                                                                                <div class="left" style="height: 150px;width: 300px;">
+                                                                                    <img style="height: 150px;width: 300px;" id="img-uploaded" src="http://bigit.io/images/logo.png" alt="your image" />
+                                                                                </div>
+                                                                            </div>
+                                                                        </center>
+                                                                        <div class="col-lg-12 mt-4">
+
+
+                                                                            <!-- <input type="text" class="img-path" placeholder="Image Path"> -->
+                                                                            <div class="file-wrapper">
+                                                                                <input type="file" name="photo" id="imgInp" class="uploader btn btn-primary" />
+                                                                                <br>
+                                                                                <div class="btn btn-primary mt-4">Upload Image</div>
+                                                                            </div>
+
+                                                                        </div>
+
+                                                                    </div>
+
+
+                                                                </form>
+                                                            </div>
+                                                            <hr>
+                                                            <div class="row mt-3">
+                                                                <form id="form1" runat="server">
+
+                                                                    <div class="row">
+                                                                        <div class="col-lg-12">
+                                                                            <h2>Favicon</h2>
+                                                                        </div>
+                                                                        <center>
+                                                                            <div class="col-lg-12">
+                                                                                <div class="left" style="height: 150px;width: 300px;">
+                                                                                    <img style="height: 150px;width: 300px;" id="img-uploaded" src="http://bigit.io/images/logo.png" alt="your image" />
+                                                                                </div>
+                                                                            </div>
+                                                                        </center>
+                                                                        <div class="col-lg-12 mt-4">
+
+
+                                                                            <!-- <input type="text" class="img-path" placeholder="Image Path"> -->
+                                                                            <div class="file-wrapper">
+                                                                                <input type="file" name="photo" id="imgInp" class="uploader btn btn-primary" />
+                                                                                <br>
+                                                                                <div class="btn btn-primary mt-4">Upload Image</div>
+                                                                            </div>
+
+                                                                        </div>
+
+                                                                    </div>
+
+
+                                                                </form>
+                                                            </div>
+
+
+                                                        </div>
+
+                                                        <div class="tab-pane" id="tab32">
+                                                            <h2>Font Color</h2>
+                                                            <div class="col-2">
+                                                                <input type="color" name="color1" id="color1">
+                                                                <p class="mt-2">Font Color</p>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+
                                         <div class="tab-pane" id="tab6">Demo filed3</div>
                                     </div>
 
@@ -752,6 +894,60 @@
 
         <!-- JAVASCRIPT -->
         <script src="assets/libs/jquery/jquery.min.js"></script>
+        <script>
+            function processData(c1) {
+                var cv1 = document.getElementById(c1).value;
+                var p = document.getElementById("output");
+                document.body.style.backgroundColor = cv1;
+                p.textContent = cv1;
+            }
+
+
+
+
+            /*----------------------------------------
+            Upload btn
+            ------------------------------------------*/
+            var SITE = SITE || {};
+
+            SITE.fileInputs = function() {
+                var $this = $(this),
+                    $val = $this.val(),
+                    valArray = $val.split('\\'),
+                    newVal = valArray[valArray.length - 1],
+                    $button = $this.siblings('.btn'),
+                    $fakeFile = $this.siblings('.file-holder');
+                if (newVal !== '') {
+                    $button.text('Photo Chosen');
+                    if ($fakeFile.length === 0) {
+                        $button.after('<span class="file-holder">' + newVal + '</span>');
+                    } else {
+                        $fakeFile.text(newVal);
+                    }
+                }
+            };
+
+
+            $('.file-wrapper input[type=file]').bind('change focus click', SITE.fileInputs);
+
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    var tmppath = URL.createObjectURL(event.target.files[0]);
+
+                    reader.onload = function(e) {
+                        $('#img-uploaded').attr('src', e.target.result);
+                        $('input.img-path').val(tmppath);
+                    }
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+
+            $(".uploader").change(function() {
+                readURL(this);
+            });
+        </script>
         <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
         <script src="assets/libs/metismenu/metisMenu.min.js"></script>
         <script src="assets/libs/simplebar/simplebar.min.js"></script>
