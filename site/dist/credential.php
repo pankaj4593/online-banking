@@ -234,15 +234,17 @@ $get_notifiy=mysqli_num_rows($notified_me);
                                                                             ?></td>
                                                                             <td><button type="button" class=""
                                                                             
-                                                                    onclick="javscript:
-                                                                    var c=confirm('are  you sure to delete this alert');
-                                                                   if(c)
-                                                                   {
-                                                                location.herf='credential.php' ;   
-                                                                }
+                                                                            onclick="javascript:var c=confirm('Are your sure to delete this benificary details ');
+if(c)
+{
+location.href='credential.php?Delete=<?=$query['token_id']?>'; 
+
+    }
+ ">
 
 
 
+                                                            
 
 
 
@@ -253,8 +255,28 @@ $get_notifiy=mysqli_num_rows($notified_me);
                                                                             <?php    
                                                                     }
                                                                         ?>
+                                                                      <!-- delete the  ip_address and  information -->
                                                                       
-                                                                       
+
+                                                                       <?php
+if($_SERVER['REQUEST_METHOD']=="GET" && $_REQUEST['Delete']!=="")
+{
+    $delete_Data= mysqli_query($con, "DELETE  FROM  tbl_login_history  WHERE  token_id ='".$_REQUEST['Delete']."' " ) or die('sql server');
+    if($delete_Data)
+    {
+        echo "<script type='text/JavaScript'>wrongAuth();</script>";
+    }
+    else
+    {
+        echo "<script>alert('server error please try again later @');</script>";
+    }
+}
+else
+{
+    echo "<script>alert('this function is not have a proper way to delete this  item!');</script>";
+}
+?>
+                                                                        
                                                                     </tbody>
                                                                 </table>
                                                             </div>
