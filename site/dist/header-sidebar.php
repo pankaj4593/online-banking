@@ -125,10 +125,10 @@ if(isset($_SESSION["s_account_no"]) && isset($_SESSION['s_login']))
             h6 {
                 font-weight: 800;
             }
-            .progress{
-                height:14px !important;
-            }
             
+            .progress {
+                height: 14px !important;
+            }
         </style>
 
         <header id="page-topbar" style="border:1px solid #E5E5E5 !important;box-shadow:  5px 5px 10px #e8e8e8,
@@ -279,7 +279,7 @@ if(isset($_SESSION["s_account_no"]) && isset($_SESSION['s_login']))
                         <div class="dropdown-menu dropdown-menu-right">
                             <!-- item-->
                             <a class="dropdown-item" href="profile.php"><i class="mdi mdi-face-profile font-size-16 align-middle mr-1"></i> Profile</a>
-                            <a class="dropdown-item" href="#"><i class="mdi mdi-account-settings font-size-16 align-middle mr-1"></i> Settings</a>
+                            <a class="dropdown-item" href="credential.php"><i class="mdi mdi-account-settings font-size-16 align-middle mr-1"></i> Settings</a>
                             <a class="dropdown-item" href="http://localhost/online-banking/site/dist/auth_login.php"><i class="mdi mdi-logout font-size-16 align-middle mr-1"></i>Logout</a>
                         </div>
                     </div>
@@ -317,7 +317,7 @@ if(isset($_SESSION["s_account_no"]) && isset($_SESSION['s_login']))
                         <li>
                             <a href="list.php" class=" waves-effect">
                                 <i class="fa  fa-list"></i>
-                                <span>List Of Beneficiary </span>
+                                <span>List Of Payee </span>
                             </a>
                         </li>
                         <!-- end new meinu -->
@@ -344,19 +344,19 @@ if(isset($_SESSION["s_account_no"]) && isset($_SESSION['s_login']))
                                 </a>
                             </li> -->
 
-                        
+
                         <li>
                             <a href="statement.php" class="waves-effect">
                                 <i class="fas fa-file-alt"></i>
                                 <span>Statement</span>
                             </a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a href="credential.php" class="waves-effect">
                                 <i class="fa fa-cog"></i>
                                 <span>Credential Setting</span>
                             </a>
-                        </li>
+                        </li> -->
                         <li>
                             <a href="feedback.php" class="waves-effect">
                                 <i class="mdi mdi-heart-outline"></i>
