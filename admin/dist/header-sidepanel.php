@@ -342,6 +342,12 @@
                                     <span>Cheque Book Requests</span>
                                 </a>
                             </li> -->
+                            <li>
+                    <a href="setting.php" class="waves-effect">
+                        <i class="fas fa-cog"></i>
+                        <span>Setting</span>
+                    </a>
+                </li>
                 <li>
                     <a href="fee-charges.php" class="waves-effect">
                         <i class="mdi mdi-wrench-outline"></i>
